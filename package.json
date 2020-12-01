@@ -1,0 +1,25 @@
+{
+  "name": "flowerzapi",
+  "version": "1.0.0",
+  "description": "FlowerZ project API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flowerz-IL/FlowerzAPI.git"
+  },
+  "author": "Amnon Ashkenazy Iris Kella Guy Nudelman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flowerz-IL/FlowerzAPI/issues"
+  },
+  "homepage": "https://github.com/Flowerz-IL/FlowerzAPI#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.0"
+  }
+}
