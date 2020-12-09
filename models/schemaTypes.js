@@ -1,5 +1,3 @@
-import { string } from 'joi';
-import { isEmail } from 'validator';
 
 // -----------------------------------------------------------------------------------------------
 // ------------------------------------------- STRINGS -------------------------------------------
@@ -73,8 +71,14 @@ export const nonRequiredNumber = {type:Number };
 // ------------------------------------------- Boolean -------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
+/**
+ * Required Boolean with no restrictions.
+ */
 export const requiredBoolean = { type: Boolean, required: true}
 
+/**
+ * Boolean with no restrictions.
+ */
 export const nonRequiredBoolean = {type: Boolean}
 
 // -----------------------------------------------------------------------------------------------
