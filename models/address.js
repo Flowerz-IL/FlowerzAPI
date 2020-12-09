@@ -6,10 +6,10 @@ const schemaTypes = require('./schemaTypes');
 //model schema 
 const modelSchema = new mongoose.Schema(
     {   
-        name: mmongoose.SchemaTypes.longStringRequired,
-        city: mongoose.SchemaTypes.longStringRequired,
-        street: mongoose.SchemaTypes.longStringRequired,
-        houseNumber: mongoose.Schema.Types.Number,
+        name: schemaTypes.longStringRequired,
+        city: schemaTypes.longStringRequired,
+        street: schemaTypes.longStringRequired,
+        houseNumber: schemaTypes.numberRequired,
         floorNumber: mongoose.Schema.Types.Number,
         aptNumber: mongoose.Schema.Types.Number,
     },
@@ -20,7 +20,7 @@ const modelSchema = new mongoose.Schema(
 );
 
 //create model 
-const Model = mongoose.model('address', modelSchema);
+const Model = mongoose.model('Address', modelSchema);
 
 //export model
 module.exports = Model;

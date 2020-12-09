@@ -6,9 +6,9 @@ const schemaTypes = require('./schemaTypes');
 //model schema 
 const modelSchema = new mongoose.Schema(
     {
-        userID:mongoos.SchemaTypes.ObjectId,
+        userID: mongoose.SchemaTypes.ObjectId,
         totalSum: schemaTypes.totalSumRequired,
-        orders: [mongoose.SchemaTypes.ObjectId], 
+        orders: [schemaTypes.IDRequired], 
     },
 
     {
@@ -17,7 +17,7 @@ const modelSchema = new mongoose.Schema(
 );
 
 //create model 
-const Model = mongoose.model('cart', modelSchema);
+const Model = mongoose.model('Cart', modelSchema);
 
 //export model
 module.exports = Model;

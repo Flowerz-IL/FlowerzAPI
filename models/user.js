@@ -12,10 +12,10 @@ const modelSchema = new mongoose.Schema(
         firstName: schemaTypes.longStringRequired,
         surName: schemaTypes.longStringRequired,
         mainAddress: mongoose.SchemaTypes.ObjectId, // of address model
-        phoneNumber: SchemaTypes.phoneNumberRequired,
+        phoneNumber: schemaTypes.phoneNumberRequired,
         orders: [schemaTypes.IDRequired],
-        addresses: [mongoose.Schema.Type.ObjectId], //orders addresses 
-        userRole: mongoose.schemaTypes.userRoleRequired, 
+        addresses: [schemaTypes.IDRequired], //orders addresses 
+        userRole: schemaTypes.userRoleRequired, 
     },
 
     {
@@ -24,7 +24,7 @@ const modelSchema = new mongoose.Schema(
 );
 
 //create model 
-const Model = mongoose.model('user', modelSchema);
+const Model = mongoose.model('User', modelSchema);
 
 //export model
 module.exports = Model;

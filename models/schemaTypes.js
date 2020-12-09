@@ -8,6 +8,11 @@ const IDRequired = {
     trim: true,
 };
 
+const numberRequired = { 
+    type:Number,
+    required: true,
+    trim: true,
+};
 //model: flowerBouqet, bouquet color
 const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE'];
 const colorRequired = {
@@ -34,7 +39,10 @@ const sizeRequired = {
     enum:SIZE_OPTIONS,
 }
 
-//model: general, image path, description  
+/**
+ * model: general, image path, description  
+*/
+
 const longStringRequired = {
     type:String,
     required: true,
@@ -106,7 +114,7 @@ enum:CATEGORIES,
 
 
 module.exports = {
-    IDRequired, SIZE_OPTIONS, sizeRequired,
+    IDRequired, SIZE_OPTIONS, sizeRequired, numberRequired,
     COLORS, colorRequired, priceRequired,
     longStringRequired, boolRequired, frequencyWeeksRequired,
     totalSum,FREQUENCY,emailAddressRequired,

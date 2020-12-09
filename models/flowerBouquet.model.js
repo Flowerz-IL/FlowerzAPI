@@ -8,10 +8,10 @@ const modelSchema = new mongoose.Schema(
         color:schemaTypes.colorRequired,
         price:schemaTypes.priceRequired,
         size:schemaTypes.sizeRequired,
-        productDescription:schemaTypes.LongStringRequired, 
+        productDescription:schemaTypes.longStringRequired, 
         productImage:schemaTypes.LongStringRequired, 
-        occassionstyleID:mongoose.Schema.Types.ObjectId, 
-        isMixed: schemaTypes.boolRequired, 
+        occassionstyleID: schemaTypes.IDRequired, 
+        isMixed: schemaTypes.boolRequired,
         frequencyWeeks: schemaTypes.frequencyWeeksRequired,
     },
 
@@ -21,7 +21,7 @@ const modelSchema = new mongoose.Schema(
 );
 
 //create model 
-const Model = mongoose.model('flowerBouquet', modelSchema);
+const Model = mongoose.model('FlowerBouquet', modelSchema);
 
 //export model
 module.exports = Model;
