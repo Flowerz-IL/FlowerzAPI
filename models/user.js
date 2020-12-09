@@ -7,13 +7,13 @@ const Joi = require('@hapi/joi');
 //model schema 
 const modelSchema = new mongoose.Schema(
     {
-        emailAddress: mongoose.schemaTypes.emailAddressRequired,
-        password: mongoose.SchemaTypes.longStringRequired,
-        firstName: mongoose.SchemaTypes.longStringRequired,
-        surName: mongoose.SchemaTypes.longStringRequired,
-        mainAddress: mongoose.Schema.Type.ObjectId, // of adress model
-        phoneNumber: mongoose.SchemaTypes.phoneNumberRequired,
-        orders: [mongoose.Schema.Type.ObjectId],
+        emailAddress: schemaTypes.emailAddressRequired,
+        password: schemaTypes.longStringRequired,
+        firstName: schemaTypes.longStringRequired,
+        surName: schemaTypes.longStringRequired,
+        mainAddress: mongoose.SchemaTypes.ObjectId, // of address model
+        phoneNumber: SchemaTypes.phoneNumberRequired,
+        orders: [schemaTypes.IDRequired],
         addresses: [mongoose.Schema.Type.ObjectId], //orders addresses 
         userRole: mongoose.schemaTypes.userRoleRequired, 
     },

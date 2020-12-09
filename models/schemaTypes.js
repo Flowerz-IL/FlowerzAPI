@@ -18,13 +18,12 @@ const colorRequired = {
 };
 
 //model: flowerBouqet, bouquet price
-const PRICES = ['70','80','100','120']
 const priceRequired = {
-    type:String,
+    type:Number,
     required: true, 
     trim:true,
-    enum:PRICES,
 };
+
 
 //model: flowerBouqet, bouquet size
 const SIZE_OPTIONS = ['S','M','L','XXL'];
@@ -62,6 +61,7 @@ const totalSumRequired = {
     type: Number,
     required: true,
 };
+
 
 const emailAddressRequired = {
         type: String,
@@ -107,7 +107,7 @@ enum:CATEGORIES,
 
 module.exports = {
     IDRequired, SIZE_OPTIONS, sizeRequired,
-    COLORS, colorRequired, priceRequired, PRICES,
+    COLORS, colorRequired, priceRequired,
     longStringRequired, boolRequired, frequencyWeeksRequired,
     totalSum,FREQUENCY,emailAddressRequired,
     phoneNumberRequired,ROLES,userRoleRequired,

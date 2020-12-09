@@ -19,3 +19,9 @@ const modelSchema = new mongoose.Schema (
         timestamps:true // adding object creation time
     }
     );
+
+    //create model 
+const Model = mongoose.model('order', modelSchema);
+
+//export model
+module.exports = Model;
