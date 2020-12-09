@@ -2,18 +2,16 @@
 const mongoose = require('mongoose');
 const schemaTypes = require('./schemaTypes');
 
-
 //model schema 
 const modelSchema = new mongoose.Schema(
     {   
-        name: schemaTypes.longStringRequired,
-        city: schemaTypes.longStringRequired,
-        street: schemaTypes.longStringRequired,
-        houseNumber: schemaTypes.numberRequired,
-        floorNumber: mongoose.Schema.Types.Number,
-        aptNumber: mongoose.Schema.Types.Number,
+        name: schemaTypes.requiredSmallString,
+        city: schemaTypes.requiredSmallString,
+        street: schemaTypes.requiredMediumString,
+        houseNumber: schemaTypes.requiredSmallString,
+        floorNumber: schemaTypes.nonRequiredNumber,
+        aptNumber: schemaTypes.nonRequiredNumber,
     },
-
     {
         timestamps:true // adding object creation time
     }

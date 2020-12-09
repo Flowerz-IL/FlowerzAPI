@@ -2,15 +2,13 @@
 const mongoose = require('mongoose');
 const schemaTypes = require('./schemaTypes');
 
-
 //model schema 
 const modelSchema = new mongoose.Schema(
     {
-        userID: mongoose.SchemaTypes.ObjectId,
-        totalSum: schemaTypes.totalSumRequired,
-        orders: [schemaTypes.IDRequired], 
+        userID: schemaTypes.requiredString,
+        orders: [schemaTypes.requiredString], 
+        totalSum: schemaTypes.requiredNumber,
     },
-
     {
         timestamps:true // adding object creation time
     }

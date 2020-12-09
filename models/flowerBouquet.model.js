@@ -5,16 +5,14 @@ const schemaTypes = require('./schemaTypes');
 //model schema 
 const modelSchema = new mongoose.Schema(
     {
-        color:schemaTypes.colorRequired,
-        price:schemaTypes.priceRequired,
-        size:schemaTypes.sizeRequired,
-        productDescription:schemaTypes.longStringRequired, 
-        productImage:schemaTypes.LongStringRequired, 
-        occassionstyleID: schemaTypes.IDRequired, 
-        isMixed: schemaTypes.boolRequired,
-        frequencyWeeks: schemaTypes.frequencyWeeksRequired,
+        color:schemaTypes.requiredFlowerColor,
+        price:schemaTypes.requiredNumber,
+        size:schemaTypes.requiredSize,
+        productDescription:schemaTypes.requiredLongString, 
+        productImage:schemaTypes.requiredString, 
+        occasionStyle: schemaTypes.requiredOccasionStyle, 
+        isMixed: schemaTypes.requiredBoolean,
     },
-
     {
         timestamps:true // adding object creation time
     }
