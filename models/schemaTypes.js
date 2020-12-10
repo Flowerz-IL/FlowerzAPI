@@ -1,125 +1,137 @@
-import { string } from 'joi';
-import { isEmail } from 'validator';
 
-//model: general, Item ID
-const IDRequired = { 
-    type:String,
-    required: true,
-    trim: true,
-};
+// -----------------------------------------------------------------------------------------------
+// ------------------------------------------- STRINGS -------------------------------------------
+// -----------------------------------------------------------------------------------------------
 
-const numberRequired = { 
-    type:Number,
-    required: true,
-    trim: true,
-};
-//model: flowerBouqet, bouquet color
-const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE'];
-const colorRequired = {
-    type:String,
-    required: true, 
-    trim:true,
-    enum:COLORS,
-};
-
-//model: flowerBouqet, bouquet price
-const priceRequired = {
-    type:Number,
-    required: true, 
-    trim:true,
-};
-
-
-//model: flowerBouqet, bouquet size
-const SIZE_OPTIONS = ['S','M','L','XXL'];
-const sizeRequired = {
-    type:String,
-    required: true,
-    trim: true,
-    enum:SIZE_OPTIONS,
-}
+const [SMALL_STRING, MEDIUM_STRING, LONG_STRING] = [40, 80, 120];
 
 /**
- * model: general, image path, description  
-*/
-
-const longStringRequired = {
+ * Required trimmed string with no restrictions.
+ */
+export const requiredString = {
     type:String,
     required: true,
     trim: true,
 };
 
-//model: general
-const boolRequired = {
-    type: Boolean,
-    required: true,
-}
-
-
-//model: flowerBouqet, delivery frequency every 1 or 2 weeks 
-const FREQUENCY = ['1','2']
-const frequencyWeeksRequired = {
-    type: Number,
-    required: true,
-    enum: FREQUENCY,
-}
-
-//model: cart, total sum of purchase 
-const totalSumRequired = {
-    type: Number,
-    required: true,
+/**
+ * Trimmed string with no restrictions.
+ */
+export const nonRequiredString = {
+    type:String,
+    trim: true,
 };
 
+/**
+ * Required trimmed string with maximum of 40 characters.
+ */
+export const requiredSmallString = {...RequiredString, maxlength: SMALL_STRING};
 
-const emailAddressRequired = {
-        type: String,
-        trim: true,
-        lowercase: true,
-        unique: true,
-        required: 'Email address is required',
-        validate: [isEmail, 'Please fill a valid email address'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-};
+/**
+ * Trimmed string with maximum of 40 characters.
+ */
+export const nonRequiredSmallString = {...NonRequiredString, maxlength: SMALL_STRING};
 
-const phoneNumberRequired = {
-        type: String,
-        validate: {
-          validator: function(v) {
-            return /\d{3}-\d{3}-\d{4}/.test(v);
-          },
-          message: props => `${props.value} is not a valid phone number!`
-        },
-        required: [true, 'User phone number required']
+/**
+ * Required trimmed string with maximum of 80 characters.
+ */
+export const requiredMediumString = {...RequiredString, maxlength: MEDIUM_STRING};
+
+/**
+ * Trimmed string with maximum of 80 characters.
+ */
+export const nonRequiredMediumString = {...NonRequiredString, maxlength: MEDIUM_STRING};
+
+/**
+ * Required trimmed string with maximum of 120 characters.
+ */
+export const requiredLongString = {...RequiredString, maxlength: LONG_STRING};
+
+/**
+ * Trimmed string with maximum of 120 characters.
+ */
+export const nonRequiredLongString = {...NonRequiredString, maxlength: LONG_STRING};
+
+
+// -----------------------------------------------------------------------------------------------
+// ------------------------------------------- Numbers -------------------------------------------
+// -----------------------------------------------------------------------------------------------
+
+/**
+ * Required Number with no restrictions.
+ */
+export const requiredNumber = {type:Number, required: true};
+
+/**
+ * Number with no restrictions.
+ */
+export const nonRequiredNumber = {type:Number };
+
+// -----------------------------------------------------------------------------------------------
+// ------------------------------------------- Boolean -------------------------------------------
+// -----------------------------------------------------------------------------------------------
+
+/**
+ * Required Boolean with no restrictions.
+ */
+export const requiredBoolean = { type: Boolean, required: true}
+
+/**
+ * Boolean with no restrictions.
+ */
+export const nonRequiredBoolean = {type: Boolean}
+
+// -----------------------------------------------------------------------------------------------
+// -------------------------------------------- Enums --------------------------------------------
+// -----------------------------------------------------------------------------------------------
+
+const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE'];
+const SIZE_OPTIONS = ['S','M','L','XXL'];
+const FREQUENCY = ['1','2'];
+const ROLES = ['ADMIN','DELIVERY','FLOURIST','USER'];
+const CATEGORIES = ['BOUQUET','WINE','NUTS'];
+const OCCASIONS = ['BIRTHDAY', 'WEEKENDVIBES','APOLOGIZE','ROMANTIC','NORMAL','CELEBRATE','CALM','PRETTYHOUSE'];
+
+/**
+ * String fixed COLORS
+ */
+export const requiredFlowerColor = {...requiredString, enum:COLORS };
+
+/**
+ * String fixed SIZE_OPTIONS
+ */
+export const requiredSize = {...requiredString, enum:SIZE_OPTIONS };
+
+/**
+ * String fixed ROLES
+ */
+export const requiredUserRole = {...requiredString, enum: ROLES};
+
+/**
+ * String fixed CATEGORIES
+ */
+export const requiredCategory = {...requiredNumber, enum: CATEGORIES};
+
+/**
+ * String fixed CATEGORIES
+ */
+export const requiredOccasionStyle = {...requiredNumber, enum: OCCASIONS};
+
+/**
+ * Number fixed FREQUENCY
+ */
+export const requiredFrequencyWeeks = {...requiredNumber, enum: FREQUENCY};
+
+// -----------------------------------------------------------------------------------------------
+// -------------------------------------------- Other --------------------------------------------
+// -----------------------------------------------------------------------------------------------
+
+export const phoneNumberRequired = {
+    ...requiredString,
+    validate: {
+      validator: function(phoneNumber) {
+        return /\d{3}-\d{3}-\d{4}/.test(phoneNumber);
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    },
 };      
-
-const ROLES = ['ADMIN','DELIVERY','FLOURIST','USER'] 
-const userRoleRequired = {
-    type: String,
-    required:true,
-    enum: ROLES,
-}
-
-const dateRequired = {
-    type: Date, 
-    required: true,
-    default: Date.now,
-}
-
-CATEGORIES = ['BOUQUET','WINE','NUTS']
-const categoryRequired = {
-type: string, 
-default:'BOUQUET',
-enum:CATEGORIES,
-}
-
-
-module.exports = {
-    IDRequired, SIZE_OPTIONS, sizeRequired, numberRequired,
-    COLORS, colorRequired, priceRequired,
-    longStringRequired, boolRequired, frequencyWeeksRequired,
-    totalSum,FREQUENCY,emailAddressRequired,
-    phoneNumberRequired,ROLES,userRoleRequired,
-    CATEGORIES,categoryRequired,
-
-// here the rest of the modules 
-};
