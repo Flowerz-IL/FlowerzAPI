@@ -40,7 +40,7 @@ export const requiredMediumString = {...RequiredString, maxlength: MEDIUM_STRING
 /**
  * Trimmed string with maximum of 80 characters.
  */
-export const nonRequiredSmallString = {...NonRequiredString, maxlength: MEDIUM_STRING};
+export const nonRequiredMediumString = {...NonRequiredString, maxlength: MEDIUM_STRING};
 
 /**
  * Required trimmed string with maximum of 120 characters.
@@ -50,7 +50,7 @@ export const requiredLongString = {...RequiredString, maxlength: LONG_STRING};
 /**
  * Trimmed string with maximum of 120 characters.
  */
-export const nonRequiredSmallString = {...NonRequiredString, maxlength: LONG_STRING};
+export const nonRequiredLongString = {...NonRequiredString, maxlength: LONG_STRING};
 
 
 // -----------------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ const SIZE_OPTIONS = ['S','M','L','XXL'];
 const FREQUENCY = ['1','2'];
 const ROLES = ['ADMIN','DELIVERY','FLOURIST','USER'];
 const CATEGORIES = ['BOUQUET','WINE','NUTS'];
-const OCCASIONS = ['Birthday', 'Happy_FRIDAY'];
+const OCCASIONS = ['BIRTHDAY', 'WEEKENDVIBES','APOLOGIZE','ROMANTIC','NORMAL','CELEBRATE','CALM','PRETTYHOUSE'];
 
 /**
  * String fixed COLORS
