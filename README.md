@@ -10,10 +10,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#Base URL">Base URL</a></li>
+    <li><a href="#URL">Base URL</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="#authentication">Authentication</a></li>
-    <li><a href="#JSON Schema">JSON Schema</a></li>
+    <li><a href="#Schema">JSON Schema</a></li>
     <li><a href="#encoding">Encoding</a></li>
   </ol>
 </details>
@@ -65,7 +65,7 @@ The response:
 
 
 <!-- Base URL -->
-## Base URL
+## URL
 
 The base URL, which presents the root for the entire API  :
 
@@ -73,10 +73,9 @@ The base URL, which presents the root for the entire API  :
 http://localHist:8080/api
 ```
 
-<!-- ROADMAP -->
+<!-- Resources -->
 ## Resources
 
-FlowerzAPI provides JSON as the data format.
 
 ### User
 The Users resource provides information on the registered users of the application.
@@ -162,8 +161,6 @@ http://localhost:8080/api/orders/5fd4a82fd0069c37bc46b183
 * nextShippingDate: *Date* -- The next date for the order delivery.
 * orderCategory: *String* --The order's type of category.
 * totalSum: *Number* -- The order's price amount.
-* updateAt: *Date* -- The last date the order has been updated .
-* createdAt: *Date* -- The date the order has been created.
 
 
 ### Flower bouquet
@@ -207,7 +204,7 @@ http://localHost:8080/api/flowerBouquet
 
 FlowerzAPI require authentication for some of its requests. However, some operations are open and does not require authentication to get data. 
 
-## JSON Schema
+## Schema
 
 FlowerzAPI resources support JSON Schema.
 
