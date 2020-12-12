@@ -1,4 +1,4 @@
-# Documentation
+# FlowerZAPI Documentation
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -25,23 +25,20 @@
 
 Welcome to the FlowerzAPI. Here you will learn about our available resources and how to use them with HTTP requests.
 
+---
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Here you can see an example request to the FlowerzAPI.
-
-In order to do that, you will have to open up a terminal and use curl or httpie to make an API request for a resource.
-For example:
+Here you can see an example GET request to the FlowerzAPI.
 
 ```bash
-http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de
+GET http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de
 ```
 
-Here we are asking for a birthday style bouquet.
+Here we are asking for a specific flowerbouquet with the id:5fd4b1476027c14028b0e5de.
 
 The response:
-
 
 ```bash
 [
@@ -62,28 +59,32 @@ The response:
 
 *Note: Response may be different due to possible changes in data.
 
-
+---
 
 <!-- Base URL -->
 ## Base URL
 
-The base URL, which presents the root for the entire API  :
+The base URL, which presents the root for the entire API:
 
 ```bash
-http://localHist:8080/api
+http://localHost:8080/api
 ```
+---
 
 <!-- Resources -->
 ## Resources
-
-
 ### User
-The Users resource provides information on the registered users of the application.
-Use and requests from this resource require specific authorizations.
+The Users resource manage user authentication and provides the registered users information.
+
+#### EndPoints
+- ``` /users ``` get all users
+- ``` /users/:id ``` get, patch or delete specific user
+- ``` /users/signup ``` register a user and get temoprety token as a response 
+- ``` /users/signin ``` sign in and get temoprety token as a response 
 
 #### Example request:
 ```
-http://localHost:8080/api/users
+api/users
 ```
 
 #### Example response:
