@@ -131,7 +131,7 @@ http://localHost:8080/api/users
    * orders : *orders Array* -- The orders of the user.
 
 ### Order
-The Order resource provides information on the orders of the application user's.
+The Order resource provides information on the orders of the application users.
 Use and requests from this resource require specific authorizations.
 
 #### Example request:
