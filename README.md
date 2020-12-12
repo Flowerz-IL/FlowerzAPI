@@ -1,24 +1,33 @@
 # Documentation
 
-Table of contents
-=================
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#introduction">Introduction</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#Base URL">Base URL</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#authentication">Authentication</a></li>
+    <li><a href="#json schema">JSON Schema</a></li>
+    <li><a href="#encoding">Encoding</a></li>
+  </ol>
+</details>
 
-<!--ts-->
-   * [Table of contents](#table-of-contents)
-   * Introduction(#introduction)
-   * Get Started(#getStarted)
-   * Resources(#resources)
-   * Authentication(#authentication)
-   * JSON Schema(#jsonSchema)
-   * Encoding(#encoding)
-<!--te-->
 
-Introduction
-=================
+
+<!-- Introduction -->
+## Introduction
 
 Welcome to the FlowerzAPI. Here you will learn about our available resources and how to use them with HTTP requests.
 
-## Get Started
+
+<!-- GETTING STARTED -->
+## Getting Started
 
 Here you can see an example request to the FlowerzAPI.
 
@@ -53,6 +62,9 @@ The response:
 
 *Note: Response may be different due to possible changes in data.
 
+
+
+<!-- Base URL -->
 ## Base URL
 
 The base URL, which presents the root for the entire API  :
@@ -60,7 +72,10 @@ The base URL, which presents the root for the entire API  :
 ```bash
 http://localHist:8080/api
 ```
+
+<!-- ROADMAP -->
 ## Resources
+
 FlowerzAPI provides JSON as the data format.
 
 ### User
@@ -222,10 +237,3 @@ FlowerzAPI resources support JSON Schema.
 
 ## Encoding
 FlowerzAPI provides JSON as the data format.
-
-
-
-
-
-
-
