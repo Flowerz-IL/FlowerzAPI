@@ -13,7 +13,7 @@
     <li><a href="#Base URL">Base URL</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="#authentication">Authentication</a></li>
-    <li><a href="#json schema">JSON Schema</a></li>
+    <li><a href="#JSON Schema">JSON Schema</a></li>
     <li><a href="#encoding">Encoding</a></li>
   </ol>
 </details>
