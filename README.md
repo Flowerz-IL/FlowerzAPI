@@ -10,10 +10,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#URL">Base URL</a></li>
+    <li><a href="#base-URL">Base URL</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="#authentication">Authentication</a></li>
-    <li><a href="#Schema">JSON Schema</a></li>
+    <li><a href="#json-schema">JSON Schema</a></li>
     <li><a href="#encoding">Encoding</a></li>
   </ol>
 </details>
@@ -65,7 +65,7 @@ The response:
 
 
 <!-- Base URL -->
-## URL
+## Base URL
 
 The base URL, which presents the root for the entire API  :
 
@@ -156,7 +156,7 @@ http://localhost:8080/api/orders/5fd4a82fd0069c37bc46b183
 ##### Properties 
 * id : *String*-- The Order's id. This attribute is generated automatically. 
 * UserId: *String*-- The id of the user who registered the order.
-* frequencyWeeks: *Number* -- The weekly frequency desired by the user
+* frequencyWeeks: *Number* -- The weekly frequency desired by the user.
 * startDate: *Date* -- The First date for the order delivery.
 * nextShippingDate: *Date* -- The next date for the order delivery.
 * orderCategory: *String* --The order's type of category.
@@ -197,14 +197,14 @@ http://localHost:8080/api/flowerBouquet
 * productDescription: *String* -- A description of the flowerBouquet. 
 * productImage: *URL* -- An image of the flowerBouquet.
 * occasionStyle: *String* -- The product style of occasion.
-* isMixed: *Boolean* -- Flower bouquet diversity
+* isMixed: *Boolean* -- Flower bouquet diversity.
 
 
 ## Authentication
 
 FlowerzAPI require authentication for some of its requests. However, some operations are open and does not require authentication to get data. 
 
-## Schema
+## JSON Schema
 
 FlowerzAPI resources support JSON Schema.
 
