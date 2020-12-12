@@ -1,5 +1,18 @@
 # Documentation
 
+Table of contents
+=================
+
+<!--ts-->
+   * [Table of contents](#table-of-contents)
+   * Introduction(#introduction)
+   * Get Started(#getStarted)
+   * Resources(#resources)
+   * Authentication(#authentication)
+   * JSON Schema(#jsonSchema)
+   * Encoding(#encoding)
+<!--te-->
+
 ##  Introduction
 
 Welcome to the FlowerzAPI. Here you will learn about our available resources and how to use them with HTTP requests.
@@ -46,17 +59,6 @@ The base URL, which presents the root for the entire API  :
 ```bash
 http://localHist:8080/api
 ```
-## Authentication
-
-FlowerzAPI require authentication for some of its requests. However, some operations are open and does not require authentication to get data. 
-
-## JSON Schema
-
-FlowerzAPI resources support JSON Schema.
-
-## Encoding
-FlowerzAPI provides JSON as the data format.
-
 ## Resources
 FlowerzAPI provides JSON as the data format.
 
@@ -202,15 +204,23 @@ Connection: close
 * id : *String*-- The flowerBouquet's id. This attribute is generated automatically. 
 * color: *String*-- The color of the flowerBouquet. 
 * price: *Number* -- The price of the flowerBouquet.
-* size: *Char* -- The Size of the size (S,M,L,XL).
-* productDescription: *Date* -- A description of the flowerBouquet. 
+* size: *String* -- The size of the bouquet (S,M,L,XL).
+* productDescription: *String* -- A description of the flowerBouquet. 
 * productImage: *URL* -- An image of the flowerBouquet.
 * occasionStyle: *String* -- The product style of occasion.
 * isMixed: *Boolean* -- Flower bouquet diversity
-* createdAt: *Date* -- The date the flowerBouquet has been created.
-* updatedAt: *Date* -- The date the flowerBouquet has been last updated.
 
 
+## Authentication
+
+FlowerzAPI require authentication for some of its requests. However, some operations are open and does not require authentication to get data. 
+
+## JSON Schema
+
+FlowerzAPI resources support JSON Schema.
+
+## Encoding
+FlowerzAPI provides JSON as the data format.
 
 
 
