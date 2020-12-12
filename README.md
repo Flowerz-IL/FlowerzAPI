@@ -89,14 +89,6 @@ http://localHost:8080/api/users
 
 #### Example response:
 ```bash
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Access-Control-Allow-Origin: *
-Content-Type: application/json; charset=utf-8
-Content-Length: 312
-Date: Sat, 12 Dec 2020 14:29:45 GMT
-Connection: close
-
 [
   {
     "_id": "5fd3d0bbccb74d3b1c307e64",
@@ -150,14 +142,6 @@ http://localhost:8080/api/orders/5fd4a82fd0069c37bc46b183
 
 #### Example response:
 ```bash
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Access-Control-Allow-Origin: *
-Content-Type: application/json; charset=utf-8
-Content-Length: 255
-Date: Sat, 12 Dec 2020 15:15:27 GMT
-Connection: close
-
 {
   "_id": "5fd4a82fd0069c37bc46b183",
   "userID": "5fd3d0bbccb74d3b1c307e64",
@@ -193,15 +177,7 @@ http://localHost:8080/api/flowerBouquet
 
 #### Example response:
 ```bash
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Access-Control-Allow-Origin: *
-Content-Type: application/json; charset=utf-8
-Content-Length: 1345
-Date: Sat, 12 Dec 2020 16:09:34 GMT
-Connection: close
 
-[
   {
     "_id": "5fd4dccf95bab7401c0faea3",
     "color": "WHITE",
