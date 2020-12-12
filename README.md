@@ -6,7 +6,7 @@ Welcome to the FlowerzAPI. Here you will learn about our available resources and
 
 ## Get Started
 
-Firstly, we will learn how to make an API request to the FlowerzAPI.
+Here you can see an example request to the FlowerzAPI.
 
 In order to do that, you will have to open up a terminal and use curl or httpie to make an API request for a resource.
 For example:
@@ -21,14 +21,6 @@ The response:
 
 
 ```bash
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Access-Control-Allow-Origin: *
-Content-Type: application/json; charset=utf-8
-Content-Length: 329
-Date: Sat, 12 Dec 2020 14:02:21 GMT
-Connection: close
-
 [
   {
     "_id": "5fd4b1476027c14028b0e5de",
@@ -50,7 +42,6 @@ Connection: close
 ## Base URL
 
 The base URL, which presents the root for the entire API  :
-
 
 ```bash
 http://localHist:8080/api
