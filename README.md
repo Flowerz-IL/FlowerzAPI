@@ -13,7 +13,8 @@ Table of contents
    * Encoding(#encoding)
 <!--te-->
 
-##  Introduction
+Introduction
+=================
 
 Welcome to the FlowerzAPI. Here you will learn about our available resources and how to use them with HTTP requests.
 
