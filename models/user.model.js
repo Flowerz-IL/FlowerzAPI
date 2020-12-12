@@ -12,10 +12,19 @@ const modelSchema = new mongoose.Schema(
         firstName: schemaTypes.requiredSmallString,
         surName: schemaTypes.requiredSmallString,
         phoneNumber: schemaTypes.phoneNumberRequired,
-        orders: [schemaTypes.requiredString],
-        addresses: [schemaTypes.requiredString], //orders addresses 
+        addresses: [{
+            name: schemaTypes.nonRequiredSmallString,
+            city: schemaTypes.nonRequiredSmallString,
+            street: schemaTypes.nonRequiredMediumString,
+            houseNumber: schemaTypes.nonRequiredSmallString,
+            floorNumber: schemaTypes.nonRequiredNumber,
+            aptNumber: schemaTypes.nonRequiredNumber,
+        }],
+        cart: {
+            orders: [schemaTypes.nonRequiredString], 
+            totalSum: schemaTypes.nonRequiredNumber,
+        }
     },
-
     {
         timestamps:true // adding object creation time
     }

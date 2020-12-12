@@ -8,7 +8,7 @@ const [SMALL_STRING, MEDIUM_STRING, LONG_STRING] = [40, 80, 120];
 /**
  * Required trimmed string with no restrictions.
  */
-export const requiredString = {
+module.exports.requiredString = {
     type:String,
     required: true,
     trim: true,
@@ -17,7 +17,7 @@ export const requiredString = {
 /**
  * Trimmed string with no restrictions.
  */
-export const nonRequiredString = {
+module.exports.nonRequiredString = {
     type:String,
     trim: true,
 };
@@ -25,32 +25,32 @@ export const nonRequiredString = {
 /**
  * Required trimmed string with maximum of 40 characters.
  */
-export const requiredSmallString = {...RequiredString, maxlength: SMALL_STRING};
+module.exports.requiredSmallString = {...module.exports.requiredString, maxlength:SMALL_STRING};
 
 /**
  * Trimmed string with maximum of 40 characters.
  */
-export const nonRequiredSmallString = {...NonRequiredString, maxlength: SMALL_STRING};
+module.exports.nonRequiredSmallString = {...module.exports.nonRequiredString, maxlength: SMALL_STRING};
 
 /**
  * Required trimmed string with maximum of 80 characters.
  */
-export const requiredMediumString = {...RequiredString, maxlength: MEDIUM_STRING};
+module.exports.requiredMediumString = {...module.exports.requiredString, maxlength: MEDIUM_STRING};
 
 /**
  * Trimmed string with maximum of 80 characters.
  */
-export const nonRequiredMediumString = {...NonRequiredString, maxlength: MEDIUM_STRING};
+module.exports.nonRequiredMediumString = {...module.exports.nonRequiredString, maxlength: MEDIUM_STRING};
 
 /**
  * Required trimmed string with maximum of 120 characters.
  */
-export const requiredLongString = {...RequiredString, maxlength: LONG_STRING};
+module.exports.requiredLongString = {...module.exports.requiredString, maxlength: LONG_STRING };
 
 /**
  * Trimmed string with maximum of 120 characters.
  */
-export const nonRequiredLongString = {...NonRequiredString, maxlength: LONG_STRING};
+module.exports.nonRequiredLongString = {...module.exports.nonRequiredString, maxlength: LONG_STRING};
 
 
 // -----------------------------------------------------------------------------------------------
@@ -60,12 +60,12 @@ export const nonRequiredLongString = {...NonRequiredString, maxlength: LONG_STRI
 /**
  * Required Number with no restrictions.
  */
-export const requiredNumber = {type:Number, required: true};
+module.exports.requiredNumber = {type:Number, required: true};
 
 /**
  * Number with no restrictions.
  */
-export const nonRequiredNumber = {type:Number };
+module.exports.nonRequiredNumber = {type:Number };
 
 // -----------------------------------------------------------------------------------------------
 // ------------------------------------------- Boolean -------------------------------------------
@@ -74,12 +74,12 @@ export const nonRequiredNumber = {type:Number };
 /**
  * Required Boolean with no restrictions.
  */
-export const requiredBoolean = { type: Boolean, required: true}
+module.exports.requiredBoolean = { type: Boolean, required: true}
 
 /**
  * Boolean with no restrictions.
  */
-export const nonRequiredBoolean = {type: Boolean}
+module.exports.nonRequiredBoolean = {type: Boolean}
 
 // -----------------------------------------------------------------------------------------------
 // -------------------------------------------- Enums --------------------------------------------
@@ -95,39 +95,39 @@ const OCCASIONS = ['BIRTHDAY', 'WEEKENDVIBES','APOLOGIZE','ROMANTIC','NORMAL','C
 /**
  * String fixed COLORS
  */
-export const requiredFlowerColor = {...requiredString, enum:COLORS };
+module.exports.requiredFlowerColor = {...module.exports.requiredString, enum:COLORS };
 
 /**
  * String fixed SIZE_OPTIONS
  */
-export const requiredSize = {...requiredString, enum:SIZE_OPTIONS };
+module.exports.requiredSize = {...module.exports.requiredString, enum:SIZE_OPTIONS };
 
 /**
  * String fixed ROLES
  */
-export const requiredUserRole = {...requiredString, enum: ROLES};
+module.exports.requiredUserRole = {...module.exports.requiredString, enum: ROLES};
 
 /**
  * String fixed CATEGORIES
  */
-export const requiredCategory = {...requiredNumber, enum: CATEGORIES};
+module.exports.requiredCategory = {...module.exports.requiredString, enum: CATEGORIES};
 
 /**
  * String fixed CATEGORIES
  */
-export const requiredOccasionStyle = {...requiredNumber, enum: OCCASIONS};
+module.exports.requiredOccasionStyle = {...module.exports.requiredString, enum: OCCASIONS};
 
 /**
  * Number fixed FREQUENCY
  */
-export const requiredFrequencyWeeks = {...requiredNumber, enum: FREQUENCY};
+module.exports.requiredFrequencyWeeks = {...module.exports.requiredString, enum: FREQUENCY};
 
 // -----------------------------------------------------------------------------------------------
 // -------------------------------------------- Other --------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
-export const phoneNumberRequired = {
-    ...requiredString,
+module.exports.phoneNumberRequired = {
+    ...module.exports.requiredString,
     validate: {
       validator: function(phoneNumber) {
         return /\d{3}-\d{3}-\d{4}/.test(phoneNumber);

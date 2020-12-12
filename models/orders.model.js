@@ -6,11 +6,19 @@ const schemaTypes = require('./schemaTypes');
 const modelSchema = new mongoose.Schema (
     {
         userID: schemaTypes.requiredString,
-        AddressID:  schemaTypes.requiredString,
+        Address:  {
+            name: schemaTypes.nonRequiredSmallString,
+            city: schemaTypes.nonRequiredSmallString,
+            street: schemaTypes.nonRequiredMediumString,
+            houseNumber: schemaTypes.nonRequiredSmallString,
+            floorNumber: schemaTypes.nonRequiredNumber,
+            aptNumber: schemaTypes.nonRequiredNumber,
+        },
         frequencyWeeks: schemaTypes.requiredFrequencyWeeks,
         startDate: schemaTypes.requiredLongString,
         nextShippingDate: schemaTypes.requiredLongString,
         orderCategory: schemaTypes.requiredCategory,
+        active: schemaTypes.requiredBoolean,
         totalSum: schemaTypes.requiredNumber,
     },
     {

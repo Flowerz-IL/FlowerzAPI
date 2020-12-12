@@ -1,0 +1,50 @@
+
+
+######################## Target All ########################
+
+### get all orders 
+GET http://localHost:8080/api/flowerBouquet HTTP/1.1
+
+### add an order
+POST http://localHost:8080/api/flowerBouquet HTTP/1.1
+content-type: application/json
+
+{
+    "color": "WHITE",
+    "price": "99.90",
+    "size": "M",
+    "productDescription": "test test test test test test", 
+    "productImage": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg", 
+    "occasionStyle": "BIRTHDAY", 
+    "isMixed": "true"
+}
+
+###################### Target Specific #####################
+
+### get specific order
+GET http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+
+### override an order
+PUT http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+content-type: application/json
+
+{
+    "color": "WHITE",
+    "price": "89.90",
+    "size": "M",
+    "productDescription": "test test test test test test", 
+    "productImage": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg", 
+    "occasionStyle": "BIRTHDAY", 
+    "isMixed": "true"
+}
+
+### change an order
+PATCH http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+content-type: application/json
+
+{
+    "isMixed": "false"
+}
+
+### delete specific order
+DELETE http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1

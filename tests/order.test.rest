@@ -1,0 +1,50 @@
+
+
+######################## Target All ########################
+
+### get all orders 
+GET http://localHost:8080/api/orders HTTP/1.1
+
+### add an order
+POST http://localHost:8080/api/orders HTTP/1.1
+content-type: application/json
+
+{
+    "userID": "5fd3d0bbccb74d3b1c307e64",
+    "addressName": "Home",
+    "frequencyWeeks": "1",
+    "startDate": "12/3",
+    "nextShippingDate": "19/3",
+    "orderCategory": "BOUQUET",
+    "totalSum": "400"
+}
+
+###################### Target Specific #####################
+
+### get specific order
+GET http://localHost:8080/api/orders/5fd4a82fd0069c37bc46b183 HTTP/1.1
+
+### override an order
+PUT http://localHost:8080/api/orders/5fd4a82fd0069c37bc46b183 HTTP/1.1
+content-type: application/json
+
+{
+    "userID": "5fd3d0bbccb74d3b1c307e64",
+    "addressName": "Home",
+    "frequencyWeeks": "1",
+    "startDate": "11/3",
+    "nextShippingDate": "19/3",
+    "orderCategory": "BOUQUET",
+    "totalSum": "400"
+}
+
+### change an order
+PATCH http://localHost:8080/api/orders/5fd4a82fd0069c37bc46b183 HTTP/1.1
+content-type: application/json
+
+{
+    "totalSum": "200"
+}
+
+### delete specific order
+DELETE http://localHost:8080/api/orders/5fd4a82fd0069c37bc46b183 HTTP/1.1
