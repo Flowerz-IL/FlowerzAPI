@@ -83,8 +83,8 @@ The Users resource manage user authentication and provides the registered users 
 - ``` /users/signin ``` sign in and get temoprety token as a response 
 
 #### Example request:
-```
-api/users
+```bash
+  GET http://localHost:8080/api/users/signup HTTP/1.1
 ```
 
 #### Example response:
@@ -130,10 +130,14 @@ api/users
 
 * cart : *Object* -- 
    * orders : *orders Array* -- The orders of the user.
+   * totalSum : cart price
 
 ### Order
-The Order resource provides information on the orders of the application users.
-Use and requests from this resource require specific authorizations.
+The Order resource provides users orders information.
+
+#### EndPoints
+- ``` /order ``` get all orders or add one
+- ``` /order/:id ``` get, patch or delete specific order
 
 #### Example request:
 ```
@@ -163,10 +167,13 @@ http://localhost:8080/api/orders/5fd4a82fd0069c37bc46b183
 * orderCategory: *String* --The order's type of category.
 * totalSum: *Number* -- The order's price amount.
 
-
 ### Flower bouquet
 The Flower bouquet resource provides information on the product.
 Use and requests from this resource require specific authorizations.
+
+#### EndPoints
+- ``` /flowerBouquet ``` get all flower bouquets or add one
+- ``` /flowerBouquet/:id ``` get, patch or delete specific flower bouquet
 
 #### Example request:
 ```
@@ -175,7 +182,6 @@ http://localHost:8080/api/flowerBouquet
 
 #### Example response:
 ```bash
-
   {
     "_id": "5fd4dccf95bab7401c0faea3",
     "color": "WHITE",
@@ -190,24 +196,30 @@ http://localHost:8080/api/flowerBouquet
     "__v": 0
   }
 ```
+
 ##### Properties 
 * id : *String*-- The flowerBouquet's id. This attribute is generated automatically. 
 * color: *String*-- The color of the flowerBouquet. 
 * price: *Number* -- The price of the flowerBouquet.
 * size: *String* -- The size of the bouquet (S,M,L,XL).
 * productDescription: *String* -- A description of the flowerBouquet. 
-* productImage: *URL* -- An image of the flowerBouquet.
+* productImage: *String* -- An image of the flowerBouquet.
 * occasionStyle: *String* -- The product style of occasion.
 * isMixed: *Boolean* -- Flower bouquet diversity.
 
+---
 
 ## Authentication
 
 FlowerzAPI require authentication for some of its requests. However, some operations are open and does not require authentication to get data. 
 
+---
+
 ## JSON Schema
 
 FlowerzAPI resources support JSON Schema.
+
+---
 
 ## Encoding
 FlowerzAPI provides JSON as the data format.
