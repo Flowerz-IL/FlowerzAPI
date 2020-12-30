@@ -1,32 +1,23 @@
 
 const mongoose = require('mongoose');
-const { schema } = require('./flowerBouquet.model');
 const schemaTypes = require('./schemaTypes');
 require('mongoose-type-email');
 
 //model schema 
 const modelSchema = new mongoose.Schema(
     {
-        emailAddress: mongoose.SchemaTypes.Email,
-        userRole: schemaTypes.requiredUserRole, 
-        ownerFirstName: schemaTypes.requiredSmallString,
-        ownerSurName: schemaTypes.requiredSmallString,
+        providerId: schemaTypes.requiredLongString,
         businessName: schemaTypes.requiredSmallString,
         businessWebsite: schemaTypes.nonRequiredLongString,
         phoneNumbers: [{
             PhoneNumber: schemaTypes.phoneNumberRequired,
         }],
-        address: {
-            name: schemaTypes.nonRequiredSmallString,
-            city: schemaTypes.nonRequiredSmallString,
-            street: schemaTypes.nonRequiredMediumString,
-            houseNumber: schemaTypes.nonRequiredSmallString,
-            },
+        
         deliveryCities:[{
             city: schemaTypes.nonRequiredSmallString
         }],
         flowersTypes: [{
-            type: schemaTypes.nonRequiredflowersTypes,
+            type: mongoose.ObjectId,
             amount: schemaTypes.nonRequiredNumber,
         }],
 
@@ -43,7 +34,7 @@ const modelSchema = new mongoose.Schema(
 );
 
 //create model 
-const Model = mongoose.model('User', modelSchema);
+const Model = mongoose.model('Provider', modelSchema);
 
 //export model
 module.exports = Model;

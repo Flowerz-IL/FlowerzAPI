@@ -14,6 +14,7 @@ const modelSchema = new mongoose.Schema (
             floorNumber: schemaTypes.nonRequiredNumber,
             aptNumber: schemaTypes.nonRequiredNumber,
         },
+        flowerBouquetId: schemaTypes.requiredLongString,
         frequencyWeeks: schemaTypes.requiredFrequencyWeeks,
         startDate: schemaTypes.requiredLongString,
         nextShippingDate: schemaTypes.requiredLongString,

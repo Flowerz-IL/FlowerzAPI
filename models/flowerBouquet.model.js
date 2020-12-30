@@ -12,7 +12,7 @@ const modelSchema = new mongoose.Schema(
         productImage:schemaTypes.requiredString, 
         occasionStyle: schemaTypes.requiredOccasionStyle, 
         flowersTypes: [{
-            type: schemaTypes.nonRequiredflowersTypes,
+            type: schemaTypes.requiredLongString, //** flower model id  */
             amount: schemaTypes.nonRequiredNumber,
         }],
     },

@@ -126,7 +126,7 @@ module.exports.requiredFrequencyWeeks = {...module.exports.requiredString, enum:
 /**
  * String fixed FLOWERTYPES
  */
-module.exports.nonRequiredflowersTypes = {...module.exports.requiredMediumString, enum: FLOWERTYPES}
+module.exports.requiredflowersTypes = {...module.exports.requiredMediumString, enum: FLOWERTYPES}
 
 
 // -----------------------------------------------------------------------------------------------
