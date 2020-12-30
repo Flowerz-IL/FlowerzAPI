@@ -88,9 +88,10 @@ module.exports.nonRequiredBoolean = {type: Boolean}
 const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE'];
 const SIZE_OPTIONS = ['S','M','L','XXL'];
 const FREQUENCY = ['1','2'];
-const ROLES = ['ADMIN','DELIVERY','FLOURIST','USER'];
+const ROLES = ['ADMIN','DELIVERY','PROVIDER','USER'];
 const CATEGORIES = ['BOUQUET','WINE','NUTS'];
 const OCCASIONS = ['BIRTHDAY', 'WEEKENDVIBES','APOLOGIZE','ROMANTIC','NORMAL','CELEBRATE','CALM','PRETTYHOUSE'];
+const FLOWERTYPES = ['ROSE','LILLY'];
 
 /**
  * String fixed COLORS
@@ -121,6 +122,12 @@ module.exports.requiredOccasionStyle = {...module.exports.requiredString, enum: 
  * Number fixed FREQUENCY
  */
 module.exports.requiredFrequencyWeeks = {...module.exports.requiredString, enum: FREQUENCY};
+
+/**
+ * String fixed FLOWERTYPES
+ */
+module.exports.nonRequiredflowersTypes = {...module.exports.requiredMediumString, enum: FLOWERTYPES}
+
 
 // -----------------------------------------------------------------------------------------------
 // -------------------------------------------- Other --------------------------------------------
