@@ -4,7 +4,7 @@ const express = require('express');
 const {encryptText, compareStringToHash} = require('../util/encrypt.util');
 const {createJWT, decodeJWT} = require('../util/jwt.util');
 const Model = require('./../models/user.model');
-const ProviderModel= require('./../models/provider.model');
+//const ProviderModel= require('./../models/provider.model');
 // router
 const router = express.Router();
 
@@ -81,15 +81,7 @@ router
                 phoneNumber,
                 userRole: 'USER'
             });
-            if(newUser.userRole=='Provider')
-            {
-                
-            const newProvider = new ProviderModel({
-            providerId=newUser._id,
-
-
-            })
-            }
+    
             
             // save user to the db
             const savedUser = await newUser.save();

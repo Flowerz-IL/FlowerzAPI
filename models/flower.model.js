@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 const schemaTypes = require('./schemaTypes');
-const FLOWERTYPES = ['ROSE','LILLY'];
+const FLOWERTYPES = ['ROSE','LILLY','ALSTROEMERIA'];
 
 
 //model schema 
