@@ -85,7 +85,7 @@ module.exports.nonRequiredBoolean = {type: Boolean}
 // -------------------------------------------- Enums --------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
-const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE'];
+const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE','RED'];
 const SIZE_OPTIONS = ['S','M','L','XXL'];
 const FREQUENCY = ['1','2'];
 const ROLES = ['ADMIN','DELIVERY','PROVIDER','USER'];
