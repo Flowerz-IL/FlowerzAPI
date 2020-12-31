@@ -9,6 +9,7 @@ export const MainContainerWrapper = Styled.div`
     flex 1;
     height: 100vh;
     background-color: ${Colors.thirdColor};
+    overflow-y: scroll;
 `;
 
 export const MainContainerHeaderWrapper = Styled(centeredWithFlex)`
