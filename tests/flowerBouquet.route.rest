@@ -11,7 +11,7 @@ content-type: application/json
 
 {
     "color": "WHITE",
-    "price": "99.90",
+    "price": "100.90",
     "size": "M",
     "productDescription": "test test test test test test", 
     "productImage": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg", 
