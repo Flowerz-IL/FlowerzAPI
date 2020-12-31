@@ -35,7 +35,7 @@ POST http://localHost:8080/api/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "emailAddress":"test@gmail.com",
+    "emailAddress":"test44@gmail.com",
     "password":"testtest",
     "firstName":"Test",
     "surName":"Testush",

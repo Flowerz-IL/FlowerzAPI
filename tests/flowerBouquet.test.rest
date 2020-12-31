@@ -2,15 +2,15 @@
 
 ######################## Target All ########################
 
-### get all orders 
+### get all flowerBouquets 
 GET http://localHost:8080/api/flowerBouquet HTTP/1.1
 
-### add an order
-POST http://localHost:8080/api/flowerBouquet HTTP/1.1
+### add an flowerBouquet
+POST http://localHost:8080/api/flowerBouquet /1.1
 content-type: application/json
 
 {
-    "color": "WHITE",
+    "color": "WHITE",HTTP
     "price": "100.90",
     "size": "M",
     "productDescription": "test test test test test test", 
@@ -21,10 +21,10 @@ content-type: application/json
 
 ###################### Target Specific #####################
 
-### get specific order
+### get specific flowerBouquet
 GET http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
 
-### override an order
+### override an flowerBouquet
 PUT http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
 content-type: application/json
 
@@ -38,7 +38,7 @@ content-type: application/json
     "isMixed": "true"
 }
 
-### change an order
+### change an flowerBouquet
 PATCH http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
 content-type: application/json
 
@@ -46,5 +46,5 @@ content-type: application/json
     "isMixed": "false"
 }
 
-### delete specific order
+### delete specific flowerBouquet
 DELETE http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
