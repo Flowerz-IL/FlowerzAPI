@@ -1,4 +1,4 @@
-
+ 
 // import packages
 const express = require('express');
 const {modelAddMessage, modelDeleteMessage, modelOverrideMessage, modelUpdateMessage, OrderCustomError} = require('../util/messages.util');
@@ -22,7 +22,7 @@ router
     .post(async (req, res) => { // add one
         try{
 
-            const {userID, addressName, frequencyWeeks, startDate, nextShippingDate, orderCategory, totalSum} = req.body
+            const {userID, addressName, frequencyWeeks, startDate, nextShippingDate, orderCategory, totalSum, flowerBouquetIds} = req.body
 
             // find attached user
             const currentUser = await UserModel.findById(userID);
@@ -47,7 +47,8 @@ router
                 nextShippingDate,
                 orderCategory,
                 active:true,
-                totalSum
+                totalSum,
+                flowerBouquetIds: flowerBouquetIds
             });
             newOrder.save();
             return res.json(modelAddMessage(MODEL_NAME));

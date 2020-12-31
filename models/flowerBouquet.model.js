@@ -11,7 +11,10 @@ const modelSchema = new mongoose.Schema(
         productDescription:schemaTypes.requiredLongString, 
         productImage:schemaTypes.requiredString, 
         occasionStyle: schemaTypes.requiredOccasionStyle, 
-        isMixed: schemaTypes.requiredBoolean,
+        flowersTypes: [{
+            type: schemaTypes.requiredLongString, //** flower model id  */
+            amount: schemaTypes.nonRequiredNumber,
+        }],
     },
     {
         timestamps:true // adding object creation time

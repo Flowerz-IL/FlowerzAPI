@@ -20,6 +20,7 @@ const modelSchema = new mongoose.Schema (
         orderCategory: schemaTypes.requiredCategory,
         active: schemaTypes.requiredBoolean,
         totalSum: schemaTypes.requiredNumber,
+        flowerBouquetIds: [{flowerBouquetId: schemaTypes.requiredLongString}],
     },
     {
         timestamps:true // adding object creation time

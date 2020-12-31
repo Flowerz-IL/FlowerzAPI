@@ -16,7 +16,8 @@ content-type: application/json
     "startDate": "12/3",
     "nextShippingDate": "19/3",
     "orderCategory": "BOUQUET",
-    "totalSum": "400"
+    "totalSum": "600",
+    "flowerBouquetIds": ["5fd4dccf95bab7401c0faea3"]
 }
 
 ###################### Target Specific #####################
@@ -35,7 +36,8 @@ content-type: application/json
     "startDate": "11/3",
     "nextShippingDate": "19/3",
     "orderCategory": "BOUQUET",
-    "totalSum": "400"
+    "totalSum": "400",
+    
 }
 
 ### change an order
