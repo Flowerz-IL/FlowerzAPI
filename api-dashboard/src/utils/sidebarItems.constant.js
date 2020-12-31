@@ -1,6 +1,8 @@
 import {Dashboard} from 'styled-icons/material';
 import {Users} from 'styled-icons/fa-solid';
+import {AttachMoney} from 'styled-icons/material-outlined';
 import {Flower} from 'styled-icons/entypo';
+
 
 const PERMISSIONS = {PROVIDER: 'PROVIDER', ADMIN: 'ADMIN'}
 
@@ -22,6 +24,12 @@ const sidebarItems = [
         itemLogo: Flower,
         routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
         routeName: '/flowers'
+    },
+    {
+        itemName: 'Orders',
+        itemLogo: AttachMoney,
+        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
+        routeName: '/orders'
     }
 ];
 
