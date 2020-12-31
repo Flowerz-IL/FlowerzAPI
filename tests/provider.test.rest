@@ -1,0 +1,37 @@
+######################## Target All ########################
+
+### get all orders 
+GET http://localHost:8080/api/providers HTTP/1.1
+
+
+###################### Target Specific #####################
+
+
+### add an provider
+POST http://localHost:8080/api/providers HTTP/1.1
+content-type: application/json
+
+{
+
+    "providerId":"5fecdcbc394c6e30ac358e7d",
+    "businessName":"Test",
+    "businessWebsite":"Test.com"
+    
+  
+}
+
+### get specific provider ###
+GET http://localHost:8080/api/providers?id=5fecdcbc394c6e30ac358e7d
+
+
+### change a provider
+PATCH http://localHost:8080/api/providers/5fecd3dcfc8a08248cc9171c HTTP/1.1
+content-type: application/json
+
+{
+    "businessName": "Test2"
+}
+
+### delete specific provider
+DELETE http://localHost:8080/api/providers/5fd3d0bbccb74d3b1c307e64
+

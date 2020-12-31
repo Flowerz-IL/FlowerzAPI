@@ -1,0 +1,45 @@
+######################## Target All ########################
+
+### get all flowers 
+GET http://localHost:8080/api/flowers
+
+### add an flower
+POST http://localHost:8080/api/flowers HTTP/1.1
+content-type: application/json
+
+{
+    "type":"ROSE",
+   "amount": "5",
+   "color":"YELLOW",
+   "productDescription": "Test Flower",
+   "productImage":"Test image"
+}
+
+###################### Target Specific #####################
+
+### get specific flower
+
+GET http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+
+### override a flower
+
+PUT http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+content-type: application/json
+{
+ "type":"ROSE",
+   "amount": "5",
+   "color":"PINK",
+   "productDescription": "Test Flower",
+   "productImage":"Test image"
+}
+
+### change a flower
+PATCH http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+content-type: application/json
+
+{
+    "color": "WHITE"
+}
+
+### delete specific flower
+DELETE http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
