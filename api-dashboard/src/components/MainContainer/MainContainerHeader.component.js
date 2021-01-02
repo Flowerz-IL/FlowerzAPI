@@ -1,6 +1,6 @@
 
 import {MainContainerHeaderWrapper, LogOutIcon} from './MainContainer.style';
-import {Headline1} from '../../utils/globalStyle.constant';
+import {Headline1} from '../../utils/constants/globalStyle.constant';
 
 /**
  * Dashboard page container top bar

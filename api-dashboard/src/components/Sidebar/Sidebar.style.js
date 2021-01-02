@@ -1,7 +1,7 @@
 
 import Styled from 'styled-components';
-import Colors from '../../utils/colors.constant';
-import {centeredWithFlex} from '../../utils/globalStyle.constant';
+import Colors from '../../utils/constants/colors.constant';
+import {centeredWithFlex} from '../../utils/constants/globalStyle.constant';
 
 export const SidebarWrapper = Styled.div`
     margin: 0;

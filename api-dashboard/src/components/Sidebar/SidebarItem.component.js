@@ -1,7 +1,7 @@
 
 import {SideBarItemWrapper, SideBarItemText} from './Sidebar.style';
 import {useHistory} from 'react-router-dom';
-import Colors from '../../utils/colors.constant';
+import Colors from '../../utils/constants/colors.constant';
 
 /**
  * Dashboard sidebar item. 
@@ -17,7 +17,7 @@ function SidebarItem(props) {
     const history = useHistory();
 
     const handleClick = () => {
-        props.setActive(props.text);
+        props.setActive(props.route);
         history?.push(props.route);
     };        
 

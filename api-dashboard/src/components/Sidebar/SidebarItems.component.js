@@ -1,16 +1,18 @@
 
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import uniqid from 'uniqid';
 import SidebarItem from './SidebarItem.component';
-import items from '../../utils/sidebarItems.constant';
+import items from '../../utils/constants/sidebarItems.constant';
 import {SideBarItemsWrapper} from './Sidebar.style';
 
 /**
  * Dashboard Sidebar items
  */
 function SidebarItems() {
-    const [activeItem, setActiveItem] = useState(items[0]?.itemName ?? '');
+    const location = useLocation();
+    const [activeItem, setActiveItem] = useState(location.pathname ?? '');
 
     return (
         <SideBarItemsWrapper>
@@ -21,7 +23,7 @@ function SidebarItems() {
                     logo={item.itemLogo} 
                     route={item.routeName} 
                     setActive={setActiveItem}
-                    active={activeItem === item.itemName}
+                    active={activeItem === item.routeName}
                 />
             )}
         </SideBarItemsWrapper>
