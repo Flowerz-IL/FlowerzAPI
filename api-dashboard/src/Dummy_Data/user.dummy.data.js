@@ -1,6 +1,6 @@
-const Users = [
-    { 
-        _id=1,
+const Users = {
+    1:{ 
+        _id:1,
         emailAddress:"Guy.nudelman@aol.com",
         userRole:'ADMIN',
         firstName:"Guy",
@@ -13,14 +13,30 @@ const Users = [
                 houseNumber:"3",
                 floorNumber:0,
                 aptNumber:0
+            },
+            {
+                name:"Home",
+                city:"Netaim",
+                street:"Hail",
+                houseNumber:"3",
+                floorNumber:0,
+                aptNumber:0
+            },
+            {
+                name:"Home",
+                city:"Netaim",
+                street:"Hail",
+                houseNumber:"3",
+                floorNumber:0,
+                aptNumber:0
             }],
         cart:[{
-            orders:["test"],
+            orders:["orderId", "orderId"],
             totalSum:100
         }]
     },
-    { 
-        _id=2,
+    2:{ 
+        _id:2,
         emailAddress:"Guy.TEST@aol.com",
         userRole:'USER',
         firstName:"Test1",
@@ -39,8 +55,8 @@ const Users = [
             totalSum:200
         }]
     },
-    { 
-        _id=3,
+    3:{ 
+        _id:3,
         emailAddress:"Guy.TEST2@aol.com",
         userRole:'USER',
         firstName:"Test2",
@@ -59,8 +75,8 @@ const Users = [
             totalSum:150
         }]
     },  
-    { 
-        _id=4,
+    4:{ 
+        _id:4,
         emailAddress:"Guy.TEST3@aol.com",
         userRole:'USER',
         firstName:"Test3",
@@ -79,8 +95,8 @@ const Users = [
             totalSum:200
         }]
     },
-    { 
-        _id=5,
+    5:{ 
+        _id:5,
         emailAddress:"Guy.TEST4@aol.com",
         userRole:'USER',
         firstName:"Test4",
@@ -99,8 +115,8 @@ const Users = [
             totalSum:100
         }]
     },  
-    { 
-        _id=6,
+    6:{ 
+        _id:6,
         emailAddress:"Guy.TEST5@aol.com",
         userRole:'USER',
         firstName:"Test5",
@@ -119,8 +135,8 @@ const Users = [
             totalSum:400
         }]
     },  
-    { 
-        _id=7,
+    7:{ 
+        _id:7,
         emailAddress:"Guy.TEST5@aol.com",
         userRole:'USER',
         firstName:"Test6",
@@ -139,8 +155,8 @@ const Users = [
             totalSum:340
         }]
     },  
-    { 
-        _id=8,
+    8:{ 
+        _id:8,
         emailAddress:"Guy.TEST6@aol.com",
         userRole:'USER',
         firstName:"Test7",
@@ -159,8 +175,8 @@ const Users = [
             totalSum:250
         }]
     },
-    { 
-        _id=9,
+    9:{ 
+        _id:9,
         emailAddress:"Guy.TEST7@aol.com",
         userRole:'USER',
         firstName:"Test8",
@@ -179,8 +195,8 @@ const Users = [
             totalSum:270
         }]
     }, 
-    { 
-        _id=10,
+    10:{ 
+        _id:10,
         emailAddress:"Guy.TEST8@aol.com",
         userRole:'USER',
         firstName:"Test9",
@@ -199,8 +215,6 @@ const Users = [
             totalSum:230
         }]
     }
-
-
-]
+};
 
 export default Users;

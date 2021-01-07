@@ -1,6 +1,9 @@
 
+import {useState} from 'react';
 import uniqid from 'uniqid';
 import {Image, DeleteIcon, EditIcon, ColorDisplay, StripedDataTableWrapper, TableBody, TableHead} from './StripedDataTable.style';
+import {Button, PopUp, PopUpWrapper, Link} from '../../utils/constants/globalStyle.constant';
+import Colors from '../../utils/constants/colors.constant';
 import Loader from '../Loader/Loader.component';
 
 /**
@@ -14,7 +17,13 @@ import Loader from '../Loader/Loader.component';
 function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
 
     const DataKeys = Object.keys(dataType);
+    const [isPopUpOn, setIsPopUpOn] = useState(false);
+    const [popUpContent, setPopUpContent] = useState({});
     
+    const handleOpen = () => {setIsPopUpOn(true);};
+    const handleClose = () => {setIsPopUpOn(false);};
+    const handleLinkClick = item => { setPopUpContent(item); handleOpen(); };
+
     if(!dataToPresent || !dataType) return ( <Loader /> );
 
     return (
@@ -28,15 +37,31 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
             <TableBody>
                 {dataToPresent.map( dataItem => 
                     <tr key={uniqid()}>
-                        {DataKeys.map( key => {
-                            const item = dataItem[key];
-                            switch(dataType[key]) {
+                        {DataKeys.map( dataKey => {
+                            const item = dataItem[dataKey];
+                            const type = dataType[dataKey];
+
+                            if(Array.isArray(type))
+                                return ( 
+                                    <td key={uniqid()}>
+                                        [{item.map((i,index) => 
+                                            <Link onClick={() => handleLinkClick(i)}>{`${dataKey}${index + 1},`}</Link>
+                                        )}]
+                                    </td> 
+                                );
+                            
+                            if(typeof type === 'object')
+                                return (
+                                    <td key={uniqid()}>
+                                            <Link onClick={() => handleLinkClick(item)}>{dataKey}</Link>
+                                    </td> 
+                                );
+                            
+
+                            switch(type) {
                                 case DATA_TYPES.IMAGE:
                                     return ( <td key={uniqid()}> <Image src={item} /> </td> );
                                 
-                                case DATA_TYPES.OBJECT:
-                                    return ( <td key={uniqid()}><pre>{JSON.stringify(item, null, 2)}</pre></td> );
-
                                 case DATA_TYPES.COLOR:
                                     return ( <td key={uniqid()}> <ColorDisplay colorToDisplay={item}/> </td> );
                                 
@@ -53,6 +78,16 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                     </tr>
                 )}
             </TableBody>
+            <PopUpWrapper display={isPopUpOn}>
+                <PopUp display={isPopUpOn}> 
+                    <div>
+                        {Object.keys(popUpContent).map( key => 
+                            <p><b>{key}:</b> {JSON.stringify(popUpContent[key])}</p>
+                        )}
+                    </div>
+                    <Button backgroundColor={Colors.thirdColor} textColor={Colors.primaryColor} onClick={handleClose}>close</Button>
+                </PopUp>
+            </PopUpWrapper>
         </StripedDataTableWrapper>
     );
 }
@@ -68,6 +103,5 @@ export default StripedDataTable;
 export const DATA_TYPES = {
     IMAGE: 'IMAGE',
     TEXT: 'TEXT',
-    OBJECT: 'OBJECT',
     COLOR: 'COLOR',
 };

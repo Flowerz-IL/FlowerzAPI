@@ -55,25 +55,20 @@ export const ColorDisplay = Styled.div`
     background-color: ${props => props.colorToDisplay ?? Colors.primaryColor};
 `;
 
-export const DeleteIcon = Styled(Delete)`
+const iconStyle = `
     width: 2rem;
-    color: red;
     cursor: pointer;
-    transform: all 6.5s;
-
     &:hover {
-        transform: rotate(10deg);
+        transform: rotate(10deg) translateY(-3px);
     }
+`;
+
+export const DeleteIcon = Styled(Delete)`
+    ${iconStyle}
+    color: red;
 `;
 
 export const EditIcon = Styled(ClipboardPencil)`
-    width: 2rem;
-    color: black;
-    cursor: pointer;
-    transform: all 6.5s;
-
-    &:hover {
-        transform: rotate(10deg);
-    }
+    ${iconStyle}
+    color: ${Colors.primaryColor};
 `;
-

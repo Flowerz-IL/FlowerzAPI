@@ -1,58 +1,30 @@
 
-import {useState} from 'react';
-import Styled from 'styled-components';
-import {Headline1, centeredWithFlex, Row, Card} from '../../utils/constants/globalStyle.constant';
-import StripedDataTable, {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
-import DynamicForm, {INPUT_TYPES} from '../../components/Form/DynamicForm.component';
-import Flowers from '../../Dummy_Data/flower.dummy.data';
+import {addFlower, editFlower, removeFlower} from '../../redux/actions/flowers.action';
+import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
+import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
+import {INPUT_TYPES} from '../../components/Form/DynamicForm.component';
+import AddEditTable from '../../layouts/AddEditTable.layout';
 
 function FlowersPage() {
 
-    const [flowers, setFlowers] = useState(Flowers);
-    const [currentDataToEdit, setDataToEdit] = useState(flowers[0]);
-
-    const handleItemDelete = itemId => {
-        setFlowers(prev => prev.filter(flower => flower._id !== itemId));
-    };
-
-    const handleItemEdit = (newFlower, id) => {
-        setFlowers(prev => {
-            const index = prev.findIndex(item => item._id === id);
-            prev[index] = {...newFlower, _id:id };
-            return prev;
-        });
-        setDataToEdit(flowers[0]);
-    };
-
-    const handleItemAdd = newFlower => {
-        setFlowers(prev => [...prev, {...newFlower, _id:flowers.length + 1 }]);
-    };
+    const [flowersObject, flowersArray] = useSelectorAsAnArray(({FlowersReducer}) => FlowersReducer.flowers); 
 
     return (
-        <FlowersPageWrapper>
-            <Row>
-                <Card>
-                    <Headline1> Add Flower </Headline1>
-                    <DynamicForm handleSubmit={handleItemAdd} inputsType={flowerInputsType}/>
-                </Card>
-                <Card>
-                    <Headline1> Edit Flower </Headline1>
-                    <DynamicForm handleSubmit={handleItemEdit} dataToEdit={currentDataToEdit} inputsType={flowerInputsType}/>
-                </Card>
-            </Row>
-            <Row>
-                <Card width="100%" height="auto">
-                    <StripedDataTable 
-                        dataToPresent={flowers} 
-                        dataType={flowerDataType}
-                        onDelete={handleItemDelete}
-                        onEdit={id => setDataToEdit(flowers.find(({_id}) => _id === id))}
-                    />
-                </Card>
-            </Row>
-        </FlowersPageWrapper>
+        <AddEditTable 
+            dataAsObject={flowersObject}
+            dataAsArray={flowersArray}
+            dispatchActions={dispatchActions}
+            dataType={flowerDataType}
+            inputType={flowerInputsType}
+        />
     );
 }
+
+const dispatchActions = {
+    add:addFlower,
+    edit:editFlower,
+    delete:removeFlower
+};
 
 const flowerDataType = {
     _id: DATA_TYPES.TEXT,
@@ -68,12 +40,5 @@ const flowerInputsType = {
     productDescription: INPUT_TYPES.LONG_TEXT,
     productImage: INPUT_TYPES.IMAGE,
 };
-
-
-const FlowersPageWrapper = Styled(centeredWithFlex)`
-    padding: 3rem;
-    flex-direction: column;
-    gap: 3rem;
-`;
 
 export default FlowersPage;

@@ -51,3 +51,45 @@ export const Button = Styled.button`
         transform: translateY(0);
     }
 `;
+
+export const PopUpWrapper = Styled.div`
+    position: fixed;
+    top: 0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    display: ${props => props.display ? 'block' : 'none'};
+    background-color: ${props => props.backgroundColor ?? Colors.primaryColor + Colors.opacity50};
+`;
+
+export const PopUp = Styled.div`
+    position: fixed;
+    background-color: ${props => props.backgroundColor ?? Colors.primaryColor};
+    width: 30vw;
+    height: 30vh;
+    color: ${props => props.textColor ?? Colors.thirdColor};
+    display: ${props => props.display ? 'flex' : 'none'};
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto; 
+    gap: 1rem;
+    font-size: 1.2rem;
+    box-shadow: 0 10px 20px 10px ${Colors.forthColor}${Colors.opacity20};
+    padding: 1rem;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+export const Link = Styled.div`
+    display: inline-block;
+    color: ${Colors.forthColor};
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 3px;
+
+    &:hover {
+        transform: translateY(-3px);
+    }   
+`;

@@ -54,3 +54,8 @@ export const Image = Styled.img`
     width: 5rem;
     height 5rem;
 `;
+
+export const ObjectsWrapper = Styled(centeredWithFlex)`
+    justify-content: flex-start;
+    flex-wrap: wrap;
+`;

@@ -1,8 +1,8 @@
 
 import {useState, useEffect} from 'react';
-import uniqid from 'uniqid';
-import {DynamicFormWrapper, ErrorMessage, Image, ImageWrapper, TextAreaInput, TextInput, CharacterCount, InputWrapper} from './DynamicForm.style';
-import {Button} from '../../utils/constants/globalStyle.constant';
+import {DynamicFormWrapper, ObjectsWrapper, ErrorMessage, Image, ImageWrapper, TextAreaInput, TextInput, CharacterCount, InputWrapper} from './DynamicForm.style';
+import {Button, PopUp, PopUpWrapper, Link} from '../../utils/constants/globalStyle.constant';
+import Colors from '../../utils/constants/colors.constant';
 import Loader from '../Loader/Loader.component';
 
 function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
@@ -27,7 +27,7 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
 
         if(!dataToEdit){
             handleSubmit(formState);
-        } else handleSubmit(formState, dataToEdit._id);
+        } else handleSubmit({_id: dataToEdit._id, ...formState});
     };
 
     if(formState[inputs[0]] === undefined ) return ( <Loader /> );
@@ -35,16 +35,17 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
     return (
         <DynamicFormWrapper onSubmit={handleFormSubmit}>
             {inputs.map( currentKey => {
-                const type = inputsType[currentKey];
+                const inputType = inputsType[currentKey];
                 const placeHolder = formatText(currentKey);
-                switch(type){
+                
+                switch(inputType){
                     case INPUT_TYPES.IMAGE:
                         return(
                             <InputWrapper>
                                 <ImageWrapper>
                                     <Image src={formState[currentKey]}/>
                                     <TextInput 
-                                        onChange={event => handleChange(event, type)} 
+                                        onChange={event => handleChange(event, inputType)} 
                                         placeholder={placeHolder} 
                                         name={currentKey} 
                                         value={formState[currentKey]}
@@ -60,7 +61,7 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
                             <div>
                                 <InputWrapper>
                                     <TextAreaInput 
-                                        onChange={event => handleChange(event, type)} 
+                                        onChange={event => handleChange(event, inputType)} 
                                         rows="4" 
                                         placeholder={placeHolder} 
                                         name={currentKey} 
@@ -78,7 +79,7 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
                             <div>
                                 <InputWrapper>
                                     <TextInput 
-                                        onChange={event => handleChange(event, type)} 
+                                        onChange={event => handleChange(event, inputType)} 
                                         placeholder={placeHolder} 
                                         name={currentKey}  
                                         value={formState[currentKey]}
@@ -98,8 +99,16 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
 
 const buildInitialState = (data = {}, inputs, inputsType) => {
     return inputs.reduce( (prev , currentKey) => {
-        const type = inputsType[currentKey];
-        switch(type){
+        const inputType = inputsType[currentKey];
+        
+        if(Array.isArray(inputType))
+            return {...prev, [currentKey]: data[currentKey] ?? []};
+                
+        if(typeof inputType === 'object')
+            return {...prev, [currentKey]: data[currentKey] ?? {}};
+                
+        switch(inputType){
+            
             default: 
                 return {...prev, [currentKey]: data[currentKey] ?? ''};
         }
@@ -158,6 +167,5 @@ export const INPUT_TYPES = {
     IMAGE: 'IMAGE',
     TEXT: 'TEXT',
     LONG_TEXT: 'LONG_TEXT', 
-    OBJECT: 'OBJECT',
-    ARRAY: 'ARRAY',
+    COLOR:'COLOR'
 };
