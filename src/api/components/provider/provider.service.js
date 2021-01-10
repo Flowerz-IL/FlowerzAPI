@@ -19,6 +19,15 @@ module.exports.getProviders = () => ProviderModel.find();
 module.exports.getSpecificProvider = providerId => ProviderModel.findById(providerId);
 
 /**
+ * Used to updated an existing provider
+ * 
+ * @param {string} providerId 
+ * @param {object} change 
+ * @resolve user before the provider
+ */
+module.exports.updateSpecificProvider = async (providerId, change) => UserModel.findByIdAndUpdate(providerId, { $set:change });
+
+/**
  * Used to push to a provider array
  * 
  * @param {string} orderId 
@@ -61,11 +70,12 @@ module.exports.buildSignResponse = provider => {
  */
 module.exports.signUpAProvider = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddress,
     businessName, businessWebsite}) => {
-
     const newUser = await userService.signUp({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddress});
-    return new ProviderModel({
+    const newProvider = new ProviderModel({
         userId: newUser._id,
         businessName,
         businessWebsite: businessWebsite ?? '',
     }).save();
+    userService.updateSpecificUser(newUser._id, {providerId: newProvider._id});
+    return newProvider;
 };

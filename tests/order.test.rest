@@ -38,7 +38,7 @@ PATCH http://localHost:8080/api/orders/5ffb3ef599e67425cca4dc99 HTTP/1.1
 content-type: application/json
 
 {
-    "orderFrequency": 3
+    "providerId": "5ffb559cd5000b13c432796a"
 }
 
 ### delete a specific order

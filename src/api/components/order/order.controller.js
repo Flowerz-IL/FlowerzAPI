@@ -54,7 +54,7 @@ module.exports.getSpecificOrder = async (req, res) => {
  */
 module.exports.updateSpecificOrder = async (req, res) => {
     try{
-        validateObjectKeys(ALLOWED_KEYS, req.body);
+        validateObjectKeys([...ALLOWED_KEYS, 'providerId'], req.body);
         const orderBeforeUpdate = await orderService.updateSpecificOrder(req.params.id, req.body);
         res.status(200).json({ orderBeforeUpdate, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 

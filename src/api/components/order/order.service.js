@@ -74,10 +74,10 @@ module.exports.updateSpecificOrder = async (orderId, change) => {
         const orderCreationDate = change['isOrderActive'] ? getCurrentDate() : '-';
         change = {...change, orderCreationDate};
     };
-
-    if('providerId' in change)
-        providerService.pushToASpecificProviderArray(change[providerId], 'providerOrderIds', [orderId]);
-
+    
+    if('providerId' in change){
+        providerService.pushToASpecificProviderArray(change['providerId'], 'providerOrderIds', [orderId]);
+    }
     return OrderModel.findByIdAndUpdate(orderId, { $set:change });
 };
     

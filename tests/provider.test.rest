@@ -8,10 +8,10 @@ GET http://localHost:8080/api/providers
 ###################### Target Specific #####################
 
 ### get a specific provider
-GET http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
+GET http://localHost:8080/api/providers/specific/5ffb559cd5000b13c432796a
 
 ### add an delivery city
-POST http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
+POST http://localHost:8080/api/providers/specific/5ffb559cd5000b13c432796a
 content-type: application/json
 
 {
@@ -19,7 +19,7 @@ content-type: application/json
 }
 
 ### delete specific provider
-DELETE http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
+DELETE http://localHost:8080/api/providers/specific/5ffb559cd5000b13c432796a
 
 ########################## Other ###########################
 

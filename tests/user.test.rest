@@ -24,7 +24,7 @@ content-type: application/json
 }
 
 ### delete specific user
-DELETE http://localHost:8080/api/users/specific/5ffb524ab4a57a47f424ed47
+DELETE http://localHost:8080/api/users/specific/5ffb52c2c9bded33d8a43ed9
 
 ########################## Other ###########################
 

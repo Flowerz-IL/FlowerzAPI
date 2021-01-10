@@ -21,6 +21,15 @@ module.exports.getUsers = () => UserModel.find();
 module.exports.getSpecificUser = userId => UserModel.findById(userId);
 
 /**
+ * Used to updated an existing user
+ * 
+ * @param {string} userId 
+ * @param {object} change 
+ * @resolve user before the update
+ */
+module.exports.updateSpecificUser = async (userId, change) => UserModel.findByIdAndUpdate(userId, { $set:change });
+
+/**
  * Used to push to a user array
  * 
  * @param {string} orderId 
