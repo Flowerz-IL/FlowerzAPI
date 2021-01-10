@@ -8,13 +8,7 @@ const bcrypt = require('bcrypt');
  * @param {String} string user's password
  * @returns {Promise<String>} encrypted password
  */
-module.exports.encryptText = string => {
-    return new Promise((resolve, reject) => {
-        bcrypt.hash(string, Number(process.env.SALT_ROUNDS))
-            .then(encryptedText => resolve(encryptedText))
-            .catch(err => reject(err));
-    });
-};
+module.exports.encryptText = string => bcrypt.hash(string, Number(process.env.SALT_ROUNDS));
 
 /**
  * The function compares a nonHashed string to hashed string,
@@ -25,10 +19,4 @@ module.exports.encryptText = string => {
  * @param {String} hashedString HashedString to compare to
  * @returns {Promise<Boolean>} strings have the same origin ? true : false
  */
-module.exports.compareStringToHash = (string, hashedString) => {
-    return new Promise((resolve, reject) => {
-        bcrypt.compare(string, hashedString)
-            .then(compareResult => resolve(compareResult))
-            .catch(err => reject(err));
-    });
-};
+module.exports.compareStringToHash = (string, hashedString) => bcrypt.compare(string, hashedString);

@@ -1,11 +1,10 @@
 {
-  "name": "flowerzapi",
+  "name": "flowerZAPI",
   "version": "1.0.0",
   "description": "FlowerZ project API",
-  "main": "server.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,14 +18,14 @@
   "homepage": "https://github.com/Flowerz-IL/FlowerzAPI#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.11.0",
-    "mongoose-type-email": "^1.1.2"
+    "mongoose-type-email": "^1.1.2",
+    "mongoose-type-url": "^2.1.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"

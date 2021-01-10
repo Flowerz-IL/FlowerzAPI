@@ -3,43 +3,30 @@
 ### get all flowers 
 GET http://localHost:8080/api/flowers
 
-### add an flower
+### add a flower
 POST http://localHost:8080/api/flowers HTTP/1.1
 content-type: application/json
 
 {
-    "type":"ROSE",
-   "amount": "5",
-   "color":"YELLOW",
-   "productDescription": "Test Flower",
-   "productImage":"Test image"
+    "flowerName": "test flower",
+    "flowerColor": "yellow",
+    "flowerDescription": "test test test test test test test test test test test test test",
+    "flowerImageUrl": "https://lh3.googleusercontent.com/proxy/ZwWVNXUnWf1F730tXsiWCunqUGQTjddNuJZEIYkYGuYc7HssGCUt_Wwf9_FYD8WncGN7ZM51j-VOpZ7Zz6mLgztw9dieLUceS_KhTXJWKus"
 }
 
 ###################### Target Specific #####################
 
 ### get specific flower
 
-GET http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+GET http://localHost:8080/api/flowers/5ffaf4e1e3c6a05008f4caba HTTP/1.1
 
-### override a flower
-
-PUT http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
-content-type: application/json
-{
- "type":"ROSE",
-   "amount": "5",
-   "color":"PINK",
-   "productDescription": "Test Flower",
-   "productImage":"Test image"
-}
-
-### change a flower
-PATCH http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+### update a specific flower
+PATCH http://localHost:8080/api/flowers/5ffaf4e1e3c6a05008f4caba HTTP/1.1
 content-type: application/json
 
 {
-    "color": "WHITE"
+    "flowerColor": "WHITE"
 }
 
 ### delete specific flower
-DELETE http://localHost:8080/api/flowers/5fecc9800a21c10640312dba HTTP/1.1
+DELETE http://localHost:8080/api/flowers/5ffaf4e1e3c6a05008f4caba HTTP/1.1
