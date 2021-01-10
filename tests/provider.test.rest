@@ -1,37 +1,44 @@
+
+
 ######################## Target All ########################
 
-### get all orders 
-GET http://localHost:8080/api/providers HTTP/1.1
-
+### get all providers 
+GET http://localHost:8080/api/providers
 
 ###################### Target Specific #####################
 
+### get a specific provider
+GET http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
 
-### add an provider
-POST http://localHost:8080/api/providers HTTP/1.1
+### add an delivery city
+POST http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
 content-type: application/json
 
 {
-
-    "providerId":"5fecdcbc394c6e30ac358e7d",
-    "businessName":"Test",
-    "businessWebsite":"Test.com"
-    
-  
-}
-
-### get specific provider ###
-GET http://localHost:8080/api/providers?id=5fecdcbc394c6e30ac358e7d
-
-
-### change a provider
-PATCH http://localHost:8080/api/providers/5fecd3dcfc8a08248cc9171c HTTP/1.1
-content-type: application/json
-
-{
-    "businessName": "Test2"
+    "deliveryCities": ["Tel-Aviv", "Rehovot", "Rishon Lezion"]
 }
 
 ### delete specific provider
-DELETE http://localHost:8080/api/providers/5fd3d0bbccb74d3b1c307e64
+DELETE http://localHost:8080/api/providers/specific/5ffb52c2c9bded33d8a43edb
 
+########################## Other ###########################
+
+### sign-up a providers
+POST http://localHost:8080/api/providers/sign-up HTTP/1.1
+content-type: application/json
+
+{
+    "userEmail": "company@example.com",
+    "userPassword": "company",
+    "userFirstName": "companyito", 
+    "userLastName": "companosh", 
+    "userPhoneNumber": "054-555-5555", 
+    "userAddress": {
+        "name": "Store",
+        "city": "testavile",
+        "street": "testastreet",
+        "houseNumber": "3"
+    },
+    "businessName": "Biz Biz",
+    "businessWebsite": "https://www.test.com/"
+}

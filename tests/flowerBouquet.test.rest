@@ -2,49 +2,59 @@
 
 ######################## Target All ########################
 
-### get all flowerBouquets 
-GET http://localHost:8080/api/flowerBouquet HTTP/1.1
+### get all flower bouquets 
+GET http://localHost:8080/api/flower-bouquets HTTP/1.1
 
-### add an flowerBouquet
-POST http://localHost:8080/api/flowerBouquet /1.1
+### add a flower bouquet
+POST http://localHost:8080/api/flower-bouquets HTTP/1.1
 content-type: application/json
 
 {
-    "color": "WHITE",HTTP
-    "price": "100.90",
-    "size": "M",
-    "productDescription": "test test test test test test", 
-    "productImage": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg", 
-    "occasionStyle": "BIRTHDAY", 
-    "isMixed": "true"
+    "bouquetName": "temp bouquet",
+    "bouquetPrice": 140,
+    "bouquetSize": "s",
+    "bouquetDescription": "test test test test test test test test test test test test test",
+    "bouquetImageUrl": "https://lh3.googleusercontent.com/proxy/ZwWVNXUnWf1F730tXsiWCunqUGQTjddNuJZEIYkYGuYc7HssGCUt_Wwf9_FYD8WncGN7ZM51j-VOpZ7Zz6mLgztw9dieLUceS_KhTXJWKus", 
+    "bouquetOccasionStyle": "BIRTHday", 
+    "bouquetFlowers": [
+        {
+            "flowerId": "5ffaf4e1e3c6a05008f4caba",
+            "flowerAmount": 2
+        },
+        {
+            "flowerId": "5ffaf4e6e3c6a05008f4cabb",
+            "flowerAmount": 4
+        }
+    ]
 }
 
 ###################### Target Specific #####################
 
-### get specific flowerBouquet
-GET http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+### get a specific flower bouquet
+GET http://localHost:8080/api/flower-bouquets/5ffaf9f2df5ea438e4e183be HTTP/1.1
 
-### override an flowerBouquet
-PUT http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+### change a specific flower bouquet
+PATCH http://localHost:8080/api/flower-bouquets/5ffaf9f2df5ea438e4e183be HTTP/1.1
 content-type: application/json
 
 {
-    "color": "WHITE",
-    "price": "89.90",
-    "size": "M",
-    "productDescription": "test test test test test test", 
-    "productImage": "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg", 
-    "occasionStyle": "BIRTHDAY", 
-    "isMixed": "true"
+    "bouquetPrice": 200,
+    "bouquetSize": "l",
+    "bouquetFlowers": [
+        {
+            "flowerId": "5ffaf4e1e3c6a05008f4caba",
+            "flowerAmount": 2
+        },
+        {
+            "flowerId": "5ffaf4e6e3c6a05008f4cabb",
+            "flowerAmount": 8
+        },
+        {
+            "flowerId": "5ffaf4ede3c6a05008f4cabc",
+            "flowerAmount": 4
+        }
+    ]
 }
 
-### change an flowerBouquet
-PATCH http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
-content-type: application/json
-
-{
-    "isMixed": "false"
-}
-
-### delete specific flowerBouquet
-DELETE http://localHost:8080/api/flowerBouquet/5fd4b1476027c14028b0e5de HTTP/1.1
+### delete a specific flower bouquet
+DELETE http://localHost:8080/api/flower-bouquets/5ffaf6929845ff1e58540aa5 HTTP/1.1

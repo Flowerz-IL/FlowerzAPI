@@ -7,46 +7,52 @@ GET http://localHost:8080/api/users
 
 ###################### Target Specific #####################
 
-### get specific user
-GET http://localHost:8080/api/users?id=5fd3d0bbccb74d3b1c307e64
+### get a specific user
+GET http://localHost:8080/api/users/specific/5ffb524ab4a57a47f424ed47
 
 ### add an address
-PATCH http://localHost:8080/api/users/5fd3d0bbccb74d3b1c307e64
+POST http://localHost:8080/api/users/specific/5ffb524ab4a57a47f424ed47
 content-type: application/json
 
 {
-    "addresses": [{
+    "userAddresses": [{
+        "name": "temp",
+        "city": "tempavile",
+        "street": "tempastreet",
+        "houseNumber": "2"
+    }]
+}
+
+### delete specific user
+DELETE http://localHost:8080/api/users/specific/5ffb524ab4a57a47f424ed47
+
+########################## Other ###########################
+
+### sign-in
+POST http://localHost:8080/api/users/sign-in HTTP/1.1
+content-type: application/json
+
+{
+    "userEmail": "test@example.com",
+    "userPassword": "tes67t123"
+}
+
+### sign-up
+POST http://localHost:8080/api/users/sign-up HTTP/1.1
+content-type: application/json
+
+{
+    "userEmail": "test@example.com",
+    "userPassword": "test123",
+    "userFirstName": "testito", 
+    "userLastName": "testosh", 
+    "userPhoneNumber": "054-555-5555", 
+    "userAddress": {
         "name": "Home",
         "city": "testavile",
         "street": "testastreet",
         "houseNumber": "4/5",
         "floorNumber": "7",
         "aptNumber": "7"
-    }]
-}
-
-### delete specific user
-DELETE http://localHost:8080/api/users/5fd3d0bbccb74d3b1c307e64
-
-########################## Other ###########################
-
-### register a user
-POST http://localHost:8080/api/users/signup HTTP/1.1
-content-type: application/json
-
-{
-    "emailAddress":"test44@gmail.com",
-    "password":"testtest",
-    "firstName":"Test",
-    "surName":"Testush",
-    "phoneNumber":"050-546-6646"
-}
-
-### sign in a user
-POST http://localHost:8080/api/users/signin HTTP/1.1
-content-type: application/json
-
-{
-    "emailAddress":"test@gmail.com",
-    "password":"testtest"
+    }
 }

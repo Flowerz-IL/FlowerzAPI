@@ -1,4 +1,8 @@
 
+const mongoose = require('mongoose');
+require('mongoose-type-url');
+require('mongoose-type-email');
+
 // -----------------------------------------------------------------------------------------------
 // ------------------------------------------- STRINGS -------------------------------------------
 // -----------------------------------------------------------------------------------------------
@@ -85,18 +89,9 @@ module.exports.nonRequiredBoolean = {type: Boolean}
 // -------------------------------------------- Enums --------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
-const COLORS = ['WHITE','PINK','YELLOW','GREEN','BLUE','LIGHT BLUE','PURPLE','RED'];
-const SIZE_OPTIONS = ['S','M','L','XXL'];
-const FREQUENCY = ['1','2'];
-const ROLES = ['ADMIN','DELIVERY','PROVIDER','USER'];
-const CATEGORIES = ['BOUQUET','WINE','NUTS'];
-const OCCASIONS = ['BIRTHDAY', 'WEEKENDVIBES','APOLOGIZE','ROMANTIC','NORMAL','CELEBRATE','CALM','PRETTYHOUSE'];
-const FLOWERTYPES = ['ROSE','LILLY'];
-
-/**
- * String fixed COLORS
- */
-module.exports.requiredFlowerColor = {...module.exports.requiredString, enum:COLORS };
+const SIZE_OPTIONS = ['S','M','L', 'XL', 'XXL'];
+const OCCASIONS = ['BIRTHDAY', 'WEEKEND_VIBES','APOLOGIZE','ROMANTIC','NORMAL','CELEBRATE','CALM','PRETTY_HOUSE'];
+const ROLES = ['ADMIN','PROVIDER','USER'];
 
 /**
  * String fixed SIZE_OPTIONS
@@ -111,23 +106,7 @@ module.exports.requiredUserRole = {...module.exports.requiredString, enum: ROLES
 /**
  * String fixed CATEGORIES
  */
-module.exports.requiredCategory = {...module.exports.requiredString, enum: CATEGORIES};
-
-/**
- * String fixed CATEGORIES
- */
 module.exports.requiredOccasionStyle = {...module.exports.requiredString, enum: OCCASIONS};
-
-/**
- * Number fixed FREQUENCY
- */
-module.exports.requiredFrequencyWeeks = {...module.exports.requiredString, enum: FREQUENCY};
-
-/**
- * String fixed FLOWERTYPES
- */
-module.exports.requiredflowersTypes = {...module.exports.requiredMediumString, enum: FLOWERTYPES}
-
 
 // -----------------------------------------------------------------------------------------------
 // -------------------------------------------- Other --------------------------------------------
@@ -141,4 +120,28 @@ module.exports.phoneNumberRequired = {
       },
       message: props => `${props.value} is not a valid phone number!`
     },
-};      
+};
+
+module.exports.requiredUrl = {type: mongoose.SchemaTypes.Url, required: true};
+
+module.exports.nonRequiredUrl = {type: mongoose.SchemaTypes.Url};
+
+module.exports.requiredEmail = {type: mongoose.SchemaTypes.Email, required: true};
+
+module.exports.requiredAddress = {
+    name: module.exports.requiredSmallString,
+    city: module.exports.requiredSmallString,
+    street: module.exports.requiredMediumString,
+    houseNumber: module.exports.requiredSmallString,
+    floorNumber: module.exports.nonRequiredNumber,
+    aptNumber: module.exports.nonRequiredNumber,
+};
+
+module.exports.nonRequiredAddress = {
+    name: module.exports.nonRequiredSmallString,
+    city: module.exports.nonRequiredSmallString,
+    street: module.exports.nonRequiredMediumString,
+    houseNumber: module.exports.nonRequiredSmallString,
+    floorNumber: module.exports.nonRequiredNumber,
+    aptNumber: module.exports.nonRequiredNumber,
+};
