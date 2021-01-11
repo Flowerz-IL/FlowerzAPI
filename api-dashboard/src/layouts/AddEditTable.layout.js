@@ -6,25 +6,25 @@ import {Headline1, centeredWithFlex, Row, Card} from '../utils/constants/globalS
 import StripedDataTable from '../components/Table/StripedDataTable.component';
 import DynamicForm from '../components/Form/DynamicForm.component';
 
-function AddEditTable({dataAsObject, dataAsArray, dispatchActions, inputType, dataType}) {
+function AddEditTable({dataAsObject, dataAsArray, dispatchActions, inputType, dataType, dataName, FormToUse=DynamicForm}) {
 
     const [currentDataToEdit, setDataToEdit] = useState(dataAsArray ? dataAsArray[0] : {});
     const dispatch = useDispatch();
 
     const handleItemAdd = newItem => { dispatch(dispatchActions.add(newItem)); };
-    const handleItemEdit = updatedItem => { dispatch(dispatchActions.edit(updatedItem)); };
+    const handleItemEdit = (updatedItem, itemId) => { dispatch(dispatchActions.edit(updatedItem, itemId)); };
     const handleItemDelete = itemId => { dispatch(dispatchActions.delete(itemId));};
 
     return (
         <AddEditTablePageWrapper>
             <Row>
                 <Card>
-                    <Headline1> Add Flower </Headline1>
-                    <DynamicForm handleSubmit={handleItemAdd} inputsType={inputType}/>
+                    <Headline1> Add {dataName} </Headline1>
+                    <FormToUse handleSubmit={handleItemAdd} inputsType={inputType}/>
                 </Card>
                 <Card>
-                    <Headline1> Edit Flower </Headline1>
-                    <DynamicForm handleSubmit={handleItemEdit} dataToEdit={currentDataToEdit} inputsType={inputType}/>
+                    <Headline1> Edit {dataName} </Headline1>
+                    <FormToUse handleSubmit={handleItemEdit} dataToEdit={currentDataToEdit} inputsType={inputType}/>
                 </Card>
             </Row>
             <Row>

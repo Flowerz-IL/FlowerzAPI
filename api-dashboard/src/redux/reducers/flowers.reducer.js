@@ -1,18 +1,34 @@
 
-import flowers from '../../Dummy_Data/flower.dummy.data';
-import { UPDATE_OR_CREATE_FLOWER, REMOVE_FLOWER } from '../actions/flowers.action';
+import { ADD_FLOWER, EDIT_FLOWER, REMOVE_FLOWER, FETCH_FLOWERS } from '../actions/flowers.action';
 
-const initialState = { flowers };
+const initialState = { flowers:null };
 
 const FlowersReducer = (state = initialState, action) => {
     let newState;
     const {type, payload} = action;
     
     switch(type){
-        case UPDATE_OR_CREATE_FLOWER:
+        case FETCH_FLOWERS:
+            newState = {
+                ...state,
+                flowers:payload.flowers
+            };
+            break;
+
+        case ADD_FLOWER:
             newState = {
                 ...state,
                 flowers:{...state.flowers, [payload.flowerId]: payload.flower}
+            }
+            break;
+        
+        case EDIT_FLOWER:
+            newState = {
+                ...state,
+                flowers:{
+                    ...state.flowers,
+                    [payload.flowerId]: payload.updatedFlower
+                }
             }
             break;
 

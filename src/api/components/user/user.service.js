@@ -10,7 +10,11 @@ const getUserByEmail = email => UserModel.findOne({userEmail: email}).lean();
  * 
  * @resolve user data
  */
-module.exports.getUsers = () => UserModel.find();
+module.exports.getUsers = () => UserModel.find().then(res => res.map(({userEmail, userRole, userFirstName, userLastName,
+    userPhoneNumber, userAddresses, userOrders, providerId}) => {
+        userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+        userAddresses, userOrders, providerId 
+    }));
 
 /**
  * Used to fetch a specific user from the DB.
@@ -18,7 +22,11 @@ module.exports.getUsers = () => UserModel.find();
  * @param {string} userId 
  * @resolve requested user data
  */
-module.exports.getSpecificUser = userId => UserModel.findById(userId);
+module.exports.getSpecificUser = userId => UserModel.findById(userId).then(res => res.map(({userEmail, userRole,
+    userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => {
+        userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+        userAddresses, userOrders, providerId 
+    }));
 
 /**
  * Used to updated an existing user
@@ -27,7 +35,8 @@ module.exports.getSpecificUser = userId => UserModel.findById(userId);
  * @param {object} change 
  * @resolve user before the update
  */
-module.exports.updateSpecificUser = async (userId, change) => UserModel.findByIdAndUpdate(userId, { $set:change });
+module.exports.updateSpecificUser = async (userId, change) => 
+    UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true});
 
 /**
  * Used to push to a user array
@@ -35,10 +44,10 @@ module.exports.updateSpecificUser = async (userId, change) => UserModel.findById
  * @param {string} orderId 
  * @param {string} whereToPush
  * @param {array} arrayToPush 
- * @resolve user before the update
+ * @resolve user after the update
  */
 module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPush) => 
-    UserModel.findByIdAndUpdate(userId, { $push: { [whereToPush]: { $each: arrayToPush }} });
+    UserModel.findByIdAndUpdate(userId, {$push:{[whereToPush]:{$each:arrayToPush}}}, {new:true});
 
 /**
  * Used to delete a specific user from the DB.

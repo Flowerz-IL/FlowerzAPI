@@ -34,12 +34,12 @@ module.exports.getSpecificUser = async (req, res) => {
 /**
  * Used to add an address to a user
  * 
- * @respond user before the update
+ * @respond updated user
  */
 module.exports.addAddresses = async (req, res) => {
     validateObjectKeys(['userAddresses'], req.body);
-    const userBeforeUpdate = await userService.pushToASpecificUserArray(req.params.id, 'userAddresses', req.body.userAddresses);
-    res.json(userBeforeUpdate);
+    const updatedUser = await userService.pushToASpecificUserArray(req.params.id, 'userAddresses', req.body.userAddresses);
+    res.json(updatedUser);
 };
 
 /**

@@ -62,7 +62,7 @@ module.exports.getSpecificOrder = orderId => OrderModel.findById(orderId);
  * 
  * @param {string} orderId 
  * @param {object} change 
- * @resolve order before the update
+ * @resolve order after the update
  */
 module.exports.updateSpecificOrder = async (orderId, change) => {
     if('orderFlowerBouquetIds' in change){
@@ -78,7 +78,7 @@ module.exports.updateSpecificOrder = async (orderId, change) => {
     if('providerId' in change){
         providerService.pushToASpecificProviderArray(change['providerId'], 'providerOrderIds', [orderId]);
     }
-    return OrderModel.findByIdAndUpdate(orderId, { $set:change });
+    return OrderModel.findByIdAndUpdate(orderId, {$set:change}, {new:true});
 };
     
 

@@ -34,12 +34,12 @@ module.exports.getSpecificProvider = async (req, res) => {
 /**
  * Used to add an delivery city to a provider
  * 
- * @respond provider before the update
+ * @respond updatedProvider
  */
 module.exports.addDeliveryCity = async (req, res) => {
     validateObjectKeys(['deliveryCities'], req.body);
-    const providerBeforeUpdate = await providerService.pushToASpecificProviderArray(req.params.id, 'deliveryCities', req.body.deliveryCities);
-    res.json(providerBeforeUpdate);
+    const updatedProvider = await providerService.pushToASpecificProviderArray(req.params.id, 'deliveryCities', req.body.deliveryCities);
+    res.json(updatedProvider);
 };
 
 /**

@@ -29,7 +29,7 @@ module.exports.addFlowerBouquet = async (req, res) => {
     try {
         validateKeysInObject(ALLOWED_KEYS, req.body);
         const newFlowerBouquet = await flowerBouquetService.addFlowerBouquet(req.body);
-        res.status(200).json({ newFlowerBouquetId: newFlowerBouquet._id ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
+        res.status(200).json({ newFlowerBouquetId: newFlowerBouquet._id, newFlowerBouquet ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error: error['message'] }); }
 };
@@ -51,13 +51,13 @@ module.exports.getSpecificFlowerBouquet = async (req, res) => {
 /**
  * Used to update a specific flower Bouquet
  * 
- * @respond flower Bouquet before the update
+ * @respond flower Bouquet after the update
  */
 module.exports.updateSpecificFlowerBouquet = async (req, res) => {
     try{
         validateObjectKeys(ALLOWED_KEYS, req.body);
-        const flowerBouquetBeforeUpdate = await flowerBouquetService.updateSpecificFlowerBouquet(req.params.id, req.body);
-        res.status(200).json({ flowerBouquetBeforeUpdate, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
+        const flowerBouquetUpdated = await flowerBouquetService.updateSpecificFlowerBouquet(req.params.id, req.body);
+        res.status(200).json({ flowerBouquetUpdated, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error: error['message'] }); }
 };

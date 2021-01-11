@@ -1,8 +1,8 @@
 
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import uniqid from 'uniqid';
-import {Image, DeleteIcon, EditIcon, ColorDisplay, StripedDataTableWrapper, TableBody, TableHead} from './StripedDataTable.style';
-import {Button, PopUp, PopUpWrapper, Link} from '../../utils/constants/globalStyle.constant';
+import {Image, ColorDisplay, StripedDataTableWrapper, TableBody, TableHead} from './StripedDataTable.style';
+import {Button, PopUp, PopUpWrapper, Link, DeleteIcon, EditIcon} from '../../utils/constants/globalStyle.constant';
 import Colors from '../../utils/constants/colors.constant';
 import Loader from '../Loader/Loader.component';
 
@@ -16,7 +16,7 @@ import Loader from '../Loader/Loader.component';
  */
 function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
 
-    const DataKeys = Object.keys(dataType);
+    const DataKeys = useRef(Object.keys(dataType)).current;
     const [isPopUpOn, setIsPopUpOn] = useState(false);
     const [popUpContent, setPopUpContent] = useState({});
     
@@ -25,7 +25,7 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
     const handleLinkClick = item => { setPopUpContent(item); handleOpen(); };
 
     if(!dataToPresent || !dataType) return ( <Loader /> );
-
+    
     return (
         <StripedDataTableWrapper>
             <TableHead>
@@ -44,9 +44,17 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                             if(Array.isArray(type))
                                 return ( 
                                     <td key={uniqid()}>
-                                        [{item.map((i,index) => 
-                                            <Link onClick={() => handleLinkClick(i)}>{`${dataKey}${index + 1},`}</Link>
-                                        )}]
+                                        {item.map((i,index) => {
+                                            if(type[0] === DATA_TYPES.COLOR)
+                                                return <ColorDisplay colorToDisplay={i}/>;
+                                            if(typeof type[0] === 'object')
+                                                return (
+                                                    <Link key={uniqid()} onClick={() => handleLinkClick(i)}>
+                                                        {`${dataKey}${index + 1},`}
+                                                    </Link>
+                                                );
+                                            return <p>{i}</p>;
+                                        })}
                                     </td> 
                                 );
                             
@@ -70,7 +78,7 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                             }      
                         })}
                         { onDelete && onEdit && (
-                            <td>
+                            <td key={uniqid()}>
                                 <span onClick={() => onDelete(dataItem._id)}> <DeleteIcon /> </span>
                                 <span onClick={() => onEdit(dataItem._id)}> <EditIcon /> </span>
                             </td>

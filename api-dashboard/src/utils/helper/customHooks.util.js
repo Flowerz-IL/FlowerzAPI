@@ -11,5 +11,5 @@ const objectToArray = object => Object.keys(object).map(key => object[key]);
  */
 export const useSelectorAsAnArray = (selectorCallBack) => {
     const data = useSelector(selectorCallBack);
-    return [data, objectToArray(data)];
+    return data ? [data, objectToArray(data)] : [null,null];
 };

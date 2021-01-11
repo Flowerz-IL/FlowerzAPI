@@ -50,13 +50,13 @@ module.exports.getSpecificFlower = async (req, res) => {
 /**
  * Used to update a specific flower
  * 
- * @respond flower before the update
+ * @respond updated flower
  */
 module.exports.updateSpecificFlower = async (req, res) => {
     try{
         validateObjectKeys(ALLOWED_KEYS, req.body);
-        const flowerBeforeUpdate = await flowerService.updateSpecificFlower(req.params.id, req.body);
-        res.status(200).json({ flowerBeforeUpdate, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
+        const updatedFlower = await flowerService.updateSpecificFlower(req.params.id, req.body);
+        res.status(200).json({ updatedFlower, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error: error['message'] }); }
 };

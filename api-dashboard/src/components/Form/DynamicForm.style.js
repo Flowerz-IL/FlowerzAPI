@@ -2,7 +2,7 @@
 import Styled from 'styled-components';
 import {centeredWithFlex} from '../../utils/constants/globalStyle.constant';
 
-export const DynamicFormWrapper = Styled.form`
+export const FormWrapper = Styled.form`
     padding: 1rem;
     text-align: center;
 `;

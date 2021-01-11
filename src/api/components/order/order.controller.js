@@ -50,13 +50,13 @@ module.exports.getSpecificOrder = async (req, res) => {
 /**
  * Used to update a specific order
  * 
- * @respond order before the update
+ * @respond updated order
  */
 module.exports.updateSpecificOrder = async (req, res) => {
     try{
         validateObjectKeys([...ALLOWED_KEYS, 'providerId'], req.body);
-        const orderBeforeUpdate = await orderService.updateSpecificOrder(req.params.id, req.body);
-        res.status(200).json({ orderBeforeUpdate, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
+        const updatedOrder = await orderService.updateSpecificOrder(req.params.id, req.body);
+        res.status(200).json({ updatedOrder, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error: error['message'] }); }
 };
