@@ -1,11 +1,8 @@
 
 import uniqid from 'uniqid';
 
-// action types
 export const UPDATE_OR_CREATE_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
-
-// actions
 
 /**
  * used to add a new user 

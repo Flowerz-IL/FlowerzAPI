@@ -30,10 +30,10 @@ module.exports.getSpecificFlower = flowerId => FlowerModel.findById(flowerId);
  * 
  * @param {string} flowerId 
  * @param {object} change 
- * @resolve flower before the update
+ * @resolve updated flower
  */
 module.exports.updateSpecificFlower = async (flowerId, change) => 
-    FlowerModel.findByIdAndUpdate(flowerId, { $set:change });
+    FlowerModel.findByIdAndUpdate(flowerId, {$set:change}, {new:true});
 
 /**
  * Used to delete a specific flower from the DB.

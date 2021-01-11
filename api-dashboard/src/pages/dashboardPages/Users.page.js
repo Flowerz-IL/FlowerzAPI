@@ -2,7 +2,7 @@
 import {addUser, editUser, removeUser} from '../../redux/actions/users.action';
 import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
-import {INPUT_TYPES} from '../../components/Form/DynamicForm.component';
+import {INPUT_TYPES} from '../../components/Form/FormInput.component';
 import AddEditTable from '../../layouts/AddEditTable.layout';
 
 function UsersPage() {
@@ -16,6 +16,7 @@ function UsersPage() {
             dispatchActions={dispatchActions}
             dataType={flowerDataType}
             inputType={flowerInputsType}
+            dataName='User'
         />
     );
 }

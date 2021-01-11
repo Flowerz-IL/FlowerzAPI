@@ -25,7 +25,8 @@ module.exports.getSpecificProvider = providerId => ProviderModel.findById(provid
  * @param {object} change 
  * @resolve user before the provider
  */
-module.exports.updateSpecificProvider = async (providerId, change) => UserModel.findByIdAndUpdate(providerId, { $set:change });
+module.exports.updateSpecificProvider = async (providerId, change) => 
+    UserModel.findByIdAndUpdate(providerId,  {$set:change}, {new:true});
 
 /**
  * Used to push to a provider array
@@ -36,7 +37,7 @@ module.exports.updateSpecificProvider = async (providerId, change) => UserModel.
  * @resolve provider before the update
  */
 module.exports.pushToASpecificProviderArray = async (providerId, whereToPush, arrayToPush) => 
-    ProviderModel.findByIdAndUpdate(providerId, { $push: { [whereToPush]: { $each: arrayToPush }} });
+    ProviderModel.findByIdAndUpdate(providerId, {$push:{[whereToPush]:{$each: arrayToPush}}}, {new:true});
 
 /**
  * Used to delete a specific provider from the DB.

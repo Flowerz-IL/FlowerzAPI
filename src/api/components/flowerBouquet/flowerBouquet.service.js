@@ -54,14 +54,14 @@ module.exports.getSpecificFlowerBouquet = flowerBouquetId => FlowerBouquetModel.
  * 
  * @param {string} flowerBouquetId 
  * @param {object} change 
- * @resolve flower before the update
+ * @resolve updated flower bouquet
  */
 module.exports.updateSpecificFlowerBouquet = async (flowerBouquetId, change) =>{
     if('bouquetFlowers' in change){
         const bouquetColors = await getFlowersColorsSet(change['bouquetFlowers']);
         change = {...change, bouquetColors};
     }
-    return FlowerBouquetModel.findByIdAndUpdate(flowerBouquetId, { $set:change });
+    return FlowerBouquetModel.findByIdAndUpdate(flowerBouquetId, {$set:change}, {new:true});
 };
     
 

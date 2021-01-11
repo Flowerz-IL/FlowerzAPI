@@ -2,13 +2,13 @@
 import {addFlower, editFlower, removeFlower} from '../../redux/actions/flowers.action';
 import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
-import {INPUT_TYPES} from '../../components/Form/DynamicForm.component';
+import {INPUT_TYPES} from '../../components/Form/FormInput.component';
 import AddEditTable from '../../layouts/AddEditTable.layout';
 
 function FlowersPage() {
 
     const [flowersObject, flowersArray] = useSelectorAsAnArray(({FlowersReducer}) => FlowersReducer.flowers); 
-
+    
     return (
         <AddEditTable 
             dataAsObject={flowersObject}
@@ -16,6 +16,7 @@ function FlowersPage() {
             dispatchActions={dispatchActions}
             dataType={flowerDataType}
             inputType={flowerInputsType}
+            dataName='Flower'
         />
     );
 }
@@ -28,17 +29,17 @@ const dispatchActions = {
 
 const flowerDataType = {
     _id: DATA_TYPES.TEXT,
-    type: DATA_TYPES.TEXT,
-    color: DATA_TYPES.COLOR,
-    productDescription: DATA_TYPES.TEXT,
-    productImage: DATA_TYPES.IMAGE,
+    flowerImageUrl: DATA_TYPES.IMAGE,
+    flowerName: DATA_TYPES.TEXT,
+    flowerDescription: DATA_TYPES.TEXT,
+    flowerColor: DATA_TYPES.COLOR,
 };
 
 const flowerInputsType = {
-    type: INPUT_TYPES.TEXT,
-    color: INPUT_TYPES.TEXT,
-    productDescription: INPUT_TYPES.LONG_TEXT,
-    productImage: INPUT_TYPES.IMAGE,
+    flowerName: INPUT_TYPES.TEXT,
+    flowerColor: INPUT_TYPES.TEXT,
+    flowerDescription: INPUT_TYPES.LONG_TEXT,
+    flowerImageUrl: INPUT_TYPES.IMAGE,
 };
 
 export default FlowersPage;

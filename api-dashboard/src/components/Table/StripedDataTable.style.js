@@ -2,8 +2,6 @@
 import Styled from 'styled-components';
 import Colors from '../../utils/constants/colors.constant';
 import Fonts from '../../utils/constants/fonts.constant';
-import {Delete} from 'styled-icons/material';
-import {ClipboardPencil} from 'styled-icons/foundation';
 
 export const StripedDataTableWrapper = Styled.table`
     width: 100%;
@@ -48,27 +46,10 @@ export const Image = Styled.img`
 
 export const ColorDisplay = Styled.div`
     display: inline-block;
+    margin-left: 5px;
     width: 2rem;
     height: 2rem;
     box-shadow: 0 0 5px 2px ${Colors.primaryColor}${Colors.opacity20};
     border-radius: 1rem;
     background-color: ${props => props.colorToDisplay ?? Colors.primaryColor};
-`;
-
-const iconStyle = `
-    width: 2rem;
-    cursor: pointer;
-    &:hover {
-        transform: rotate(10deg) translateY(-3px);
-    }
-`;
-
-export const DeleteIcon = Styled(Delete)`
-    ${iconStyle}
-    color: red;
-`;
-
-export const EditIcon = Styled(ClipboardPencil)`
-    ${iconStyle}
-    color: ${Colors.primaryColor};
 `;

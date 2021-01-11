@@ -2,6 +2,8 @@
 import Styled from 'styled-components';
 import Fonts from './fonts.constant';
 import Colors from './colors.constant';
+import {Delete} from 'styled-icons/material';
+import {ClipboardPencil} from 'styled-icons/foundation';
 
 export const centeredWithFlex = Styled.div`
     display: flex;
@@ -35,7 +37,7 @@ export const Card = Styled(centeredWithFlex)`
 `;
 
 export const Button = Styled.button`
-    margin: 1rem;
+    margin: 0;
     width: ${props => props.width ?? '10rem'};
     height: ${props => props.height ?? '3rem'};
     background-color: ${props => props.backgroundColor ?? Colors.primaryColor};
@@ -92,4 +94,22 @@ export const Link = Styled.div`
     &:hover {
         transform: translateY(-3px);
     }   
+`;
+
+const iconStyle = `
+    width: 2rem;
+    cursor: pointer;
+    &:hover {
+        transform: rotate(10deg) translateY(-3px);
+    }
+`;
+
+export const DeleteIcon = Styled(Delete)`
+    ${iconStyle}
+    color: red;
+`;
+
+export const EditIcon = Styled(ClipboardPencil)`
+    ${iconStyle}
+    color: ${Colors.primaryColor};
 `;
