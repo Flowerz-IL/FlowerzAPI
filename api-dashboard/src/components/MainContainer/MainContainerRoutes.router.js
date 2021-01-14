@@ -1,9 +1,10 @@
 
 import {Switch, Route} from 'react-router-dom';
 import AdminDashboard from '../../pages/dashboardPages/AdminDashboard.page';
-import Users from '../../pages/dashboardPages/Users.page';
+import UsersPage from '../../pages/dashboardPages/Users.page';
 import FlowersPage from '../../pages/dashboardPages/Flowers.page';
-import FlowersBouquets from '../../pages/dashboardPages/FlowersBouquets.page';
+import FlowersBouquetsPage from '../../pages/dashboardPages/FlowersBouquets.page';
+import ProvidersPage from '../../pages/dashboardPages/Providers.page';
 
 /**
  * Dashboard page routes manager
@@ -15,13 +16,16 @@ function MainContainerRoutes() {
                 <AdminDashboard />
             </Route>
             <Route path='/users'>
-                <Users />
+                <UsersPage />
             </Route>
             <Route path='/flowers'>
                 <FlowersPage />
             </Route>
             <Route path='/flower-bouquets'>
-                <FlowersBouquets />
+                <FlowersBouquetsPage />
+            </Route>
+            <Route path='/providers'>
+                <ProvidersPage />
             </Route>
         </Switch>
     );

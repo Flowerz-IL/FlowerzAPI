@@ -13,7 +13,7 @@ const ALLOWED_KEYS = ['userId', 'orderAddress', 'orderFrequency', 'isOrderActive
 module.exports.getOrders = async (req, res) => {
     try {
         const orders = await orderService.getOrders();
-        res.json(orders);
+        res.status(200).json(orders);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };
@@ -42,7 +42,7 @@ module.exports.addOrder = async (req, res) => {
 module.exports.getSpecificOrder = async (req, res) => {
     try{
         const requestedOrder = await orderService.getSpecificOrder(req.params.id);
-        res.json(requestedOrder);
+        res.status(200).json(requestedOrder);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };

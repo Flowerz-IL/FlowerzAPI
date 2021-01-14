@@ -43,7 +43,6 @@ const flowerDataType = {
 const flowerInputsType = {
     bouquetName: INPUT_TYPES.TEXT,
     bouquetPrice: INPUT_TYPES.NUMBER,
-    bouquetSize: INPUT_TYPES.TEXT,
     bouquetDescription: INPUT_TYPES.LONG_TEXT,
     bouquetOccasionStyle: INPUT_TYPES.TEXT,
     bouquetImageUrl: INPUT_TYPES.IMAGE,

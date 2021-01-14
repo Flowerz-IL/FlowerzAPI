@@ -11,6 +11,7 @@ userRouter
     .route('/specific/:id')
     .all(validateIdParamMiddleware)
     .get(userController.getSpecificUser)
+    .patch(userController.updateSpecificUser)
     .post(userController.addAddresses)
     .delete(userController.deleteSpecificUser);
 

@@ -6,6 +6,7 @@ const {validateIdParamMiddleware} = require('../../middleware/validation.middlew
 providerRouter
     .route('/')
     .get(providerController.getProviders)
+    .post(providerController.addProvider);
 
 providerRouter
     .route('/specific/:id')

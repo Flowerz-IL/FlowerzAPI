@@ -7,6 +7,8 @@ import Sidebar from '../components/Sidebar/Sidebar.component';
 import MainContainer from '../components/MainContainer/MainContainer.component';
 import {fetchFlowers} from '../redux/actions/flowers.action';
 import {fetchFlowerBouquets} from '../redux/actions/flowerBouquets.action';
+import {fetchUsers} from '../redux/actions/users.action';
+import {fetchProviders} from '../redux/actions/providers.action';
 
 /**
  * Dashboard layout contains sidebar and pages.
@@ -17,6 +19,8 @@ function DashboardLayout() {
     useEffect(() => {
         dispatch(fetchFlowers());
         dispatch(fetchFlowerBouquets());
+        dispatch(fetchUsers());
+        dispatch(fetchProviders());
     } ,[dispatch]);
 
     return (

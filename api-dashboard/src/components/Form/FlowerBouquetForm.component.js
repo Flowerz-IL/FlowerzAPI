@@ -7,6 +7,8 @@ import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import FormInputs, {updateErrorState} from './FormInput.component';
 import Loader from '../Loader/Loader.component';
 
+const SIZE_OPTIONS = ['S', 'M', 'L', 'XL', 'XXL'];
+
 function FlowerBouquetForm({handleSubmit, inputsType, dataToEdit}) {
     const inputs = useRef(Object.keys(inputsType)).current;
     const [addFlowerState, setAddFlowerState] = useState({flowerId: '', flowerAmount: 0});
@@ -20,6 +22,7 @@ function FlowerBouquetForm({handleSubmit, inputsType, dataToEdit}) {
                 prev[currentKey] = dataToEdit ? dataToEdit[currentKey] ?? '' : '';
                 return prev;
             }, {});
+            state.bouquetSize = dataToEdit ? dataToEdit.bouquetSize ?? '' : '';
             state.bouquetFlowers = dataToEdit ? dataToEdit.bouquetFlowers ?? [] : [];
             return state;
         });
@@ -36,6 +39,11 @@ function FlowerBouquetForm({handleSubmit, inputsType, dataToEdit}) {
         
         if(formState.bouquetFlowers.length < 1) {
             alert('you must add at least one bouquet');
+            return;
+        }
+
+        if(!formState.bouquetSize) {
+            alert('you must choose a size');
             return;
         }
 
@@ -80,6 +88,18 @@ function FlowerBouquetForm({handleSubmit, inputsType, dataToEdit}) {
                 formErrorState={formErrorState}
                 handleChange={handleChange}
             />
+            <SelectInput 
+                onChange={event => {
+                    const {value} = event.target;
+                    if(value === '') return;
+                    setFormState(prev => ({...prev, bouquetSize: value}));
+                }} 
+                style={{width:'32vw', margin: '1rem 0'}}
+                value={formState.bouquetSize}
+            >
+                <option value={''}> Choose a bouquet size </option>
+                {SIZE_OPTIONS.map(size => <option value={size}> {size} </option>)}
+            </SelectInput>
             <FlowerInBouquetsWrapper>
                 {formState.bouquetFlowers.map(item => 
                     <div>
@@ -101,7 +121,7 @@ function FlowerBouquetForm({handleSubmit, inputsType, dataToEdit}) {
                 >
                     <option value={''}> Add a flower to the bouquet </option>
                     {Object.keys(flowersObject).map(key => (
-                        <option key value={key}> {`${flowersObject[key].flowerName} - ${flowersObject[key].flowerColor} - id:${key}`} </option>
+                        <option value={key}> {`${flowersObject[key].flowerName} - ${flowersObject[key].flowerColor} - id:${key}`} </option>
                     ))}
                 </SelectInput>
                 <AmountInput 

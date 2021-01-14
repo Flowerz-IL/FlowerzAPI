@@ -1,18 +1,32 @@
 
-import users from '../../Dummy_Data/user.dummy.data';
-import { UPDATE_OR_CREATE_USER, REMOVE_USER } from '../actions/users.action';
+import { ADD_USER, EDIT_USER, REMOVE_USER, FETCH_USERS } from '../actions/users.action';
+import { ADD_PROVIDER, REMOVE_PROVIDER } from '../actions/providers.action';
 
-const initialState = { users };
+const initialState = { users:null };
 
 const UsersReducer = (state = initialState, action) => {
     let newState;
     const {type, payload} = action;
     
     switch(type){
-        case UPDATE_OR_CREATE_USER:
+        case FETCH_USERS:
+            newState = {
+                ...state,
+                users:payload.users
+            };
+            break;
+
+        case ADD_USER:
             newState = {
                 ...state,
                 users:{...state.users, [payload.userId]: payload.user}
+            }
+            break;
+        
+        case EDIT_USER:
+            newState = {
+                ...state,
+                users:{...state.users, [payload.userId]: payload.updatedUser}
             }
             break;
 
@@ -22,6 +36,34 @@ const UsersReducer = (state = initialState, action) => {
             newState = {
                 ...state,
                 users:temp
+            }
+            break;
+        
+        case ADD_PROVIDER:
+            newState = {
+                ...state,
+                users:{
+                    ...state.users,
+                    [payload.provider.userId]: {
+                        ...state.users[payload.provider.userId],
+                        providerId: payload.providerId,
+                        userRole: 'PROVIDER'
+                    }
+                }
+            }
+            break;
+
+        case REMOVE_PROVIDER:
+            newState = {
+                ...state,
+                users:{
+                    ...state.users,
+                    [payload.provider.userId]: {
+                        ...state.users[payload.provider.userId],
+                        providerId: '-',
+                        userRole: 'USER'
+                    }
+                }
             }
             break;
 

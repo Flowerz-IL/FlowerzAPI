@@ -11,6 +11,19 @@ const {createJWT, decodeJWT} = require('../../../services/jwt.util');
 module.exports.getProviders = () => ProviderModel.find();
 
 /**
+ * Used to insert a provider to the DB
+ * 
+ * @param {object} newProvider 
+ * @resolve the created provider
+ */
+module.exports.addProvider = async ({userId, businessName, businessWebsite}) => {
+    const newProvider = await new ProviderModel({userId, businessName, businessWebsite}).save();
+    userService.updateSpecificUser(userId, {providerId: newProvider._id, userRole:'PROVIDER'});
+    return newProvider;
+}
+    
+
+/**
  * Used to fetch a specific provide from the DB.
  * 
  * @param {string} providerId 
@@ -45,7 +58,11 @@ module.exports.pushToASpecificProviderArray = async (providerId, whereToPush, ar
  * @param {string} providerId 
  * @resolve the deleted provider
  */
-module.exports.deleteSpecificProvider = providerId => ProviderModel.findByIdAndDelete(providerId);
+module.exports.deleteSpecificProvider = providerId => {
+    const provider = ProviderModel.findByIdAndDelete(providerId);
+    userService.updateSpecificUser(provider.userId, {providerId: null, userRole:'USER'});
+    return provider;
+}
 
 /**
  * Used to build the sign response with provider information and json web token
@@ -69,9 +86,9 @@ module.exports.buildSignResponse = provider => {
  * 
  * @resolve the new provider
  */
-module.exports.signUpAProvider = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddress,
+module.exports.signUpAProvider = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses,
     businessName, businessWebsite}) => {
-    const newUser = await userService.signUp({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddress});
+    const newUser = await userService.signUp({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses});
     const newProvider = new ProviderModel({
         userId: newUser._id,
         businessName,
