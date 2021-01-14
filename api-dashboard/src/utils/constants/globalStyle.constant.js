@@ -5,7 +5,7 @@ import Colors from './colors.constant';
 import {Delete} from 'styled-icons/material';
 import {ClipboardPencil} from 'styled-icons/foundation';
 
-export const centeredWithFlex = Styled.div`
+export const CenteredWithFlex = Styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,12 +21,12 @@ export const Headline1 = Styled.h2`
     color: ${props => props.color ?? Colors.secondaryColor};
 `;
 
-export const Row = Styled(centeredWithFlex)`
+export const Row = Styled(CenteredWithFlex)`
     justify-content: space-between;
     width: ${props => props.fixedWidth ?? '90%'};
 `;
 
-export const Card = Styled(centeredWithFlex)`
+export const Card = Styled(CenteredWithFlex)`
     border-radius: 5px;
     flex-direction: column;
     padding: 1rem;

@@ -24,13 +24,13 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
     const handleClose = () => {setIsPopUpOn(false);};
     const handleLinkClick = item => { setPopUpContent(item); handleOpen(); };
     if(!dataToPresent || !dataType) return ( <Loader /> );
-    
+    console.log(dataToPresent);
     return (
         <StripedDataTableWrapper>
             <TableHead>
                 <tr>
                     {DataKeys.map( key => <th key={uniqid()}> {formatHeadline(key)} </th>)}
-                    { onDelete && onEdit && <th> Actions </th> }
+                    { (onDelete || onEdit) && <th> Actions </th> }
                 </tr>
             </TableHead>
             <TableBody>
@@ -40,7 +40,6 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                         {DataKeys.map( dataKey => {
                             const item = dataItem[dataKey];
                             const type = dataType[dataKey];
-                            if(!item) return null;
                             
                             if(Array.isArray(type))
                                 return ( 
@@ -74,16 +73,17 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                                 case DATA_TYPES.COLOR:
                                     return ( <td key={uniqid()}> <ColorDisplay colorToDisplay={item}/> </td> );
                                 
+                                case DATA_TYPES.BOOLEAN:
+                                    return ( <td key={uniqid()}> {item ? '✔' : '❌'} </td> );
+                                
                                 default:
                                     return ( <td key={uniqid()}> {formatText(item)} </td> );
                             }      
                         })}
-                        { onDelete && onEdit && (
-                            <td key={uniqid()}>
-                                <span onClick={() => onDelete(dataItem._id)}> <DeleteIcon /> </span>
-                                <span onClick={() => onEdit(dataItem._id)}> <EditIcon /> </span>
-                            </td>
-                        )}  
+                        <td key={uniqid()}>
+                            {onDelete && <span onClick={() => onDelete(dataItem._id)}> <DeleteIcon /> </span>}
+                            {onEdit && <span onClick={() => onEdit(dataItem._id)}> <EditIcon /> </span>}
+                        </td>
                     </tr>
                 )}
             </TableBody>
@@ -113,4 +113,5 @@ export const DATA_TYPES = {
     IMAGE: 'IMAGE',
     TEXT: 'TEXT',
     COLOR: 'COLOR',
+    BOOLEAN: 'BOOLEAN'
 };

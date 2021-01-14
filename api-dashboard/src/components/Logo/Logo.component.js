@@ -1,7 +1,7 @@
 
 import Styled from 'styled-components';
 import Colors from '../../utils/constants/colors.constant';
-import {centeredWithFlex, Headline1} from '../../utils/constants/globalStyle.constant';
+import {CenteredWithFlex, Headline1} from '../../utils/constants/globalStyle.constant';
 
 /**
  * FlowerZIL Logo
@@ -15,7 +15,7 @@ function Logo() {
 }
 
 // Style
-const LogoWrapper = Styled(centeredWithFlex)`
+const LogoWrapper = Styled(CenteredWithFlex)`
     height: 6rem;
     text-align: center;
     border-bottom: 1px solid ${Colors.thirdColor}${Colors.opacity20};

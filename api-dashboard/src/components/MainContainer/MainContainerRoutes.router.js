@@ -5,6 +5,7 @@ import UsersPage from '../../pages/dashboardPages/Users.page';
 import FlowersPage from '../../pages/dashboardPages/Flowers.page';
 import FlowersBouquetsPage from '../../pages/dashboardPages/FlowersBouquets.page';
 import ProvidersPage from '../../pages/dashboardPages/Providers.page';
+import OrdersPage from '../../pages/dashboardPages/Orders.page';
 
 /**
  * Dashboard page routes manager
@@ -26,6 +27,9 @@ function MainContainerRoutes() {
             </Route>
             <Route path='/providers'>
                 <ProvidersPage />
+            </Route>
+            <Route path='/orders'>
+                <OrdersPage />
             </Route>
         </Switch>
     );

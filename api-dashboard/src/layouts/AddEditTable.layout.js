@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import Styled from 'styled-components';
 import {useDispatch} from 'react-redux';
-import {Headline1, centeredWithFlex, Row, Card} from '../utils/constants/globalStyle.constant';
+import {Headline1, CenteredWithFlex, Row, Card} from '../utils/constants/globalStyle.constant';
 import StripedDataTable from '../components/Table/StripedDataTable.component';
 import DynamicForm from '../components/Form/DynamicForm.component';
 
@@ -29,6 +29,7 @@ function AddEditTable({dataAsObject, dataAsArray, dispatchActions, inputType, da
             </Row>
             <Row>
                 <Card width="100%" height="auto">
+                    <SearchInput type="text" />
                     <StripedDataTable 
                         dataToPresent={dataAsArray} 
                         dataType={dataType}
@@ -41,10 +42,16 @@ function AddEditTable({dataAsObject, dataAsArray, dispatchActions, inputType, da
     );
 }
 
-const AddEditTablePageWrapper = Styled(centeredWithFlex)`
+const AddEditTablePageWrapper = Styled(CenteredWithFlex)`
     padding: 3rem;
     flex-direction: column;
     gap: 3rem;
+`;
+
+const SearchInput = Styled.input`
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 50%;
 `;
 
 export default AddEditTable;

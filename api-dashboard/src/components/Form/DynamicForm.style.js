@@ -1,6 +1,6 @@
 
 import Styled from 'styled-components';
-import {centeredWithFlex} from '../../utils/constants/globalStyle.constant';
+import {CenteredWithFlex} from '../../utils/constants/globalStyle.constant';
 
 export const FormWrapper = Styled.form`
     padding: 1rem;
@@ -27,7 +27,7 @@ export const TextAreaInput = Styled.textarea`
     text-transform: capitalize
 `;
 
-export const ImageWrapper = Styled(centeredWithFlex)`
+export const ImageWrapper = Styled(CenteredWithFlex)`
     justify-content: flex-start;
     align-items: flex-end;
     margin: 0.5rem;
@@ -55,7 +55,7 @@ export const Image = Styled.img`
     height 5rem;
 `;
 
-export const ObjectsWrapper = Styled(centeredWithFlex)`
+export const ObjectsWrapper = Styled(CenteredWithFlex)`
     justify-content: flex-start;
     flex-wrap: wrap;
 `;

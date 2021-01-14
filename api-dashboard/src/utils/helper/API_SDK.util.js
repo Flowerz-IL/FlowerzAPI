@@ -49,5 +49,6 @@ export const API_ROUTES = {
     USER_SIGN_UP: '/users/sign-up',
     PROVIDER: '/providers',
     PROVIDER_SPECIFIC: '/providers/specific',
-    PROVIDER_SIGN_UP: '/providers/sign-up'
+    PROVIDER_SIGN_UP: '/providers/sign-up',
+    ORDER:'/orders'
 };

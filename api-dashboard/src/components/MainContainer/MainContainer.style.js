@@ -2,7 +2,7 @@
 import Styled from 'styled-components';
 import {LogOut} from 'styled-icons/ionicons-outline';
 import Colors from '../../utils/constants/colors.constant';
-import {centeredWithFlex} from '../../utils/constants/globalStyle.constant';
+import {CenteredWithFlex} from '../../utils/constants/globalStyle.constant';
 
 export const MainContainerWrapper = Styled.div`
     margin: 0;
@@ -12,7 +12,7 @@ export const MainContainerWrapper = Styled.div`
     overflow-y: scroll;
 `;
 
-export const MainContainerHeaderWrapper = Styled(centeredWithFlex)`
+export const MainContainerHeaderWrapper = Styled(CenteredWithFlex)`
     padding: 0 2rem;
     height: 6rem;
     background-color: ${Colors.lighterColor};

@@ -1,7 +1,7 @@
 
 import Styled from 'styled-components';
 import Colors from '../../utils/constants/colors.constant';
-import {centeredWithFlex} from '../../utils/constants/globalStyle.constant';
+import {CenteredWithFlex} from '../../utils/constants/globalStyle.constant';
 
 export const SidebarWrapper = Styled.div`
     margin: 0;
@@ -11,14 +11,14 @@ export const SidebarWrapper = Styled.div`
     background-color: ${Colors.primaryColor};
 `;
 
-export const SideBarItemsWrapper = Styled(centeredWithFlex)`
+export const SideBarItemsWrapper = Styled(CenteredWithFlex)`
     margin-top: 2.5rem;
     flex-direction: column;
     justify-content: flex-start;
     gap: 1rem;
 `;
 
-export const SideBarItemWrapper = Styled(centeredWithFlex)`
+export const SideBarItemWrapper = Styled(CenteredWithFlex)`
     padding: 1rem 1.5rem;
     width: 15vw;
     border-radius: 4px;

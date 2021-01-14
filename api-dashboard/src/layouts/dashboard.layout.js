@@ -9,6 +9,7 @@ import {fetchFlowers} from '../redux/actions/flowers.action';
 import {fetchFlowerBouquets} from '../redux/actions/flowerBouquets.action';
 import {fetchUsers} from '../redux/actions/users.action';
 import {fetchProviders} from '../redux/actions/providers.action';
+import {fetchOrders} from '../redux/actions/orders.action';
 
 /**
  * Dashboard layout contains sidebar and pages.
@@ -21,6 +22,7 @@ function DashboardLayout() {
         dispatch(fetchFlowerBouquets());
         dispatch(fetchUsers());
         dispatch(fetchProviders());
+        dispatch(fetchOrders());
     } ,[dispatch]);
 
     return (
