@@ -13,7 +13,7 @@ const ALLOWED_KEYS = ['flowerName', 'flowerColor', 'flowerDescription', 'flowerI
 module.exports.getFlowers = async (req, res) => {
     try {
         const flowers = await flowerService.getFlowers();
-        res.json(flowers);
+        res.status(200).json(flowers);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };
@@ -42,7 +42,7 @@ module.exports.addFlower = async (req, res) => {
 module.exports.getSpecificFlower = async (req, res) => {
     try{
         const requestedFlower = await flowerService.getSpecificFlower(req.params.id);
-        res.json(requestedFlower);
+        res.status(200).json(requestedFlower);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };

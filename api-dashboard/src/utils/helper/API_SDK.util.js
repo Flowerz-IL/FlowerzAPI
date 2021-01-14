@@ -42,5 +42,12 @@ export const deleteReq = route => SDKInstance.delete(route)
  */
 export const API_ROUTES = {
     FLOWER: '/flowers',
-    FLOWER_BOUQUET: '/flower-bouquets'
+    FLOWER_BOUQUET: '/flower-bouquets',
+    USER: '/users',
+    USER_SPECIFIC: '/users/specific',
+    SIGN_IN: '/users/sign-in',
+    USER_SIGN_UP: '/users/sign-up',
+    PROVIDER: '/providers',
+    PROVIDER_SPECIFIC: '/providers/specific',
+    PROVIDER_SIGN_UP: '/providers/sign-up'
 };

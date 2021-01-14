@@ -10,11 +10,11 @@ const getUserByEmail = email => UserModel.findOne({userEmail: email}).lean();
  * 
  * @resolve user data
  */
-module.exports.getUsers = () => UserModel.find().then(res => res.map(({userEmail, userRole, userFirstName, userLastName,
-    userPhoneNumber, userAddresses, userOrders, providerId}) => {
-        userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-        userAddresses, userOrders, providerId 
-    }));
+module.exports.getUsers = () => UserModel.find().then(res => res.map(({_id, userEmail, userRole, userFirstName, userLastName,
+    userPhoneNumber, userAddresses, userOrders, providerId}) => ({
+        _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+        userAddresses, userOrders, providerId: providerId ?? '-'
+    })));
 
 /**
  * Used to fetch a specific user from the DB.
@@ -22,11 +22,11 @@ module.exports.getUsers = () => UserModel.find().then(res => res.map(({userEmail
  * @param {string} userId 
  * @resolve requested user data
  */
-module.exports.getSpecificUser = userId => UserModel.findById(userId).then(res => res.map(({userEmail, userRole,
-    userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => {
-        userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-        userAddresses, userOrders, providerId 
-    }));
+module.exports.getSpecificUser = userId => UserModel.findById(userId).then(res => res.map(({_id, userEmail, userRole,
+    userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
+        _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+        userAddresses, userOrders, providerId : providerId ?? '-'
+    })));
 
 /**
  * Used to updated an existing user
@@ -36,7 +36,11 @@ module.exports.getSpecificUser = userId => UserModel.findById(userId).then(res =
  * @resolve user before the update
  */
 module.exports.updateSpecificUser = async (userId, change) => 
-    UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true});
+    UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
+        .then(({_id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
+            _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+            userAddresses, userOrders, providerId : providerId ?? '-'
+        }));
 
 /**
  * Used to push to a user array
@@ -47,7 +51,11 @@ module.exports.updateSpecificUser = async (userId, change) =>
  * @resolve user after the update
  */
 module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPush) => 
-    UserModel.findByIdAndUpdate(userId, {$push:{[whereToPush]:{$each:arrayToPush}}}, {new:true});
+    UserModel.findByIdAndUpdate(userId, {$push:{[whereToPush]:{$each:arrayToPush}}}, {new:true})
+        .then(({_id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
+            _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+            userAddresses, userOrders, providerId : providerId ?? '-'
+        }));
 
 /**
  * Used to delete a specific user from the DB.
@@ -93,7 +101,7 @@ module.exports.signIn = async ({userEmail, userPassword}) => {
  * 
  * @resolve the new user
  */
-module.exports.signUp = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddress}, role='user') => {
+module.exports.signUp = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses}, role='user') => {
     const fixedEmail = userEmail.toLowerCase();
     const encryptedPassword = await encryptText(userPassword);
     const isExisted = await getUserByEmail(fixedEmail);
@@ -104,7 +112,7 @@ module.exports.signUp = async ({userEmail, userPassword, userFirstName, userLast
         userFirstName,
         userLastName,
         userPhoneNumber,
-        userAddresses: [userAddress],
+        userAddresses,
         userRole: role.toUpperCase(),
     }).save();
 };

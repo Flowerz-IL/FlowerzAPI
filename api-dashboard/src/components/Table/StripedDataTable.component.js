@@ -23,7 +23,6 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
     const handleOpen = () => {setIsPopUpOn(true);};
     const handleClose = () => {setIsPopUpOn(false);};
     const handleLinkClick = item => { setPopUpContent(item); handleOpen(); };
-
     if(!dataToPresent || !dataType) return ( <Loader /> );
     
     return (
@@ -37,10 +36,12 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
             <TableBody>
                 {dataToPresent.map( dataItem => 
                     <tr key={uniqid()}>
+                        
                         {DataKeys.map( dataKey => {
                             const item = dataItem[dataKey];
                             const type = dataType[dataKey];
-
+                            if(!item) return null;
+                            
                             if(Array.isArray(type))
                                 return ( 
                                     <td key={uniqid()}>

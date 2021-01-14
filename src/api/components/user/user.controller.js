@@ -12,7 +12,7 @@ const MODEL_NAME = 'User';
 module.exports.getUsers = async (req, res) => {
     try {
         const users = await userService.getUsers();
-        res.json(users);
+        res.status(200).json(users);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };
@@ -26,9 +26,23 @@ module.exports.getUsers = async (req, res) => {
 module.exports.getSpecificUser = async (req, res) => {
     try{
         const requestedUser = await userService.getSpecificUser(req.params.id);
-        res.json(requestedUser);
+        res.status(200).json(requestedUser);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
+};
+
+/**
+ * Used to update a specific user
+ * 
+ * @respond updated user
+ */
+module.exports.updateSpecificUser = async (req, res) => {
+    try{
+        validateObjectKeys(['userEmail', 'userRole', 'userFirstName', 'userLastName', 'userPhoneNumber', 'userAddresses'], req.body);
+        const updatedUser = await userService.updateSpecificUser(req.params.id, req.body);
+        res.status(200).json({ updatedUser, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
+
+    } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error: error['message'] }); }
 };
 
 /**
@@ -39,7 +53,7 @@ module.exports.getSpecificUser = async (req, res) => {
 module.exports.addAddresses = async (req, res) => {
     validateObjectKeys(['userAddresses'], req.body);
     const updatedUser = await userService.pushToASpecificUserArray(req.params.id, 'userAddresses', req.body.userAddresses);
-    res.json(updatedUser);
+    res.status(200).json(updatedUser);
 };
 
 /**
@@ -65,7 +79,7 @@ module.exports.signIn = async (req, res) => {
     try{
         validateKeysInObject(['userEmail', 'userPassword'], req.body);
         const currentUser = await userService.signIn(req.body);
-        res.json(userService.buildSignResponse(currentUser));
+        res.status(200).json(userService.buildSignResponse(currentUser));
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.SIGN_IN, error: error['message'] }); }
 };
@@ -77,10 +91,10 @@ module.exports.signIn = async (req, res) => {
  */
 module.exports.signUp = async (req, res) => {
     try{
-        const keys = ['userEmail', 'userPassword', 'userFirstName', 'userLastName', 'userPhoneNumber', 'userAddress'];
+        const keys = ['userEmail', 'userPassword', 'userFirstName', 'userLastName', 'userPhoneNumber', 'userAddresses'];
         validateKeysInObject(keys, req.body);
         const newUser = await userService.signUp(req.body);
-        res.json(userService.buildSignResponse(newUser));
+        res.status(200).json(userService.buildSignResponse(newUser));
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.SIGN_UP, error: error['message'] }); }
 };

@@ -14,7 +14,7 @@ const ALLOWED_KEYS = ['bouquetName', 'bouquetPrice', 'bouquetSize', 'bouquetDesc
 module.exports.getFlowerBouquets = async (req, res) => {
     try {
         const FlowerBouquets = await flowerBouquetService.getFlowerBouquets();
-        res.json(FlowerBouquets);
+        res.status(200).json(FlowerBouquets);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };
@@ -43,7 +43,7 @@ module.exports.addFlowerBouquet = async (req, res) => {
 module.exports.getSpecificFlowerBouquet = async (req, res) => {
     try{
         const requestedFlowerBouquet = await flowerBouquetService.getSpecificFlowerBouquet(req.params.id);
-        res.json(requestedFlowerBouquet);
+        res.status(200).json(requestedFlowerBouquet);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error: error['message'] }); }
 };

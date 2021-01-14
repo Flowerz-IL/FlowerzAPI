@@ -8,7 +8,6 @@ function FormInputs({inputs, inputsType, formState, formErrorState, handleChange
             {inputs.map( currentKey => {
                 const inputType = inputsType[currentKey];
                 const placeHolder = formatText(currentKey);
-                console.log(inputType, placeHolder)
                 switch(inputType){
                     case INPUT_TYPES.IMAGE:
                         return(
@@ -94,15 +93,17 @@ const formatText = string => typeof string !== 'string' ? string : string
 export const updateErrorState = (setErrorState, inputType, currentInput, insertedValue) => {
     switch(inputType){
         case INPUT_TYPES.IMAGE:
-            const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
-            const regex = new RegExp(expression);
-            if(!insertedValue.match(regex)) 
-                setErrorState(prev => ({...prev, [currentInput]: 'Must be a valid url'}));
-            else setErrorState(prev => {
-                let current = {...prev};
-                delete current[currentInput];
-                return current;
-            });
+            {
+                const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+                const regex = new RegExp(expression);
+                if(!insertedValue.match(regex)) 
+                    setErrorState(prev => ({...prev, [currentInput]: 'Must be a valid url'}));
+                else setErrorState(prev => {
+                    let current = {...prev};
+                    delete current[currentInput];
+                    return current;
+                });
+            }
             break;
 
         case INPUT_TYPES.LONG_TEXT:
@@ -117,7 +118,21 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
                 });
             }
             break;
-            
+        
+        case INPUT_TYPES.PHONE_NUMBER:
+            {
+                const expression = /\d{3}-\d{3}-\d{4}/;
+                const regex = new RegExp(expression);
+                if(!insertedValue.match(regex)) 
+                    setErrorState(prev => ({...prev, [currentInput]: 'Must be a valid phone number xxx-xxx-xxxx'}));
+                else setErrorState(prev => {
+                    let current = {...prev};
+                    delete current[currentInput];
+                    return current;
+                });
+            }
+            break;
+
         default:
             {
                 const valueLen = insertedValue.length;
@@ -139,5 +154,6 @@ export const INPUT_TYPES = {
     TEXT: 'TEXT',
     LONG_TEXT: 'LONG_TEXT', 
     COLOR:'COLOR',
-    NUMBER: 'NUMBER'
+    NUMBER: 'NUMBER',
+    PHONE_NUMBER: 'PHONE_NUMBER'
 };

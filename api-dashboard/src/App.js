@@ -7,9 +7,10 @@ import ReduxThunk from 'redux-thunk';
 import FlowersReducer from './redux/reducers/flowers.reducer';
 import UsersReducer from './redux/reducers/users.reducer';
 import FlowerBouquetsReducer from './redux/reducers/flowerBouquets.reducer';
+import ProvidersReducer from './redux/reducers/providers.reducer';
 
 // Store 
-const rootReducer = combineReducers({FlowersReducer, UsersReducer, FlowerBouquetsReducer});
+const rootReducer = combineReducers({FlowersReducer, UsersReducer, FlowerBouquetsReducer, ProvidersReducer});
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 function App() {
