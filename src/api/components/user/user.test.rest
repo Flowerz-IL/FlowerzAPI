@@ -23,8 +23,17 @@ content-type: application/json
     }]
 }
 
+### change role 
+
+PATCH http://localHost:8080/api/users/specific/6002fdbfaf469548f0bb42f3
+content-type: application/json
+
+{
+    "userRole": "ADMIN"
+}
+
 ### delete specific user
-DELETE http://localHost:8080/api/users/specific/5ffb52c2c9bded33d8a43ed9
+DELETE http://localHost:8080/api/users/specific/6002e79655200708d8a85178
 
 ########################## Other ###########################
 
@@ -47,12 +56,12 @@ content-type: application/json
     "userFirstName": "testito", 
     "userLastName": "testosh", 
     "userPhoneNumber": "054-555-5555", 
-    "userAddress": {
+    "userAddresses": [{
         "name": "Home",
         "city": "testavile",
         "street": "testastreet",
         "houseNumber": "4/5",
         "floorNumber": "7",
         "aptNumber": "7"
-    }
+    }]
 }

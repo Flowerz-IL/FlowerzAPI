@@ -6,6 +6,7 @@ import FlowersPage from '../../pages/dashboardPages/Flowers.page';
 import FlowersBouquetsPage from '../../pages/dashboardPages/FlowersBouquets.page';
 import ProvidersPage from '../../pages/dashboardPages/Providers.page';
 import OrdersPage from '../../pages/dashboardPages/Orders.page';
+import {AdminRoute, ProviderRoute} from '../../utils/helper/customRoutes.util';
 
 /**
  * Dashboard page routes manager
@@ -16,21 +17,21 @@ function MainContainerRoutes() {
             <Route path='/' exact>
                 <AdminDashboard />
             </Route>
-            <Route path='/users'>
+            <AdminRoute path='/users'>
                 <UsersPage />
-            </Route>
-            <Route path='/flowers'>
+            </AdminRoute>
+            <AdminRoute path='/flowers'>
                 <FlowersPage />
-            </Route>
-            <Route path='/flower-bouquets'>
+            </AdminRoute>
+            <ProviderRoute path='/flower-bouquets'>
                 <FlowersBouquetsPage />
-            </Route>
-            <Route path='/providers'>
+            </ProviderRoute>
+            <AdminRoute path='/providers'>
                 <ProvidersPage />
-            </Route>
-            <Route path='/orders'>
+            </AdminRoute>
+            <ProviderRoute path='/orders'>
                 <OrdersPage />
-            </Route>
+            </ProviderRoute>
         </Switch>
     );
 }

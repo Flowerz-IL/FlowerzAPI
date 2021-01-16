@@ -58,9 +58,11 @@ module.exports.pushToASpecificProviderArray = async (providerId, whereToPush, ar
  * @param {string} providerId 
  * @resolve the deleted provider
  */
-module.exports.deleteSpecificProvider = providerId => {
-    const provider = ProviderModel.findByIdAndDelete(providerId);
-    userService.updateSpecificUser(provider.userId, {providerId: null, userRole:'USER'});
+module.exports.deleteSpecificProvider = async (providerId, deleteUsers=true) => {
+    const provider = await ProviderModel.findByIdAndDelete(providerId);
+    if(deleteUsers){
+        const deleteUser =  await userService.deleteSpecificUser(provider.userId);
+    } 
     return provider;
 }
 
@@ -73,12 +75,13 @@ module.exports.deleteSpecificProvider = providerId => {
 module.exports.buildSignResponse = provider => {
     const jwt = createJWT(provider);
     const expiredAt = decodeJWT(jwt).exp;
-    const providerInformation = {_id: provider._id, userId: provider.userId, userRole: 'PROVIDER' };
-    return {
+    const providerInformation = {_id: provider.userId, providerId: provider._id, userRole: 'PROVIDER' };
+    const response = {
         information:providerInformation,
         token:jwt,
         expiredAt:expiredAt
     };
+    return response;
 };
 
 /**
@@ -88,12 +91,12 @@ module.exports.buildSignResponse = provider => {
  */
 module.exports.signUpAProvider = async ({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses,
     businessName, businessWebsite}) => {
-    const newUser = await userService.signUp({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses});
-    const newProvider = new ProviderModel({
+    const newUser = await userService.signUp({userEmail, userPassword, userFirstName, userLastName, userPhoneNumber, userAddresses}, 'provider');
+    const newProvider = await new ProviderModel({
         userId: newUser._id,
         businessName,
         businessWebsite: businessWebsite ?? '',
     }).save();
-    userService.updateSpecificUser(newUser._id, {providerId: newProvider._id});
+    const temp = await userService.updateSpecificUser(newUser._id, {providerId: newProvider._id});
     return newProvider;
 };

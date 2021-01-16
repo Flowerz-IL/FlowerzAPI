@@ -17,25 +17,25 @@ const sidebarItems = [
     {
         itemName: 'Users',
         itemLogo: Users,
-        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
+        routePermissions: [PERMISSIONS.ADMIN],
         routeName: '/users'
     },
     {
         itemName: 'providers',
         itemLogo: Store,
-        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
+        routePermissions: [PERMISSIONS.ADMIN],
         routeName: '/providers'
     },
     {
         itemName: 'Flowers',
         itemLogo: Flower,
-        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
+        routePermissions: [PERMISSIONS.ADMIN],
         routeName: '/flowers'
     },
     {
         itemName: 'FlowerBouquets',
         itemLogo: Flower2,
-        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
+        routePermissions: [PERMISSIONS.ADMIN],
         routeName: '/flower-bouquets'
     },
     {

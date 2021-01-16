@@ -7,7 +7,7 @@ import AddEditTable from '../../layouts/AddEditTable.layout';
 
 function FlowersPage() {
 
-    const [flowersObject, flowersArray] = useSelectorAsAnArray(({FlowersReducer}) => FlowersReducer.flowers); 
+    const [flowersObject, flowersArray] = useSelectorAsAnArray(({FlowersReducer}) => FlowersReducer.flowers);
     
     return (
         <AddEditTable 

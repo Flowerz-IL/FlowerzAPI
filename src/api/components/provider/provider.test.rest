@@ -19,7 +19,7 @@ content-type: application/json
 }
 
 ### delete specific provider
-DELETE http://localHost:8080/api/providers/specific/5ffb559cd5000b13c432796a
+DELETE http://localHost:8080/api/providers/specific/6002e43b0d0f3b00d897f5c7
 
 ########################## Other ###########################
 
@@ -33,12 +33,12 @@ content-type: application/json
     "userFirstName": "companyito", 
     "userLastName": "companosh", 
     "userPhoneNumber": "054-555-5555", 
-    "userAddress": {
+    "userAddresses": [{
         "name": "Store",
         "city": "testavile",
         "street": "testastreet",
         "houseNumber": "3"
-    },
+    }],
     "businessName": "Biz Biz",
     "businessWebsite": "https://www.test.com/"
 }

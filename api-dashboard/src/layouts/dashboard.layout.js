@@ -1,6 +1,6 @@
 
 import {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import Styled from 'styled-components';
 import Sidebar from '../components/Sidebar/Sidebar.component';
@@ -11,17 +11,21 @@ import {fetchUsers} from '../redux/actions/users.action';
 import {fetchProviders} from '../redux/actions/providers.action';
 import {fetchOrders} from '../redux/actions/orders.action';
 
+
 /**
  * Dashboard layout contains sidebar and pages.
  */
 function DashboardLayout() {
     const dispatch = useDispatch();
-
+    const currentUserRole = useSelector(({AuthReducer}) => AuthReducer.userRole);
+    
     useEffect(() => {
-        dispatch(fetchFlowers());
+        if(currentUserRole === 'ADMIN') {
+            dispatch(fetchUsers());
+            dispatch(fetchProviders());
+            dispatch(fetchFlowers());
+        }
         dispatch(fetchFlowerBouquets());
-        dispatch(fetchUsers());
-        dispatch(fetchProviders());
         dispatch(fetchOrders());
     } ,[dispatch]);
 

@@ -1,5 +1,6 @@
 
 const UserModel = require('./user.model');
+const providerService = require('../provider/provider.service');
 const {encryptText, compareStringToHash} = require('../../../services/encrypt.util');
 const {createJWT, decodeJWT} = require('../../../services/jwt.util');
 
@@ -22,11 +23,11 @@ module.exports.getUsers = () => UserModel.find().then(res => res.map(({_id, user
  * @param {string} userId 
  * @resolve requested user data
  */
-module.exports.getSpecificUser = userId => UserModel.findById(userId).then(res => res.map(({_id, userEmail, userRole,
+module.exports.getSpecificUser = userId => UserModel.findById(userId).then(({_id, userEmail, userRole,
     userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
         _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
         userAddresses, userOrders, providerId : providerId ?? '-'
-    })));
+    }));
 
 /**
  * Used to updated an existing user
@@ -63,7 +64,13 @@ module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPus
  * @param {string} userId 
  * @resolve the deleted user
  */
-module.exports.deleteSpecificUser = userId => UserModel.findByIdAndDelete(userId);
+module.exports.deleteSpecificUser = async userId => {
+    const currentUser = await module.exports.getSpecificUser(userId);
+    if(currentUser.providerId !== '-') {
+        const deletedProvider = await providerService.deleteSpecificProvider(currentUser.providerId, false);
+    }
+    return UserModel.findByIdAndDelete(userId);
+};
 
 /**
  * Used to build the sign response with user information and json web token

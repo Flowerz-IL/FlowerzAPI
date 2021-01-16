@@ -24,7 +24,7 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
     const handleClose = () => {setIsPopUpOn(false);};
     const handleLinkClick = item => { setPopUpContent(item); handleOpen(); };
     if(!dataToPresent || !dataType) return ( <Loader /> );
-    console.log(dataToPresent);
+
     return (
         <StripedDataTableWrapper>
             <TableHead>
