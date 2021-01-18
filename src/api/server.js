@@ -1,5 +1,6 @@
 
 const express = require('express');
+const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const mainRouter = require('./route');
@@ -9,6 +10,19 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(ROUTES.API, mainRouter);
+
+const httpServer = http.createServer(app);
+const io = require('socket.io')(httpServer);
+
+io.on("connection", socket => {
+    console.log('connected');
+    
+    socket.on('chatMessage', data => io.emit('chatMessage', data));
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
 
 const connection = mongoose.connection;
 connection.once('open', () => console.log('MongoDB db connection successfully established'));
@@ -26,7 +40,7 @@ const closeMongooseConnection = () => {if(connection.readyState === 2) connectio
  */
 module.exports.startServer = (dbUrl, port) => {
     connectToMongoose(dbUrl);
-    return app.listen(port, () => console.log('Server is running on port: ' + port));
+    return httpServer.listen(port, () => console.log('Server is running on port: ' + port));
 };
 
 /**

@@ -3,9 +3,11 @@ import {SIGN_IN, LOG_OUT} from '../actions/auth.action';
 
 const initialState = {
     currentUserId: localStorage.getItem('currentUserId') ?? null,
+    userName: localStorage.getItem('userName') ?? null,
     userRole: localStorage.getItem('userRole') ?? null,
     jwt: localStorage.getItem('jwt') ?? null,
-    jwtExpirationDate: localStorage.getItem('jwtExpirationDate') ?? null
+    jwtExpirationDate: localStorage.getItem('jwtExpirationDate') ?? null,
+    providerId: localStorage.getItem('providerId') ?? null
 };
 
 const saveInLocalStorage = objectToSave => 
@@ -20,12 +22,15 @@ const AuthReducer = (state = initialState, action) => {
     
     switch(type){
         case SIGN_IN:
+            console.log('here', payload, action, state);
             newState = {
                 ...state,
                 currentUserId: payload.currentUser?.information._id,
+                userName: payload.currentUser?.information.userName,
                 userRole: payload.currentUser?.information.userRole,
                 jwt: payload.currentUser?.token,
-                jwtExpirationDate: payload.currentUser?.expiredAt
+                jwtExpirationDate: payload.currentUser?.expiredAt,
+                providerId: payload.currentUser?.information?.providerId
             };
             saveInLocalStorage(newState);
             break;
@@ -34,11 +39,12 @@ const AuthReducer = (state = initialState, action) => {
             newState = {
                 ...state,
                 currentUserId: null,
+                userName: null,
                 userRole: null,
                 jwt: null,
-                jwtExpirationDate: null
+                jwtExpirationDate: null,
+                providerId: null
             };
-            console.log(newState);
             removeFromLocalStorage(newState);
             break;
 

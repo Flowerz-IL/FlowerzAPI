@@ -32,7 +32,16 @@ export const addUser = user => {
             const {information} = await API_SDK.post(API_SDK.API_ROUTES.USER_SIGN_UP, user);
             dispatch({
                 type: ADD_USER,
-                payload: {user: {_id:information._id, ...user}, userId:information._id}
+                payload: {
+                    user: {
+                        _id:information._id,
+                        userRole:information.userRole, 
+                        providerId:'-',
+                        userOrders: [],
+                        userId:information._id,
+                        ...user
+                    }
+                }
             });
         } catch (err) { console.log(err);}
     }

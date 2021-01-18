@@ -3,6 +3,7 @@ import Styled from 'styled-components';
 import Fonts from './fonts.constant';
 import Colors from './colors.constant';
 import {Delete} from 'styled-icons/material';
+import {Truck} from 'styled-icons/boxicons-solid';
 import {ClipboardPencil} from 'styled-icons/foundation';
 
 export const CenteredWithFlex = Styled.div`
@@ -30,9 +31,10 @@ export const Card = Styled(CenteredWithFlex)`
     border-radius: 5px;
     flex-direction: column;
     padding: 1rem;
+    box-shadow: 0 5px 10px 5px ${Colors.primaryColor}${Colors.opacity20};
     background-color: ${props => props.backgroundColor ?? `${Colors.lighterColor}`};
     width: ${props => props.width ?? '35vw'};
-    height: ${props => props.width ?? '25vw'};
+    height: ${props => props.height ?? '25vw'};
     overflow-y: auto;
 `;
 
@@ -110,6 +112,11 @@ export const DeleteIcon = Styled(Delete)`
 `;
 
 export const EditIcon = Styled(ClipboardPencil)`
+    ${iconStyle}
+    color: ${Colors.primaryColor};
+`;
+
+export const TruckIcon = Styled(Truck)`
     ${iconStyle}
     color: ${Colors.primaryColor};
 `;

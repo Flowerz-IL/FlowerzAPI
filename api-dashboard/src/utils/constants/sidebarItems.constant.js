@@ -37,12 +37,6 @@ const sidebarItems = [
         itemLogo: Flower2,
         routePermissions: [PERMISSIONS.ADMIN],
         routeName: '/flower-bouquets'
-    },
-    {
-        itemName: 'orders',
-        itemLogo: Detail,
-        routePermissions: [PERMISSIONS.PROVIDER, PERMISSIONS.ADMIN],
-        routeName: '/orders'
     }
 ];
 

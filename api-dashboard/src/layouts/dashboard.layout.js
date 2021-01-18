@@ -10,6 +10,7 @@ import {fetchFlowerBouquets} from '../redux/actions/flowerBouquets.action';
 import {fetchUsers} from '../redux/actions/users.action';
 import {fetchProviders} from '../redux/actions/providers.action';
 import {fetchOrders} from '../redux/actions/orders.action';
+import Messenger from '../components/Messenger/Messenger.component';
 
 
 /**
@@ -20,11 +21,9 @@ function DashboardLayout() {
     const currentUserRole = useSelector(({AuthReducer}) => AuthReducer.userRole);
     
     useEffect(() => {
-        if(currentUserRole === 'ADMIN') {
-            dispatch(fetchUsers());
-            dispatch(fetchProviders());
-            dispatch(fetchFlowers());
-        }
+        dispatch(fetchUsers());
+        dispatch(fetchProviders());
+        dispatch(fetchFlowers());
         dispatch(fetchFlowerBouquets());
         dispatch(fetchOrders());
     } ,[dispatch]);
@@ -34,6 +33,7 @@ function DashboardLayout() {
             <DashboardLayoutWrapper>
                 <Sidebar />
                 <MainContainer />
+                <Messenger />
             </DashboardLayoutWrapper>
         </Router>
     );

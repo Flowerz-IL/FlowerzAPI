@@ -67,7 +67,7 @@ module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPus
 module.exports.deleteSpecificUser = async userId => {
     const currentUser = await module.exports.getSpecificUser(userId);
     if(currentUser.providerId !== '-') {
-        const deletedProvider = await providerService.deleteSpecificProvider(currentUser.providerId, false);
+        await providerService.deleteSpecificProvider(currentUser.providerId, false);
     }
     return UserModel.findByIdAndDelete(userId);
 };
@@ -81,7 +81,8 @@ module.exports.deleteSpecificUser = async userId => {
 module.exports.buildSignResponse = user => {
     const jwt = createJWT(user);
     const expiredAt = decodeJWT(jwt).exp;
-    const userInformation = {_id: user._id, userRole: user.userRole };
+    const userInformation = {_id: user._id, userRole: user.userRole, userName: `${user.userFirstName} ${user.userLastName}`,
+        providerId : user.providerId ?? '-' };
     return {
         information:userInformation,
         token:jwt,

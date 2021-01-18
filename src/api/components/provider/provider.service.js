@@ -61,7 +61,7 @@ module.exports.pushToASpecificProviderArray = async (providerId, whereToPush, ar
 module.exports.deleteSpecificProvider = async (providerId, deleteUsers=true) => {
     const provider = await ProviderModel.findByIdAndDelete(providerId);
     if(deleteUsers){
-        const deleteUser =  await userService.deleteSpecificUser(provider.userId);
+        await userService.deleteSpecificUser(provider.userId);
     } 
     return provider;
 }
@@ -75,7 +75,7 @@ module.exports.deleteSpecificProvider = async (providerId, deleteUsers=true) => 
 module.exports.buildSignResponse = provider => {
     const jwt = createJWT(provider);
     const expiredAt = decodeJWT(jwt).exp;
-    const providerInformation = {_id: provider.userId, providerId: provider._id, userRole: 'PROVIDER' };
+    const providerInformation = {_id: provider.userId, providerId: provider._id, userRole: 'PROVIDER', userName: provider.businessName};
     const response = {
         information:providerInformation,
         token:jwt,

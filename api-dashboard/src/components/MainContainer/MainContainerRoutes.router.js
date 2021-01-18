@@ -5,7 +5,6 @@ import UsersPage from '../../pages/dashboardPages/Users.page';
 import FlowersPage from '../../pages/dashboardPages/Flowers.page';
 import FlowersBouquetsPage from '../../pages/dashboardPages/FlowersBouquets.page';
 import ProvidersPage from '../../pages/dashboardPages/Providers.page';
-import OrdersPage from '../../pages/dashboardPages/Orders.page';
 import {AdminRoute, ProviderRoute} from '../../utils/helper/customRoutes.util';
 
 /**
@@ -29,9 +28,6 @@ function MainContainerRoutes() {
             <AdminRoute path='/providers'>
                 <ProvidersPage />
             </AdminRoute>
-            <ProviderRoute path='/orders'>
-                <OrdersPage />
-            </ProviderRoute>
         </Switch>
     );
 }

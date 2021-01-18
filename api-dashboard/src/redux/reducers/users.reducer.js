@@ -66,10 +66,8 @@ const UsersReducer = (state = initialState, action) => {
                 }
             }
             break;
-
         default: newState = state;
     }
-
     return newState;
 };
 

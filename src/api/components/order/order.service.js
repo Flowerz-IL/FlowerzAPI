@@ -1,18 +1,7 @@
 
 const OrderModel = require('./order.model');
-const FlowerBouquetService = require('../flowerBouquet/flowerBouquet.service');
 const userService = require('../user/user.service');
 const providerService = require('../provider/provider.service');
-
-const calculateTotal = async flowerBouquetIds => {
-    let sum = 0;
-    for(let fIdx = 0; fIdx < flowerBouquetIds.length; fIdx++) {
-        const flowerBouquet = await FlowerBouquetService
-            .getSpecificFlowerBouquet(flowerBouquetIds[fIdx].flowerBouquetId);
-        sum += flowerBouquet.bouquetPrice * flowerBouquetIds[fIdx].bouquetAmount;
-    }
-    return sum;
-};
 
 const getCurrentDate = () => {
     const today = new Date();
@@ -33,18 +22,14 @@ module.exports.getOrders = () => OrderModel.find();
  *      orderCreationDate, orderNextShippingDate, isOrderActive, orderFlowerBouquetIds
  * @resolve the created order
  */
-module.exports.addOrder = async ({userId, orderAddress, orderFrequency, isOrderActive, orderFlowerBouquetIds}) => {
-    const orderTotalSum = await calculateTotal(orderFlowerBouquetIds);
-    const orderCreationDate = isOrderActive ? getCurrentDate() : '-';
-    const newOrder = new OrderModel({
-        userId,
-        orderAddress,
-        orderFrequency,
-        orderCreationDate,
-        isOrderActive,
-        orderFlowerBouquetIds,
-        orderTotalSum
-    }).save();
+module.exports.addOrder = async ({userId, orderAddress, orderFrequency, isOrderActive, orderFlowerBouquetIds, orderTotalSum, providerId}) => {
+    const orderCreationDate = getCurrentDate();
+    const order = { userId, orderAddress, orderFrequency, orderCreationDate,
+        isOrderActive, orderFlowerBouquetIds, orderTotalSum };
+    if(providerId !== '-') order.providerId = providerId;
+    const newOrder = new OrderModel(order).save();
+    if(providerId !== '-') 
+        providerService.pushToASpecificProviderArray(providerId, 'providerOrderIds', [newOrder._id]);
     userService.pushToASpecificUserArray(userId, 'userOrders', [newOrder._id]);
     return newOrder;
 };
@@ -64,17 +49,7 @@ module.exports.getSpecificOrder = orderId => OrderModel.findById(orderId);
  * @param {object} change 
  * @resolve order after the update
  */
-module.exports.updateSpecificOrder = async (orderId, change) => {
-    if('orderFlowerBouquetIds' in change){
-        const orderTotalSum = await calculateTotal(change['orderFlowerBouquetIds']);
-        change = {...change, orderTotalSum};
-    };
-    
-    if('isOrderActive' in change){
-        const orderCreationDate = change['isOrderActive'] ? getCurrentDate() : '-';
-        change = {...change, orderCreationDate};
-    };
-    
+module.exports.updateSpecificOrder = async (orderId, change) => {    
     if('providerId' in change){
         providerService.pushToASpecificProviderArray(change['providerId'], 'providerOrderIds', [orderId]);
     }

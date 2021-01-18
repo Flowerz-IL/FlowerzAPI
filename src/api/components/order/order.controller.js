@@ -3,7 +3,7 @@ const orderService = require('./order.service');
 const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.util');
 const {validateKeysInObject, validateObjectKeys} = require('../../../services/validations.util');
 const MODEL_NAME = 'Order';
-const ALLOWED_KEYS = ['userId', 'orderAddress', 'orderFrequency', 'isOrderActive', 'orderFlowerBouquetIds'];
+const ALLOWED_KEYS = ['userId', 'orderAddress', 'orderFrequency', 'isOrderActive', 'orderFlowerBouquetIds', 'orderTotalSum', 'providerId'];
 
 /**
  * Used to receive all orders from the DB
@@ -28,7 +28,7 @@ module.exports.addOrder = async (req, res) => {
     try {
         validateKeysInObject(ALLOWED_KEYS, req.body);        
         const newOrder = await orderService.addOrder(req.body);
-        res.status(200).json({ newOrderId: newOrder._id ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
+        res.status(200).json({ newOrderId: newOrder._id , newOrder, message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error: error['message'] }); }
 };

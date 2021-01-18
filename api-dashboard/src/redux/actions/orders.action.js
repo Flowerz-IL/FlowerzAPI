@@ -29,10 +29,10 @@ export const fetchOrders = () => {
 export const addOrder = order => {
     return async dispatch => {
         try{
-            const {newOrderId} = await API_SDK.post(API_SDK.API_ROUTES.ORDER, order);
+            const {newOrderId, newOrder} = await API_SDK.post(API_SDK.API_ROUTES.ORDER, order);
             dispatch({
                 type: ADD_ORDER,
-                payload: {order: {_id:newOrderId, ...order}, orderId:newOrderId}
+                payload: {order: {_id:newOrderId, orderCreationDate:newOrder.orderCreationDate, ...order}, orderId:newOrderId}
             });
         } catch (err) { console.log(err);}
     }

@@ -40,6 +40,8 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                         {DataKeys.map( dataKey => {
                             const item = dataItem[dataKey];
                             const type = dataType[dataKey];
+
+                            if(item === undefined) return;
                             
                             if(Array.isArray(type))
                                 return ( 
@@ -101,12 +103,12 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
     );
 }
 
-const formatHeadline = string => typeof string !== 'string' ? string : string
+export const formatHeadline = string => typeof string !== 'string' ? string : string
         .split('')
         .map(char => (char >= 'A' && char <= 'Z') ? ` ${char}`: (char >= 'a' && char <= 'z') ? char : '')
         .join('');
 
-const formatText = string => typeof string === 'string' ? string.toLowerCase() : string;
+export const formatText = string => typeof string === 'string' ? string.toLowerCase() : string;
 
 export default StripedDataTable;
 export const DATA_TYPES = {

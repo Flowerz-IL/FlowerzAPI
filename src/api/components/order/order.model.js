@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const {requiredSmallString, requiredNumber, nonRequiredNumber, requiredBoolean, requiredAddress, nonRequiredSmallString} = require('../../../config/schemaTypes.constant');
+const {requiredNumber, nonRequiredNumber, requiredBoolean, requiredAddress, nonRequiredSmallString} = require('../../../config/schemaTypes.constant');
 
 const orderModelSchema = new mongoose.Schema (
     {
