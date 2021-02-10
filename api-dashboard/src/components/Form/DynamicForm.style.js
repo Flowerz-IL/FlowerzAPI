@@ -7,6 +7,17 @@ export const FormWrapper = Styled.form`
     text-align: center;
 `;
 
+export const SelectInput = Styled.select`
+    padding: 0.5rem;
+    flex: 4;
+`;
+
+export const AmountInput = Styled.input`
+    padding: 0.5rem;
+    width: 5vw;
+    flex: 1;
+`;
+
 export const ErrorMessage = Styled.label`
     color: red;
     position: relative;

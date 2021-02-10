@@ -6,7 +6,7 @@ const initialState = { flowerBouquets:null };
 const FlowerBouquetsReducer = (state = initialState, action) => {
     let newState;
     const {type, payload} = action;
-    
+
     switch(type){
         case FETCH_FLOWER_BOUQUETS:
             newState = {
@@ -18,7 +18,7 @@ const FlowerBouquetsReducer = (state = initialState, action) => {
         case ADD_FLOWER_BOUQUET:
             newState = {
                 ...state,
-                flowerBouquets:{...state.flowerBouquets, [payload.flowerBouquetId]: payload.flowerBouquet}
+                flowerBouquets:{...state.flowerBouquets, [payload.newFlowerBouquetId]: payload.flowerBouquet}
             }
             break;
         
@@ -43,7 +43,6 @@ const FlowerBouquetsReducer = (state = initialState, action) => {
 
         default: newState = state;
     }
-
     return newState;
 };
 

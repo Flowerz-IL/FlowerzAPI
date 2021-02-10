@@ -4,11 +4,10 @@ import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
 import {INPUT_TYPES} from '../../components/Form/FormInput.component';
 import AddEditTable from '../../layouts/AddEditTable.layout';
-import FlowerBouquetForm from '../../components/Form/FlowerBouquetForm.component';
 
 function FlowerBouquetsPage() {
     const [flowerBouquetsObject, flowerBouquetsArray] = useSelectorAsAnArray(({FlowerBouquetsReducer}) => FlowerBouquetsReducer.flowerBouquets); 
-    
+
     return (
         <AddEditTable 
             dataAsObject={flowerBouquetsObject}
@@ -16,7 +15,6 @@ function FlowerBouquetsPage() {
             dispatchActions={dispatchActions}
             dataType={flowerDataType}
             inputType={flowerInputsType}
-            FormToUse={FlowerBouquetForm}
             dataName='Flower Bouquet'
         />
     );
@@ -41,11 +39,20 @@ const flowerDataType = {
 };
 
 const flowerInputsType = {
-    bouquetName: INPUT_TYPES.TEXT,
-    bouquetPrice: INPUT_TYPES.NUMBER,
-    bouquetDescription: INPUT_TYPES.LONG_TEXT,
-    bouquetOccasionStyle: INPUT_TYPES.TEXT,
-    bouquetImageUrl: INPUT_TYPES.IMAGE,
+    bouquetName: { type:INPUT_TYPES.TEXT },
+    bouquetPrice: { type:INPUT_TYPES.NUMBER, min: 0, max:1000},
+    bouquetDescription: { type:INPUT_TYPES.LONG_TEXT },
+    bouquetOccasionStyle: { type:INPUT_TYPES.TEXT },
+    bouquetImageUrl: { type:INPUT_TYPES.IMAGE},
+    bouquetSize: { type:INPUT_TYPES.SELECT, data: ['S', 'M', 'L', 'X', 'Xl', 'XXL']},
+    bouquetFlowers: [{
+        propertyToCompare: 'flowerId',
+        mustBeFilled:['flowerId', 'flowerAmount'],
+        inputs: {
+            flowerId: { type: INPUT_TYPES.SELECT, data: 'flowers', toDisplay: ['flowerName', 'flowerColor', '_id']},
+            flowerAmount: {type: INPUT_TYPES.NUMBER, min: 0, max:100}
+        }
+    }],
 };
 
 export default FlowerBouquetsPage;

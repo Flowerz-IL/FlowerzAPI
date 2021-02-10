@@ -36,10 +36,10 @@ const flowerDataType = {
 };
 
 const flowerInputsType = {
-    flowerName: INPUT_TYPES.TEXT,
-    flowerColor: INPUT_TYPES.TEXT,
-    flowerDescription: INPUT_TYPES.LONG_TEXT,
-    flowerImageUrl: INPUT_TYPES.IMAGE,
+    flowerName: {type: INPUT_TYPES.TEXT},
+    flowerColor: {type: INPUT_TYPES.TEXT},
+    flowerDescription: {type: INPUT_TYPES.LONG_TEXT},
+    flowerImageUrl: {type: INPUT_TYPES.IMAGE}
 };
 
 export default FlowersPage;

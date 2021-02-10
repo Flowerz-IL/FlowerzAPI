@@ -29,11 +29,10 @@ export const fetchFlowerBouquets = () => {
 export const addFlowerBouquet = flowerBouquet => {
     return async dispatch => {
         try{
-            const {newFlowerBouquet, newFlowerBouquetId} = await API_SDK.post(API_SDK.API_ROUTES.FLOWER_BOUQUET, flowerBouquet);
-            console.log(newFlowerBouquet, newFlowerBouquetId);
+            const {savedItem, createdItemId} = await API_SDK.post(API_SDK.API_ROUTES.FLOWER_BOUQUET, flowerBouquet);
             dispatch({
                 type: ADD_FLOWER_BOUQUET,
-                payload: {flowerBouquet: newFlowerBouquet, newFlowerBouquetId}
+                payload: {flowerBouquet: savedItem, newFlowerBouquetId:createdItemId}
             });
         } catch (err) { console.log(err);}
     }
@@ -47,10 +46,10 @@ export const addFlowerBouquet = flowerBouquet => {
 export const editFlowerBouquet = (flowerBouquetChange, flowerBouquetId) => {
     return async dispatch => {
         try{
-            const {flowerBouquetUpdated} = await API_SDK.patch(`${API_SDK.API_ROUTES.FLOWER_BOUQUET}/${flowerBouquetId}`, flowerBouquetChange);
+            const {updatedItem} = await API_SDK.patch(`${API_SDK.API_ROUTES.FLOWER_BOUQUET}/${flowerBouquetId}`, flowerBouquetChange);
             dispatch({
                 type: EDIT_FLOWER_BOUQUET,
-                payload: {flowerBouquet: flowerBouquetUpdated, flowerBouquetId}
+                payload: {flowerBouquet: updatedItem, flowerBouquetId}
             });
         } catch (err) { console.log(err);}
     }

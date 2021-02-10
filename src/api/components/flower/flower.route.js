@@ -1,18 +1,8 @@
 
-const flowerRouter = require('express').Router();
+let flowerRouter = require('express').Router();
+const genericModelRouter = require('../../../services/genericModelRouter');
 const flowerController = require('./flower.controller');
-const {validateIdParamMiddleware} = require('../../middleware/validation.middleware');
 
-flowerRouter
-    .route('/')
-    .get(flowerController.getFlowers)
-    .post(flowerController.addFlower);
-
-flowerRouter
-    .route('/:id')
-    .all(validateIdParamMiddleware)
-    .get(flowerController.getSpecificFlower)
-    .patch(flowerController.updateSpecificFlower)
-    .delete(flowerController.deleteSpecificFlower);
+flowerRouter = genericModelRouter(flowerController, flowerRouter);
 
 module.exports = flowerRouter;

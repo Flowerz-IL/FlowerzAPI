@@ -29,10 +29,10 @@ export const fetchFlowers = () => {
 export const addFlower = flower => {
     return async dispatch => {
         try{
-            const {newFlowerId} = await API_SDK.post(API_SDK.API_ROUTES.FLOWER, flower);
+            const {createdItemId, savedItem} = await API_SDK.post(API_SDK.API_ROUTES.FLOWER, flower);
             dispatch({
                 type: ADD_FLOWER,
-                payload: {flower: {_id:newFlowerId, ...flower}, flowerId:newFlowerId}
+                payload: {flower: savedItem, flowerId: createdItemId}
             });
         } catch (err) { console.log(err);}
     }
@@ -46,10 +46,10 @@ export const addFlower = flower => {
 export const editFlower = (flowerChange, flowerId) => {
     return async dispatch => {
         try{
-            const updatedFlower = await API_SDK.patch(`${API_SDK.API_ROUTES.FLOWER}/${flowerId}`, flowerChange);
+            const {updatedItem} = await API_SDK.patch(`${API_SDK.API_ROUTES.FLOWER}/${flowerId}`, flowerChange);
             dispatch({
                 type: EDIT_FLOWER,
-                payload: {updatedFlower, flowerId}
+                payload: {updatedFlower: updatedItem, flowerId}
             });
         } catch (err) { console.log(err);}
     }

@@ -5,17 +5,18 @@ const {encryptText, compareStringToHash} = require('../../../services/encrypt.ut
 const {createJWT, decodeJWT} = require('../../../services/jwt.util');
 
 const getUserByEmail = email => UserModel.findOne({userEmail: email}).lean();
+const censoredUser = ({_id, userEmail, userRole, userFirstName, userLastName,
+    userPhoneNumber, userAddresses, userOrders, providerId}) =>  ({
+        _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
+        userAddresses, userOrders, providerId: providerId ?? '-'
+    });
 
 /**
  * Used to fetch all users data from the DB
  * 
  * @resolve user data
  */
-module.exports.getUsers = () => UserModel.find().then(res => res.map(({_id, userEmail, userRole, userFirstName, userLastName,
-    userPhoneNumber, userAddresses, userOrders, providerId}) => ({
-        _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-        userAddresses, userOrders, providerId: providerId ?? '-'
-    })));
+module.exports.getItems = () => UserModel.find().then(items => items.map(censoredUser));
 
 /**
  * Used to fetch a specific user from the DB.
@@ -23,11 +24,7 @@ module.exports.getUsers = () => UserModel.find().then(res => res.map(({_id, user
  * @param {string} userId 
  * @resolve requested user data
  */
-module.exports.getSpecificUser = userId => UserModel.findById(userId).then(({_id, userEmail, userRole,
-    userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
-        _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-        userAddresses, userOrders, providerId : providerId ?? '-'
-    }));
+module.exports.getSpecificItem = userId => UserModel.findById(userId).then(censoredUser);
 
 /**
  * Used to updated an existing user
@@ -36,12 +33,9 @@ module.exports.getSpecificUser = userId => UserModel.findById(userId).then(({_id
  * @param {object} change 
  * @resolve user before the update
  */
-module.exports.updateSpecificUser = async (userId, change) => 
+module.exports.updateSpecificItem = async (userId, change) => 
     UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
-        .then(({_id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
-            _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-            userAddresses, userOrders, providerId : providerId ?? '-'
-        }));
+        .then(censoredUser);
 
 /**
  * Used to push to a user array
@@ -53,10 +47,7 @@ module.exports.updateSpecificUser = async (userId, change) =>
  */
 module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPush) => 
     UserModel.findByIdAndUpdate(userId, {$push:{[whereToPush]:{$each:arrayToPush}}}, {new:true})
-        .then(({_id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber, userAddresses, userOrders, providerId}) => ({
-            _id, userEmail, userRole, userFirstName, userLastName, userPhoneNumber,
-            userAddresses, userOrders, providerId : providerId ?? '-'
-        }));
+        .then(censoredUser);
 
 /**
  * Used to delete a specific user from the DB.
@@ -64,12 +55,12 @@ module.exports.pushToASpecificUserArray = async (userId, whereToPush, arrayToPus
  * @param {string} userId 
  * @resolve the deleted user
  */
-module.exports.deleteSpecificUser = async userId => {
-    const currentUser = await module.exports.getSpecificUser(userId);
-    if(currentUser.providerId !== '-') {
-        await providerService.deleteSpecificProvider(currentUser.providerId, false);
+module.exports.deleteSpecificItem = async (userId, deleteProvider=true) => {
+    const currentUser = await module.exports.getSpecificItem(userId);
+    if(currentUser.providerId !== '-' && deleteProvider) {
+        await providerService.deleteSpecificItem(currentUser.providerId, false);
     }
-    return UserModel.findByIdAndDelete(userId);
+    return UserModel.findByIdAndDelete(userId).then(censoredUser);
 };
 
 /**

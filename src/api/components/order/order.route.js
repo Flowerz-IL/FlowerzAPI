@@ -1,18 +1,8 @@
 
-const orderRouter = require('express').Router();
+let orderRouter = require('express').Router();
+const genericModelRouter = require('../../../services/genericModelRouter');
 const orderController = require('./order.controller');
-const {validateIdParamMiddleware} = require('../../middleware/validation.middleware');
 
-orderRouter
-    .route('/')
-    .get(orderController.getOrders)
-    .post(orderController.addOrder);
-
-orderRouter
-    .route('/:id')
-    .all(validateIdParamMiddleware)
-    .get(orderController.getSpecificOrder)
-    .patch(orderController.updateSpecificOrder)
-    .delete(orderController.deleteSpecificOrder);
+orderRouter = genericModelRouter(orderController, orderRouter);
 
 module.exports = orderRouter;

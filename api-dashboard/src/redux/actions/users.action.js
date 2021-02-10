@@ -40,7 +40,8 @@ export const addUser = user => {
                         userOrders: [],
                         userId:information._id,
                         ...user
-                    }
+                    },
+                    userId: information._id
                 }
             });
         } catch (err) { console.log(err);}
@@ -55,10 +56,10 @@ export const addUser = user => {
 export const editUser = (userChange, userId) => {
     return async dispatch => {
         try{
-            const {updatedUser} = await API_SDK.patch(`${API_SDK.API_ROUTES.USER_SPECIFIC}/${userId}`, userChange);
+            const {updatedItem} = await API_SDK.patch(`${API_SDK.API_ROUTES.USER_SPECIFIC}/${userId}`, userChange);
             dispatch({
                 type: EDIT_USER,
-                payload: {updatedUser, userId}
+                payload: {updatedItem, userId}
             });
         } catch (err) { console.log(err);}
     }

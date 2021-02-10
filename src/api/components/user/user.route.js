@@ -1,21 +1,22 @@
 
-const userRouter = require('express').Router();
-const userController = require('./user.controller');
+let userRouter = require('express').Router();
+const genericModelRouter = require('../../../services/genericModelRouter');
 const {validateIdParamMiddleware} = require('../../middleware/validation.middleware');
-
-userRouter
-    .route('/')
-    .get(userController.getUsers)
+const userController = require('./user.controller');
 
 userRouter
     .route('/specific/:id')
     .all(validateIdParamMiddleware)
-    .get(userController.getSpecificUser)
-    .patch(userController.updateSpecificUser)
     .post(userController.addAddresses)
-    .delete(userController.deleteSpecificUser);
 
-userRouter.post('/sign-in', userController.signIn);
-userRouter.post('/sign-up', userController.signUp);
+userRouter
+    .route('/sign-in')
+    .post(userController.signIn);
+
+userRouter
+    .route('/sign-up')
+    .post(userController.signUp);
+
+userRouter = genericModelRouter(userController, userRouter, '/specific/');
 
 module.exports = userRouter;

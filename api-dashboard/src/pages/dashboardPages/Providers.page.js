@@ -4,7 +4,6 @@ import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
 import {INPUT_TYPES} from '../../components/Form/FormInput.component';
 import AddEditTable from '../../layouts/AddEditTable.layout';
-import ProviderForm from '../../components/Form/ProviderForm.component';
 
 function ProvidersPage() {
 
@@ -18,7 +17,6 @@ function ProvidersPage() {
             dataType={providerDataType}
             inputType={providerInputsType}
             dataName='Provider'
-            FormToUse={ProviderForm}
         />
     );
 }
@@ -37,8 +35,9 @@ const providerDataType = {
 };
 
 const providerInputsType = {
-    businessName: INPUT_TYPES.TEXT,
-    businessWebsite: INPUT_TYPES.TEXT
+    userId: { type:INPUT_TYPES.SELECT, data: 'users', toDisplay:['userFirstName', 'userLastName', '_id']},
+    businessName: { type:INPUT_TYPES.TEXT },
+    businessWebsite: { type:INPUT_TYPES.TEXT },
 };
 
 export default ProvidersPage;

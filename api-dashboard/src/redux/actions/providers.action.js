@@ -30,10 +30,10 @@ export const fetchProviders = () => {
 export const addProvider = provider => {
     return async dispatch => {
         try{
-            const {newProvider} = await API_SDK.post(API_SDK.API_ROUTES.PROVIDER, provider);
+            const {createdItemId, savedItem} = await API_SDK.post(API_SDK.API_ROUTES.PROVIDER, provider);
             dispatch({
                 type: ADD_PROVIDER,
-                payload: {provider: {_id:newProvider._id, ...provider}, providerId:newProvider._id}
+                payload: {provider: savedItem, providerId:createdItemId}
             });
         } catch (err) { console.log(err);}
     }
@@ -47,10 +47,10 @@ export const addProvider = provider => {
 export const editProvider = (providerChange, providerId) => {
     return async dispatch => {
         try{
-            const {updatedProvider} = await API_SDK.patch(`${API_SDK.API_ROUTES.PROVIDER}/${providerId}`, providerChange);
+            const {updatedItem} = await API_SDK.patch(`${API_SDK.API_ROUTES.PROVIDER}/${providerId}`, providerChange);
             dispatch({
                 type: EDIT_PROVIDER,
-                payload: {updatedProvider, providerId}
+                payload: {updatedProvider:updatedItem, providerId}
             });
         } catch (err) { console.log(err);}
     }

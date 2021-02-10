@@ -4,7 +4,6 @@ import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
 import {DATA_TYPES} from '../../components/Table/StripedDataTable.component';
 import {INPUT_TYPES} from '../../components/Form/FormInput.component';
 import AddEditTable from '../../layouts/AddEditTable.layout';
-import UserForm from '../../components/Form/UserForm.component';
 
 function UsersPage() {
 
@@ -18,7 +17,6 @@ function UsersPage() {
             dataType={userDataType}
             inputType={userInputsType}
             dataName='User'
-            FormToUse={UserForm}
         />
     );
 }
@@ -42,10 +40,23 @@ const userDataType = {
 };
 
 const userInputsType = {
-    userEmail:INPUT_TYPES.TEXT,
-    userFirstName:INPUT_TYPES.TEXT,
-    userLastName:INPUT_TYPES.TEXT,
-    userPhoneNumber:INPUT_TYPES.PHONE_NUMBER,
+    userPassword: { type:INPUT_TYPES.PASSWORD},
+    userEmail:{ type:INPUT_TYPES.TEXT },
+    userFirstName:{ type:INPUT_TYPES.TEXT },
+    userLastName:{ type:INPUT_TYPES.TEXT },
+    userPhoneNumber:{ type:INPUT_TYPES.PHONE_NUMBER },
+    userAddresses:[{
+        propertyToCompare: 'name',
+        mustBeFilled:['name', 'city', 'street', 'houseNumber'],
+        inputs: {
+            name: { type:INPUT_TYPES.TEXT },
+            city: { type:INPUT_TYPES.TEXT },
+            street: { type:INPUT_TYPES.TEXT },
+            houseNumber: {type: INPUT_TYPES.NUMBER, min: 0, max:100},
+            floorNumber: {type: INPUT_TYPES.NUMBER, min: 0, max:30},
+            aptNumber: {type: INPUT_TYPES.NUMBER, min: 0, max:100}
+        }
+    }],
 };
 
 export default UsersPage;

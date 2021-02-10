@@ -13,7 +13,9 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
     useEffect(() => {
         setFormState(
             inputs.reduce( (prev , currentKey) => {
-                prev[currentKey] = dataToEdit ? dataToEdit[currentKey] ?? '' : '';
+                if(Array.isArray(inputsType[currentKey]))
+                    prev[currentKey] = [];
+                else prev[currentKey] = dataToEdit ? dataToEdit[currentKey] ?? '' : '';
                 return prev;
             }, {})
         );
@@ -51,8 +53,10 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
                 inputs={inputs} 
                 inputsType={inputsType}
                 formState={formState}
+                setFormState={setFormState}
                 formErrorState={formErrorState}
                 handleChange={handleChange}
+                isEdit={!(!dataToEdit)}
             />
             <Button type='submit'>{!dataToEdit ? 'Add' : 'Edit'} Item</Button>
         </FormWrapper>

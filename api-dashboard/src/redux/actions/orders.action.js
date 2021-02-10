@@ -29,10 +29,10 @@ export const fetchOrders = () => {
 export const addOrder = order => {
     return async dispatch => {
         try{
-            const {newOrderId, newOrder} = await API_SDK.post(API_SDK.API_ROUTES.ORDER, order);
+            const {createdItemId, savedItem} = await API_SDK.post(API_SDK.API_ROUTES.ORDER, order);
             dispatch({
                 type: ADD_ORDER,
-                payload: {order: {_id:newOrderId, orderCreationDate:newOrder.orderCreationDate, ...order}, orderId:newOrderId}
+                payload: {order: savedItem, orderId:createdItemId}
             });
         } catch (err) { console.log(err);}
     }
@@ -46,10 +46,10 @@ export const addOrder = order => {
 export const editOrder = (orderChange, orderId) => {
     return async dispatch => {
         try{
-            const updatedOrder = await API_SDK.patch(`${API_SDK.API_ROUTES.ORDER}/${orderId}`, orderChange);
+            const {updatedItem} = await API_SDK.patch(`${API_SDK.API_ROUTES.ORDER}/${orderId}`, orderChange);
             dispatch({
                 type: EDIT_ORDER,
-                payload: {updatedOrder, orderId}
+                payload: {updatedOrder: updatedItem, orderId}
             });
         } catch (err) { console.log(err);}
     }
