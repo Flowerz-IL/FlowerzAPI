@@ -7,6 +7,13 @@ export const MessengerWrapper = Styled.div`
     position: fixed;
     right: 1rem;
     bottom: 1rem;
+
+    @media screen and (max-width: 800px){
+        width: 80vw;
+        left: 50%;
+        bottom: 0.2rem;
+        transform: translateX(-50%);
+    }
 `;
 
 export const MessengerHeader = Styled(CenteredWithFlex)`
@@ -14,6 +21,10 @@ export const MessengerHeader = Styled(CenteredWithFlex)`
     width: 20vw;
     height: 5vh;
     background-color: ${Colors.primaryColor};
+
+    @media screen and (max-width: 800px){
+        width: 80vw;
+    }
 `;
 
 export const MessengerBody = Styled(CenteredWithFlex)`
@@ -23,6 +34,10 @@ export const MessengerBody = Styled(CenteredWithFlex)`
     opacity: ${ props => props.toDisplay ? '1' : '0' };
     border: 1px solid ${Colors.primaryColor};
     transition: all .7s linear;
+
+    @media screen and (max-width: 800px){
+        width: 80vw;
+    }
 `;
 
 export const MessengerChat = Styled.div`
@@ -70,6 +85,10 @@ export const MessengerInputWrapper = Styled.form`
     justify-content: space-around;
     align-items: center;
     transition: all .7s linear;
+
+    @media screen and (max-width: 800px){
+        width: 80vw;
+    }
 `;
 
 export const MessengerInput = Styled.input`

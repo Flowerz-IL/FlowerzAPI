@@ -6,10 +6,10 @@ import MainContainerRoutes from './MainContainerRoutes.router';
 /**
  * Dashboard page container
  */
-function MainContainer() {
+function MainContainer({toggleSidebar}) {
     return (
         <MainContainerWrapper>
-            <MainContainerHeader />
+            <MainContainerHeader toggleSidebar={toggleSidebar}/>
             <MainContainerRoutes />
         </MainContainerWrapper>
     );

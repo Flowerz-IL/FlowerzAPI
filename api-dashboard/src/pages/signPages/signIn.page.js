@@ -2,6 +2,7 @@
 import {useState} from 'react';
 import Styled from 'styled-components';
 import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {signIn} from '../../redux/actions/auth.action';
 import {CenteredWithFlex, Headline1, Button} from '../../utils/constants/globalStyle.constant';
 import Loader from '../../components/Loader/Loader.component';
@@ -72,6 +73,7 @@ function SingInPage(){
                     }
                 </Form>
                 <Logo />
+                <Link style={{color:'white'}} to="/sign-Up"> don't have an account signUp </Link>
             </SignInBox>
         </SignInPageWrapper>
     );
@@ -118,6 +120,11 @@ const SignInBox = Styled(CenteredWithFlex)`
     height: 45vh;
     background-color: ${Colors.primaryColor};
     box-shadow: 0 10px 20px 10px ${Colors.forthColor}${Colors.opacity20};
+
+    @media screen and (max-width: 800px) {
+        width: 90vw;
+        height: 50vh;
+    }
 `;
 
 const ErrorMessage = Styled.label`

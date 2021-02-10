@@ -5,11 +5,11 @@ import {SidebarWrapper} from './Sidebar.style';
 /**
  * Dashboard sidebar with logo and pages links
  */
-function Sidebar() {
+function Sidebar({toggleSidebar, isSideBarOpen}) {
     return (
-        <SidebarWrapper>
+        <SidebarWrapper isOpen={isSideBarOpen}>
             <Logo />
-            <SidebarItems />
+            <SidebarItems toggleSidebar={toggleSidebar}/>
         </SidebarWrapper>
     );
 }

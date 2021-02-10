@@ -1,6 +1,6 @@
 
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import Styled from 'styled-components';
 import Sidebar from '../components/Sidebar/Sidebar.component';
@@ -18,8 +18,8 @@ import Messenger from '../components/Messenger/Messenger.component';
  */
 function DashboardLayout() {
     const dispatch = useDispatch();
-    const currentUserRole = useSelector(({AuthReducer}) => AuthReducer.userRole);
-    
+    const [isSideBarOpen, setIsSidebarOpen] = useState(false);
+
     useEffect(() => {
         dispatch(fetchUsers());
         dispatch(fetchProviders());
@@ -31,8 +31,8 @@ function DashboardLayout() {
     return (
         <Router basename='/dashboard'>
             <DashboardLayoutWrapper>
-                <Sidebar />
-                <MainContainer />
+                <Sidebar isSideBarOpen={isSideBarOpen} toggleSidebar={setIsSidebarOpen}/>
+                <MainContainer toggleSidebar={setIsSidebarOpen}/>
                 <Messenger />
             </DashboardLayoutWrapper>
         </Router>

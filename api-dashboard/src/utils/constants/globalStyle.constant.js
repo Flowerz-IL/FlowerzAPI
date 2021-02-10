@@ -25,6 +25,7 @@ export const Headline1 = Styled.h2`
 export const Row = Styled(CenteredWithFlex)`
     justify-content: space-between;
     width: ${props => props.fixedWidth ?? '90%'};
+    flex-wrap: wrap;
 `;
 
 export const Card = Styled(CenteredWithFlex)`
@@ -36,6 +37,15 @@ export const Card = Styled(CenteredWithFlex)`
     width: ${props => props.width ?? '35vw'};
     height: ${props => props.height ?? '25vw'};
     overflow-y: auto;
+
+    @media screen and (max-width: 800px){
+        width: 100%;
+        height: auto;
+        padding: 0;
+        box-shadow: none;
+        background-color: transparent;
+        overflow-x: auto;
+    }
 `;
 
 export const Button = Styled.button`
@@ -84,6 +94,11 @@ export const PopUp = Styled.div`
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media screen and (max-width: 800px){
+        width: 80vw;
+        height: 40vh;
+    }
 `;
 
 export const Link = Styled.div`

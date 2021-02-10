@@ -17,6 +17,10 @@ export const StripedDataTableWrapper = Styled.table`
     & td, & th {
         padding: 0.8rem;
     }
+
+    @media screen and (max-width: 800px) {
+        margin: 1rem;
+    }
 `;
 
 export const TableHead = Styled.thead`

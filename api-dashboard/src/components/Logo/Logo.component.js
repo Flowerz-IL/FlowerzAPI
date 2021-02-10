@@ -19,6 +19,10 @@ const LogoWrapper = Styled(CenteredWithFlex)`
     height: 6rem;
     text-align: center;
     border-bottom: 1px solid ${Colors.thirdColor}${Colors.opacity20};
+
+    @media screen and (max-width: 600px){
+        display: none;
+    }
 `;
 
 const ColoredText = Styled.span`

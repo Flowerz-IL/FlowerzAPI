@@ -17,6 +17,7 @@ function SidebarItem(props) {
     const history = useHistory();
 
     const handleClick = () => {
+        props.toggleSidebar(false);
         props.setActive(props.route);
         history?.push(props.route);
     };        

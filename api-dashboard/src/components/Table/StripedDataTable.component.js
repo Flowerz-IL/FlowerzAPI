@@ -14,7 +14,7 @@ import Loader from '../Loader/Loader.component';
  * @props onDelete -> on item delete (function)
  * @props onEdit -> on item edit (function)
  */
-function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
+function StripedDataTable({ windowWidth, dataToPresent, dataType, onDelete, onEdit }) {
 
     const DataKeys = useRef(Object.keys(dataType)).current;
     const [isPopUpOn, setIsPopUpOn] = useState(false);
@@ -30,7 +30,7 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
             <TableHead>
                 <tr>
                     {DataKeys.map( key => <th key={uniqid()}> {formatHeadline(key)} </th>)}
-                    { (onDelete || onEdit) && <th> Actions </th> }
+                    { (onDelete || onEdit) && windowWidth > 800 && <th> Actions </th> }
                 </tr>
             </TableHead>
             <TableBody>
@@ -41,7 +41,7 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                             const item = dataItem[dataKey];
                             const type = dataType[dataKey];
 
-                            if(item === undefined) return;
+                            if(item === undefined || item === null) return <td>-</td>;
                             
                             if(Array.isArray(type))
                                 return ( 
@@ -82,10 +82,12 @@ function StripedDataTable({ dataToPresent, dataType, onDelete, onEdit }) {
                                     return ( <td key={uniqid()}> {formatText(item)} </td> );
                             }      
                         })}
-                        <td key={uniqid()}>
-                            {onDelete && <span onClick={() => onDelete(dataItem._id)}> <DeleteIcon /> </span>}
-                            {onEdit && <span onClick={() => onEdit(dataItem._id)}> <EditIcon /> </span>}
-                        </td>
+                        {windowWidth > 800 &&
+                            <td key={uniqid()}>
+                                {onDelete && <span onClick={() => onDelete(dataItem._id)}> <DeleteIcon /> </span>}
+                                {onEdit && <span onClick={() => onEdit(dataItem._id)}> <EditIcon /> </span>}
+                            </td>
+                        }
                     </tr>
                 )}
             </TableBody>

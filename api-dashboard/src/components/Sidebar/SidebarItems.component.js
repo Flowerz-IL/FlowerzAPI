@@ -11,7 +11,7 @@ import {SideBarItemsWrapper} from './Sidebar.style';
 /**
  * Dashboard Sidebar items
  */
-function SidebarItems() {
+function SidebarItems({toggleSidebar}) {
     const location = useLocation();
     const [activeItem, setActiveItem] = useState(location.pathname ?? '');
     const currentUserRole = useSelector(({AuthReducer}) => AuthReducer.userRole);
@@ -28,6 +28,7 @@ function SidebarItems() {
                     route={item.routeName} 
                     setActive={setActiveItem}
                     active={activeItem === item.routeName}
+                    toggleSidebar={toggleSidebar}
                 />
             })}
         </SideBarItemsWrapper>

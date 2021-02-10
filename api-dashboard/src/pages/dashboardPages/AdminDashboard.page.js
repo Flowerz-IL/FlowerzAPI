@@ -1,4 +1,5 @@
 
+import {useState, useEffect} from 'react';
 import Styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import {useSelectorAsAnArray} from '../../utils/helper/customHooks.util';
@@ -10,16 +11,23 @@ import BarGraph from '../../components/Graph/BarGraph.component';
 function AdminDashboard() {
     const {userRole, providerId} = useSelector(({AuthReducer}) => AuthReducer);
     const [, ordersArray] = useSelectorAsAnArray(({OrdersReducer}) => OrdersReducer.orders);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const handleWindowsSizeChange = () => setWindowWidth(window.innerWidth);
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowsSizeChange);
+        return () => { window.removeEventListener('resize', handleWindowsSizeChange); }
+    }, []);
 
     return (
         <DashboardWrapper>
             <Row fixedWidth='95%'>
-                <Card width="38vw">
+                {windowWidth > 800 && <Card width="38vw">
                     <Headline1> Choose An Order </Headline1>
                     <DashboardTableWrapper>
                         <OrderDataTable dataKeys={dataKeysNonActive} providerId={userRole === 'PROVIDER' ? providerId : '-'}/>
                     </DashboardTableWrapper>
-                </Card>
+                </Card>}
                 <Card width="38vw">
                     <Headline1> Active Orders </Headline1>
                     <DashboardTableWrapper>
@@ -28,10 +36,10 @@ function AdminDashboard() {
                 </Card>
             </Row>
             <Row fixedWidth='95%'>
-                <Card width="38vw">
+                {windowWidth > 800 && <Card width="38vw">
                     <Headline1> Place An Order </Headline1>
                     <OrderForm providerId={userRole === 'PROVIDER' ? providerId : '-'}/>
-                </Card>
+                </Card> }
                 <Card width="38vw">
                     <Headline1> Orders per month </Headline1>
                     <BarGraph dataToPresent={ordersArray ? createGraphOrdersData(ordersArray) : null}/>
