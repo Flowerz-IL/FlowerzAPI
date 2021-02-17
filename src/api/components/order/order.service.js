@@ -21,11 +21,12 @@ const getCurrentDate = () => {
 orderService.addItem = async (newItem) => {
     const orderCreationDate = getCurrentDate();
     const order = {...newItem, orderCreationDate};
-    if(newItem.providerId === '-') delete newItem.providerId;
-    const newOrder = new OrderModel(order).save();
+    if(newItem.providerId === '-') delete order.providerId;
+    console.log(order);
+    const newOrder = await new OrderModel(order).save();
     if(newItem.providerId !== '-') 
-        providerService.pushToASpecificProviderArray(providerId, 'providerOrderIds', [newOrder._id]);
-    userService.pushToASpecificUserArray(userId, 'userOrders', [newOrder._id]);
+        providerService.pushToASpecificProviderArray(order.providerId, 'providerOrderIds', [newOrder._id]);
+    userService.pushToASpecificUserArray(order.userId, 'userOrders', [newOrder._id]);
     return newOrder;
 };
 

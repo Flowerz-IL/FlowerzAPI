@@ -10,22 +10,22 @@ POST http://localHost:8080/api/orders HTTP/1.1
 content-type: application/json
 
 {
-    "userId": "5ffb3060cb30cb4e641f9ead", 
-    "orderAddress": {
-        "_id": "5ffb3060cb30cb4e641f9eae",
-        "name": "Home",
-        "city": "testavile",
-        "street": "testastreet",
-        "houseNumber": "4/5",
-        "floorNumber": 7,
-        "aptNumber": 7
-    }, 
-    "orderFrequency": 2, 
-    "isOrderActive": "false", 
-    "orderFlowerBouquetIds": [{
-        "flowerBouquetId": "5ffaf9f2df5ea438e4e183be",
-        "bouquetAmount": 3
-    }]
+    "userId":"6002fdbfaf469548f0bb42f3",
+    "orderAddress":{
+        "_id":"60252b3cb67369011c9aa77e",
+        "name":"Home",
+        "city":"Netaim",
+        "street":"hail",
+        "houseNumber":"2"
+    },
+    "orderFrequency":1,
+    "isOrderActive":"false",
+    "orderFlowerBouquetIds":[{
+        "flowerBouquetId":"6005b4e5a293d135243beb1a",
+        "bouquetAmount":1
+    }],
+    "orderTotalSum":119,
+    "providerId":"-"
 }
 
 ###################### Target Specific #####################
