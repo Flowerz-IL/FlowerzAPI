@@ -85,7 +85,7 @@ function FormInputs({inputs, inputsType, formState, setFormState, formErrorState
                                         value={formState[currentKey]}
                                         required
                                     />
-                                    <CharacterCount>{120 - formState[currentKey].length}</CharacterCount>
+                                    <CharacterCount>{250 - formState[currentKey].length}</CharacterCount>
                                 </InputWrapper>
                                 <ErrorMessage>{formErrorState[currentKey] ?? ''}</ErrorMessage>
                             </>
@@ -211,7 +211,7 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
         case INPUT_TYPES.LONG_TEXT:
             {
                 const valueLen = insertedValue.length;
-                if(valueLen > 120 || valueLen < 4) 
+                if(valueLen > 250 || valueLen < 4) 
                     setErrorState(prev => ({...prev, [currentInput]: `Text must be with the minimum of 4 characters and the maximum of 120` }));
                 else deleteError();
             }

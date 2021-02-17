@@ -50,6 +50,7 @@ flowerBouquetService.groupBySize = async () =>
     FlowerBouquetModel.aggregate([
         { $group: { 
             _id: '$bouquetSize',
+            bouquetID: {$push:'$_id'},
             bouquetsPrices: {$push:'$bouquetPrice'},
             bouquetsNames: {$push:'$bouquetName'},
             bouquetsImageUrls: {$push:'$bouquetImageUrl'},

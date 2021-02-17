@@ -33,9 +33,14 @@ module.exports.getSpecificItem = userId => UserModel.findById(userId).then(censo
  * @param {object} change 
  * @resolve user before the update
  */
-module.exports.updateSpecificItem = async (userId, change) => 
-    UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
+module.exports.updateSpecificItem = async (userId, change) => {
+    if('userPassword' in change){
+        const encryptedPassword = await encryptText(userPassword);
+        change.userPassword === encryptedPassword;
+    }
+    return UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
         .then(censoredUser);
+};
 
 /**
  * Used to push to a user array
