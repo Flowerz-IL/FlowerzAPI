@@ -11,6 +11,8 @@ const SDKInstance = axios.create({baseURL: 'http://localhost:8080/api'});
 export const get = route => SDKInstance.get(route)
     .then(res => res.data.reduce((prev, current) => ({...prev, [current._id]: current}) ,{}));
 
+export const regularGet = route => SDKInstance.get(route);
+
 /**
  * Used to send post request to the api
  * 
@@ -50,5 +52,6 @@ export const API_ROUTES = {
     PROVIDER: '/providers',
     PROVIDER_SPECIFIC: '/providers/specific',
     PROVIDER_SIGN_UP: '/providers/sign-up',
-    ORDER:'/orders'
+    ORDER:'/orders',
+    ORDER_GROUP_BY:'/orders/getTotal'
 };

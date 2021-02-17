@@ -37,7 +37,7 @@ const flowerDataType = {
 
 const flowerInputsType = {
     flowerName: {type: INPUT_TYPES.TEXT},
-    flowerColor: {type: INPUT_TYPES.TEXT},
+    flowerColor: {type: INPUT_TYPES.COLOR},
     flowerDescription: {type: INPUT_TYPES.LONG_TEXT},
     flowerImageUrl: {type: INPUT_TYPES.IMAGE}
 };

@@ -12,9 +12,18 @@ function DynamicAddItem({formState, setFormState, formName, formInputs, data}) {
     const currentInputDetails = formInputs[formName][0];
     const handleChange = ({target:{value, name}}) => setTempFormState(prev => ({...prev, [name]: value}));
     const handleSubmit = () => {
-        const validationRes = currentInputDetails.mustBeFilled.every( input => tempFormState[input] && tempFormState[input] !== '');
+        let validationRes = currentInputDetails.mustBeFilled.every( input => tempFormState[input] && tempFormState[input] !== '');
         if(!validationRes){
             alert(`one or more fields from these fields ${JSON.stringify(currentInputDetails.mustBeFilled)} are missing`);
+            return;
+        }
+        validationRes = Object.keys(currentInputDetails.inputs).every(key => {
+            if(currentInputDetails.inputs[key].type === INPUT_TYPES.NUMBER) 
+                return !isNaN(tempFormState[key]) || tempFormState[key] === undefined;
+            else return true;
+        })
+        if(!validationRes){
+            alert('Number inputs must contain only valid numbers');
             return;
         }
         setFormState(prev => {
@@ -97,7 +106,7 @@ function DynamicAddItem({formState, setFormState, formName, formInputs, data}) {
                             ); 
                     }
                 })}
-            <Button style={{flex: 1}} type="button" onClick={handleSubmit}> Add {currentInputDetails.propertyToCompare} </Button>
+            <Button style={{flex: 1}} type="button" onClick={handleSubmit}> Add </Button>
             </AddItemWrapper>
         </>
     );
@@ -118,6 +127,7 @@ const AddItemWrapper = Styled.div`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 0.5rem;
 `;
 
 export default DynamicAddItem;

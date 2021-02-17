@@ -25,11 +25,11 @@ content-type: application/json
 
 ### change role 
 
-PATCH http://localHost:8080/api/users/specific/6002fdbfaf469548f0bb42f3
+PATCH http://localHost:8080/api/users/specific/602ce96fde97b73b98507035
 content-type: application/json
 
 {
-    "userRole": "ADMIN"
+    "userRole": "PROVIDER"
 }
 
 ### delete specific user
@@ -51,11 +51,11 @@ POST http://localHost:8080/api/users/sign-up HTTP/1.1
 content-type: application/json
 
 {
-    "userEmail": "test@example.com",
-    "userPassword": "test123",
-    "userFirstName": "testito", 
-    "userLastName": "testosh", 
-    "userPhoneNumber": "054-555-5555", 
+    "userEmail": "Admin@FlowerZIL.com",
+    "userPassword": "AdminAdmin",
+    "userFirstName": "Amnon Guy", 
+    "userLastName": "And Iris", 
+    "userPhoneNumber": "055-555-5555", 
     "userAddresses": [{
         "name": "Home",
         "city": "testavile",

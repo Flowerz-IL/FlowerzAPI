@@ -13,9 +13,10 @@ export const fetchOrders = () => {
     return async dispatch => {
         try{
             const orders = await API_SDK.get(API_SDK.API_ROUTES.ORDER);
+            const {data:{results}} = await API_SDK.regularGet(API_SDK.API_ROUTES.ORDER_GROUP_BY);
             dispatch({ 
                 type: FETCH_ORDERS,
-                payload:{orders}
+                payload:{orders, totalSumPerProvider:results}
             });
         } catch (err) { console.log(err);}
     };

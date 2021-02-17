@@ -33,6 +33,9 @@ content-type: application/json
 ### get a specific flower bouquet
 GET http://localHost:8080/api/flower-bouquets/5ffaf9f2df5ea438e4e183be HTTP/1.1
 
+### get groupBySize flower bouquet
+GET http://localHost:8080/api/flower-bouquets/group-by-size HTTP/1.1
+
 ### change a specific flower bouquet
 PATCH http://localHost:8080/api/flower-bouquets/5ffaf9f2df5ea438e4e183be HTTP/1.1
 content-type: application/json

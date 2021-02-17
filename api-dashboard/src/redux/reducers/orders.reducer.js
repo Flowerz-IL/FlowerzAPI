@@ -1,7 +1,7 @@
 
 import {ADD_ORDER, EDIT_ORDER, REMOVE_ORDER, FETCH_ORDERS } from '../actions/orders.action';
 
-const initialState = { orders:null };
+const initialState = { orders:null, totalSumPerProvider: null };
 
 const OrdersReducer = (state = initialState, action) => {
     let newState;
@@ -11,7 +11,8 @@ const OrdersReducer = (state = initialState, action) => {
         case FETCH_ORDERS:
             newState = {
                 ...state,
-                orders:payload.orders
+                orders:payload.orders,
+                totalSumPerProvider: payload.totalSumPerProvider
             };
             break;
 

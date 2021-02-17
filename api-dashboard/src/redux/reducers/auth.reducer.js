@@ -1,13 +1,19 @@
 
 import {SIGN_IN, LOG_OUT} from '../actions/auth.action';
 
-const initialState = {
-    currentUserId: localStorage.getItem('currentUserId') ?? null,
-    userName: localStorage.getItem('userName') ?? null,
-    userRole: localStorage.getItem('userRole') ?? null,
-    jwt: localStorage.getItem('jwt') ?? null,
-    jwtExpirationDate: localStorage.getItem('jwtExpirationDate') ?? null,
-    providerId: localStorage.getItem('providerId') ?? null
+const getFromLocalStorage = () => {
+    const expirationDate = localStorage.getItem('jwtExpirationDate')
+    if(expirationDate && expirationDate * 1000 >= new Date().getTime()){
+        return {
+            currentUserId: localStorage.getItem('currentUserId') ?? null,
+            userName: localStorage.getItem('userName') ?? null,
+            userRole: localStorage.getItem('userRole') ?? null,
+            jwt: localStorage.getItem('jwt') ?? null,
+            jwtExpirationDate: localStorage.getItem('jwtExpirationDate') ?? null,
+            providerId: localStorage.getItem('providerId') ?? null
+        };
+    }else 
+    return {currentUserId:null, userName:null, userRole:null, jwt:null, jwtExpirationDate:null, providerId:null} 
 };
 
 const saveInLocalStorage = objectToSave => 
@@ -15,6 +21,8 @@ const saveInLocalStorage = objectToSave =>
 
 const removeFromLocalStorage = objectToSave => 
     Object.keys(objectToSave).forEach( key => localStorage.removeItem(key));
+
+const initialState = getFromLocalStorage();
 
 const AuthReducer = (state = initialState, action) => {
     let newState;

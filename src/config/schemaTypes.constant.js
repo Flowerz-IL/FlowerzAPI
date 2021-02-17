@@ -7,7 +7,7 @@ require('mongoose-type-email');
 // ------------------------------------------- STRINGS -------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
-const [SMALL_STRING, MEDIUM_STRING, LONG_STRING] = [40, 80, 120];
+const [SMALL_STRING, MEDIUM_STRING, LONG_STRING] = [40, 80, 250];
 
 /**
  * Required trimmed string with no restrictions.
@@ -47,12 +47,12 @@ module.exports.requiredMediumString = {...module.exports.requiredString, maxleng
 module.exports.nonRequiredMediumString = {...module.exports.nonRequiredString, maxlength: MEDIUM_STRING};
 
 /**
- * Required trimmed string with maximum of 120 characters.
+ * Required trimmed string with maximum of 250 characters.
  */
 module.exports.requiredLongString = {...module.exports.requiredString, maxlength: LONG_STRING };
 
 /**
- * Trimmed string with maximum of 120 characters.
+ * Trimmed string with maximum of 250 characters.
  */
 module.exports.nonRequiredLongString = {...module.exports.nonRequiredString, maxlength: LONG_STRING};
 

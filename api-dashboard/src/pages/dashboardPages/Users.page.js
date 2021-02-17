@@ -41,7 +41,7 @@ const userDataType = {
 
 const userInputsType = {
     userPassword: { type:INPUT_TYPES.PASSWORD},
-    userEmail:{ type:INPUT_TYPES.TEXT },
+    userEmail:{ type:INPUT_TYPES.EMAIL },
     userFirstName:{ type:INPUT_TYPES.TEXT },
     userLastName:{ type:INPUT_TYPES.TEXT },
     userPhoneNumber:{ type:INPUT_TYPES.PHONE_NUMBER },

@@ -43,3 +43,6 @@ content-type: application/json
 
 ### delete a specific order
 DELETE http://localHost:8080/api/orders/5ffb3ef599e67425cca4dc99 HTTP/1.1
+
+### getTotal
+GET http://localHost:8080/api/orders/getTotal HTTP/1.1

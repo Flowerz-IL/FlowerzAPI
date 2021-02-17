@@ -53,9 +53,11 @@ function BarGraph({dataToPresent}) {
     
 
     return (
-        <svg ref={axis} width={W} height={H}>
-            <g ref={graph} />
-        </svg>
+        <div style={{width: '100%'}}>
+            <svg ref={axis} width={W} height={H}>
+                <g ref={graph} />
+            </svg>
+        </div>
     );
 }
 

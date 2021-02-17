@@ -10,6 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(ROUTES.API, mainRouter);
+app.use(express.static('api-dashboard/build'));
+
+app.get('/*',(req, res) => res.redirect('/'));
 
 const httpServer = http.createServer(app);
 const io = require('socket.io')(httpServer);

@@ -113,6 +113,12 @@ export const Link = Styled.div`
     }   
 `;
 
+export const ScrollFix = Styled.div`
+    width: 100%;
+    height: 100%;
+    text-align: center;
+`;
+
 const iconStyle = `
     width: 2rem;
     cursor: pointer;

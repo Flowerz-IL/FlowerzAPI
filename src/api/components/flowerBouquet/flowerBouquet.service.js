@@ -46,4 +46,15 @@ flowerBouquetService.updateSpecificItem = async (flowerBouquetId, change) =>{
     return FlowerBouquetModel.findByIdAndUpdate(flowerBouquetId, {$set:change}, {new:true});
 };
 
+flowerBouquetService.groupBySize = async () => 
+    FlowerBouquetModel.aggregate([
+        { $group: { 
+            _id: '$bouquetSize',
+            bouquetsPrices: {$push:'$bouquetPrice'},
+            bouquetsNames: {$push:'$bouquetName'},
+            bouquetsImageUrls: {$push:'$bouquetImageUrl'},
+            bouquetsDescriptions: {$push:'$bouquetDescription'}
+        }},
+      ]);
+
 module.exports = flowerBouquetService;

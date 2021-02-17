@@ -43,4 +43,15 @@ orderService.updateSpecificItem = async (orderId, change) => {
     return OrderModel.findByIdAndUpdate(orderId, {$set:change}, {new:true});
 };
 
+orderService.getTotals = async () => {
+    const mapFunc = function(){emit(this.providerId, this.orderTotalSum);};
+    const reduceFunc = function(key, values){return Array.sum(values);};
+    return OrderModel.mapReduce({ 
+        map: mapFunc, 
+        reduce: reduceFunc, 
+        query: {providerId: {$exists: true}}, 
+        out : {inline:1} 
+    });
+};
+
 module.exports = orderService;

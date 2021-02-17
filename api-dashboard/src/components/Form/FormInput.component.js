@@ -116,17 +116,37 @@ function FormInputs({inputs, inputsType, formState, setFormState, formErrorState
 
                     case INPUT_TYPES.PASSWORD:
                         return !isEdit && (
-                            <InputWrapper>
-                                <TextInput 
-                                    onChange={event => handleChange(event, inputType)} 
-                                    placeholder={'Password'}
-                                    type='password'
-                                    name={currentKey}
-                                    value={formState[currentKey]}
-                                    required
-                                />
-                                <CharacterCount>{40 - formState[currentKey].length}</CharacterCount>
-                            </InputWrapper>
+                            <>
+                                <InputWrapper>
+                                    <TextInput 
+                                        onChange={event => handleChange(event, inputType)} 
+                                        placeholder={'Password'}
+                                        type='password'
+                                        name={currentKey}
+                                        value={formState[currentKey]}
+                                        required
+                                    />
+                                    <CharacterCount>{40 - formState[currentKey].length}</CharacterCount>
+                                </InputWrapper>
+                            </>
+                        )
+
+                    case INPUT_TYPES.EMAIL:
+                        return !isEdit && (
+                            <>
+                                <InputWrapper>
+                                    <TextInput 
+                                        onChange={event => handleChange(event, inputType)} 
+                                        placeholder={placeHolder}
+                                        type='email'
+                                        name={currentKey}
+                                        value={formState[currentKey]}
+                                        required
+                                    />
+                                    <CharacterCount>{40 - formState[currentKey].length}</CharacterCount>
+                                </InputWrapper>
+                                <ErrorMessage>{formErrorState[currentKey] ?? ''}</ErrorMessage>
+                            </>
                         )
 
                     default: 
@@ -163,6 +183,7 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
         delete current[currentInput];
         return current;
     });
+    
 
     switch(inputType){
         case INPUT_TYPES.IMAGE:
@@ -173,6 +194,18 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
                     setErrorState(prev => ({...prev, [currentInput]: 'Must be a valid url'}));
                 else deleteError();
             }
+            break;
+
+        case INPUT_TYPES.COLOR:
+            const isColor = (color) => {
+                const s = new Option().style;
+                s.color = color;
+                return s.color == color;
+            };
+
+            if(!isColor(insertedValue)) 
+                setErrorState(prev => ({...prev, [currentInput]: 'Must be a valid color'}));
+            else deleteError();
             break;
 
         case INPUT_TYPES.LONG_TEXT:
@@ -188,6 +221,16 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
             if(insertedValue === '')
                 setErrorState(prev => ({...prev, [currentInput]: `you must choose an option` }));
             else deleteError();
+            break;
+        
+        case INPUT_TYPES.EMAIL:
+            {
+                const expression = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                const regex = new RegExp(expression);
+                if(!insertedValue.match(regex))
+                    setErrorState(prev => ({...prev, [currentInput]: `please insert a valid email address` }));
+                else deleteError();
+            }
             break;
         
         case INPUT_TYPES.PHONE_NUMBER:
@@ -226,5 +269,6 @@ export const INPUT_TYPES = {
     NUMBER: 'NUMBER',
     PHONE_NUMBER: 'PHONE_NUMBER',
     SELECT: 'SELECT',
-    PASSWORD: 'PASSWORD'
+    PASSWORD: 'PASSWORD',
+    EMAIL: 'EMAIL',
 };

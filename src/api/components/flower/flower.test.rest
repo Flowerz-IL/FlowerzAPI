@@ -20,6 +20,10 @@ content-type: application/json
 
 GET http://localHost:8080/api/flowers/5ffaf4e1e3c6a05008f4caba HTTP/1.1
 
+### scrape data
+
+GET http://localHost:8080/api/flowers/scrape-flowers HTTP/1.1
+
 ### update a specific flower
 PATCH http://localHost:8080/api/flowers/5ffaf4e1e3c6a05008f4caba HTTP/1.1
 content-type: application/json
