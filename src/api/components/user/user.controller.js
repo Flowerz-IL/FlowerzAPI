@@ -5,7 +5,7 @@ const {ERROR_MESSAGES} = require('../../../services/messages.util');
 const {validateKeysInObject, validateObjectKeys} = require('../../../services/validations.util');
 
 const MODEL_NAME = 'User';
-const mustProperties = ['userEmail', 'userRole', 'userFirstName', 'userLastName', 'userPhoneNumber', 'userAddresses'];
+const mustProperties = ['userEmail', 'userPassword', 'userRole', 'userFirstName', 'userLastName', 'userPhoneNumber', 'userAddresses'];
 const userController = GenericModelController(MODEL_NAME, userService, mustProperties, mustProperties); 
 
 /**

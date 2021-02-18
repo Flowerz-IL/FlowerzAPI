@@ -35,7 +35,7 @@ module.exports.getSpecificItem = userId => UserModel.findById(userId).then(censo
  */
 module.exports.updateSpecificItem = async (userId, change) => {
     if('userPassword' in change){
-        const encryptedPassword = await encryptText(userPassword);
+        const encryptedPassword = await encryptText(change.userPassword);
         change.userPassword === encryptedPassword;
     }
     return UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
