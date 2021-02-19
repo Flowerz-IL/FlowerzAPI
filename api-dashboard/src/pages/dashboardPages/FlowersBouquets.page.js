@@ -44,7 +44,7 @@ const flowerInputsType = {
     bouquetDescription: { type:INPUT_TYPES.LONG_TEXT },
     bouquetOccasionStyle: { type:INPUT_TYPES.TEXT },
     bouquetImageUrl: { type:INPUT_TYPES.IMAGE},
-    bouquetSize: { type:INPUT_TYPES.SELECT, data: ['S', 'M', 'L', 'X', 'Xl', 'XXL']},
+    bouquetSize: { type:INPUT_TYPES.SELECT, data: ['S', 'M', 'L', 'Xl', 'XXL']},
     bouquetFlowers: [{
         propertyToCompare: 'flowerId',
         mustBeFilled:['flowerId', 'flowerAmount'],

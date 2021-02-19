@@ -30,7 +30,6 @@ const AuthReducer = (state = initialState, action) => {
     
     switch(type){
         case SIGN_IN:
-            console.log('here', payload, action, state);
             newState = {
                 ...state,
                 currentUserId: payload.currentUser?.information._id,

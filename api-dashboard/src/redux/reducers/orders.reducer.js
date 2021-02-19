@@ -19,8 +19,13 @@ const OrdersReducer = (state = initialState, action) => {
         case ADD_ORDER:
             newState = {
                 ...state,
-                orders:{...state.orders, [payload.orderId]: payload.order}
+                orders:{...state.orders, [payload.orderId]: payload.order},
             }
+            if(payload.order.providerId && payload.order.providerId !== '-')
+                state.totalSumPerProvider.forEach(({_id}, index) => {
+                    if(_id === payload.order.providerId)
+                        newState.totalSumPerProvider[index].value += payload.order.orderTotalSum;
+                });
             break;
         
         case EDIT_ORDER:

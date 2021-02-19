@@ -35,7 +35,12 @@ const providerDataType = {
 };
 
 const providerInputsType = {
-    userId: { type:INPUT_TYPES.SELECT, data: 'users', toDisplay:['userFirstName', 'userLastName', '_id']},
+    userId: { 
+        type:INPUT_TYPES.SELECT,
+        data: 'users', 
+        toDisplay:['userFirstName', 'userLastName', '_id'], 
+        notAllowed: {inputName: 'userRole', notAllowedToBe: ['ADMIN', 'PROVIDER']}
+    },
     businessName: { type:INPUT_TYPES.TEXT },
     businessWebsite: { type:INPUT_TYPES.TEXT },
 };

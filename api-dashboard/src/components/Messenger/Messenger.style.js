@@ -66,6 +66,7 @@ export const ThisMessages = Styled.div`
     align-self: flex-end;
     background-color: ${Colors.forthColor}${Colors.opacity80};
     border-bottom-right-radius: 0;
+    flex-shrink: 0;
 `;
 
 export const OtherMessages = Styled.div`
@@ -73,6 +74,7 @@ export const OtherMessages = Styled.div`
     align-self: flex-start;
     background-color: ${Colors.secondaryColor}${Colors.opacity80};
     border-bottom-left-radius: 0;
+    flex-shrink: 0;
 `;
 
 export const MessengerInputWrapper = Styled.form`

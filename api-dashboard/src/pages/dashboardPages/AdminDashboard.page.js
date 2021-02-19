@@ -19,7 +19,6 @@ function AdminDashboard() {
     const [, ordersArray] = useSelectorAsAnArray(({OrdersReducer}) => OrdersReducer.orders);
     const [, flowerBouquetsArray] = useSelectorAsAnArray(({FlowerBouquetsReducer}) => FlowerBouquetsReducer.flowerBouquets); 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [groupByRes, setGroupByRes] = useState([]);
     const [searchFormState, setSearchFormState] = useState({});
     const [searchResults, setSearchResults] = useState([]);
 
@@ -50,7 +49,7 @@ function AdminDashboard() {
         const newSearchRes = flowerBouquetsArray.filter(item => {
             if(item.bouquetSize !== searchFormState['bouquetSize']) return false;
             if(item.bouquetPrice >= searchFormState['bouquetPrice']) return false;
-            if(!item.bouquetColors.includes(searchFormState['bouquetColor']))
+            if(!item.bouquetColors.includes(searchFormState['bouquetColor'])) return false;
             return true;
         });
         setSearchResults(newSearchRes);
@@ -88,7 +87,7 @@ function AdminDashboard() {
                                         
                                     </TableBody>
                                 </StripedDataTableWrapper> : 
-                                <Headline1> {totalSumPerProvider.find(element => element._id === '60246116f758b68aa41786fa').value}₪ </Headline1>
+                                <Headline1> {totalSumPerProvider.find(element => element._id === providerId)?.value}.0₪ </Headline1>
                             }
                             
                         </ScrollFix>
@@ -97,7 +96,7 @@ function AdminDashboard() {
             </Row>
             <Row fixedWidth='95%'>
                 {windowWidth > 800 && <Card width='38vw'>
-                    <Headline1> Activate An Order </Headline1>
+                    <Headline1> Assign An Order </Headline1>
                     <DashboardTableWrapper>
                         <OrderDataTable dataKeys={dataKeysNonActive} providerId={userRole === 'PROVIDER' ? providerId : '-'}/>
                     </DashboardTableWrapper>
@@ -150,7 +149,7 @@ function AdminDashboard() {
 
 const createGraphOrdersData = orders => {
     const res = [];
-    for(let i = 0; i < 12; i++) res.push(0);
+    for(let i = 0; i <= 12; i++) res.push(0);
     orders.forEach(order => res[Number(order.orderCreationDate.split('/')[1])] += 1);
     return res;
 }

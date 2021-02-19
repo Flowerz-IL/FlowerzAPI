@@ -37,8 +37,8 @@ function OrderDataTable({dataKeys, showInProgress=false, providerId}) {
                 {ordersArray.map( order => {
 
                     if(showInProgress && (!order.providerId || order.providerId === '-')) return null;
-                    if(!showInProgress && order.providerId && order.providerId === '-') return null;
-
+                    if(!showInProgress && order.providerId && order.providerId !== '-') return null;
+                    
                     return(
                         <tr>
                             {dataKeys.map( key => {

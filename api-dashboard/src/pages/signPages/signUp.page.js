@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {signUp} from '../../redux/actions/auth.action';
+import {useHistory} from 'react-router-dom';
 import {CenteredWithFlex, Headline1, Button} from '../../utils/constants/globalStyle.constant';
 import Loader from '../../components/Loader/Loader.component';
 import Colors from '../../utils/constants/colors.constant';
@@ -12,6 +13,7 @@ import Logo from '../../components/Logo/Logo.component';
 function SingUpPage(){
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const [formState, setFormState] = useState({userEmail:'', userPassword:'', userFirstName:'', userLastName:'',
         userPhoneNumber:'', businessName:'', businessWebsite:'', city:'', street:'', houseNumber:''});
     const [errorState, setErrorState] = useState({});
@@ -41,6 +43,7 @@ function SingUpPage(){
         };
         try{
             await dispatch(signUp(newUser));
+            history?.push('/');
         } catch (error) { alert(error.message); }
         
         setIsSubmitting(false); 

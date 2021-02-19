@@ -10,16 +10,18 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
     const [formState, setFormState] = useState({});
     const [formErrorState, setFormErrorState] = useState({});
 
-    useEffect(() => {
+    const setInitialState = () => {
         setFormState(
             inputs.reduce( (prev , currentKey) => {
                 if(Array.isArray(inputsType[currentKey]))
-                    prev[currentKey] = [];
+                    prev[currentKey] = dataToEdit ? dataToEdit[currentKey] ?? [] : [];
                 else prev[currentKey] = dataToEdit ? dataToEdit[currentKey] ?? '' : '';
                 return prev;
             }, {})
         );
-    },[dataToEdit, inputs, inputsType]);
+    };
+    
+    useEffect(setInitialState, [dataToEdit, inputs, inputsType]);
     
     const handleChange = (event, type) => {
         const {value, name} = event.target;
@@ -43,6 +45,8 @@ function DynamicForm({ dataToEdit, inputsType, handleSubmit }){
             },{});
             handleSubmit(change, dataToEdit._id);
         }
+
+        setInitialState();
     };
 
     if(formState[inputs[0]] === undefined ) return ( <Loader /> );

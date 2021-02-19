@@ -102,12 +102,23 @@ function FormInputs({inputs, inputsType, formState, setFormState, formErrorState
                                     <option value={''}> select {placeHolder} </option>
                                     {Array.isArray(inputsType[currentKey].data) ?
                                         inputsType[currentKey].data.map(item => <option value={item}> {item} </option> ):
-                                        Object.keys(data[inputsType[currentKey].data]).map(itemKey =>(
-                                            <option value={itemKey}> 
-                                                {inputsType[currentKey].toDisplay.map(propertyToDisplay =>
-                                                    `${data[inputsType[currentKey].data][itemKey][propertyToDisplay]} - `)}
-                                            </option>
-                                        ))
+                                        Object.keys(data[inputsType[currentKey].data]).map(itemKey =>{
+                                            
+                                            const temp = inputsType[currentKey].notAllowed;
+                                            if(temp){
+                                                const currentItem = data[inputsType[currentKey].data][itemKey][temp.inputName];
+                                                for(const item of temp.notAllowedToBe)
+                                                    if(currentItem === item) return null;
+                                            }
+                                                
+                                                
+                                            return (
+                                                <option value={itemKey}> 
+                                                    {inputsType[currentKey].toDisplay.map(propertyToDisplay =>
+                                                        `${data[inputsType[currentKey].data][itemKey][propertyToDisplay]} - `)}
+                                                </option>
+                                            );
+                                        })
                                     }
                                 </SelectInput>
                                 <ErrorMessage>{formErrorState[currentKey] ?? ''}</ErrorMessage>
@@ -212,7 +223,7 @@ export const updateErrorState = (setErrorState, inputType, currentInput, inserte
             {
                 const valueLen = insertedValue.length;
                 if(valueLen > 250 || valueLen < 4) 
-                    setErrorState(prev => ({...prev, [currentInput]: `Text must be with the minimum of 4 characters and the maximum of 120` }));
+                    setErrorState(prev => ({...prev, [currentInput]: `Text must be with the minimum of 4 characters and the maximum of 250` }));
                 else deleteError();
             }
             break;

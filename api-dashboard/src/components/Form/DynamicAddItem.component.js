@@ -38,7 +38,7 @@ function DynamicAddItem({formState, setFormState, formName, formInputs, data}) {
         });
         setTempFormState({});
     };
-
+    
     if(!formState) return <Loader />;
 
     return (

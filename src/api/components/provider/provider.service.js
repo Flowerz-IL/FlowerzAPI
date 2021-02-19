@@ -74,7 +74,7 @@ providerService.signUpAProvider = async ({userEmail, userPassword, userFirstName
         businessName,
         businessWebsite: businessWebsite ?? '',
     }).save();
-    await userService.updateSpecificUser(newUser._id, {providerId: newProvider._id});
+    await userService.updateSpecificItem(newUser._id, {providerId: newProvider._id});
     return newProvider;
 };
 

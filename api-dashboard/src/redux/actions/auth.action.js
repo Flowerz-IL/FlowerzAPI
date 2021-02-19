@@ -29,7 +29,6 @@ export const signIn = userCredentials => {
 export const signUp = newUser => {
     return async dispatch => {
         const currentUser = await API_SDK.post(API_SDK.API_ROUTES.PROVIDER_SIGN_UP, newUser);
-        console.log(currentUser.information);
         dispatch({
             type: SIGN_IN,
             payload: {currentUser}

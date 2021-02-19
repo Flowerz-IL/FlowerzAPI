@@ -36,7 +36,7 @@ const userDataType = {
     userPhoneNumber:DATA_TYPES.TEXT,
     providerId: DATA_TYPES.TEXT,
     userAddresses:[{}],
-    userOrders:[{}]
+    userOrders:[]
 };
 
 const userInputsType = {

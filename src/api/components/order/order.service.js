@@ -22,7 +22,6 @@ orderService.addItem = async (newItem) => {
     const orderCreationDate = getCurrentDate();
     const order = {...newItem, orderCreationDate};
     if(newItem.providerId === '-') delete order.providerId;
-    console.log(order);
     const newOrder = await new OrderModel(order).save();
     if(newItem.providerId !== '-') 
         providerService.pushToASpecificProviderArray(order.providerId, 'providerOrderIds', [newOrder._id]);

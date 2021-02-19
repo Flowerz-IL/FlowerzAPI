@@ -58,13 +58,9 @@ const UsersReducer = (state = initialState, action) => {
                 ...state,
                 users:{
                     ...state.users,
-                    [payload.provider.userId]: {
-                        ...state.users[payload.provider.userId],
-                        providerId: '-',
-                        userRole: 'USER'
-                    }
                 }
             }
+            delete newState.users[payload.provider.userId]
             break;
         default: newState = state;
     }

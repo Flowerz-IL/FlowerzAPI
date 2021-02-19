@@ -25,11 +25,11 @@ content-type: application/json
 
 ### change role 
 
-PATCH http://localHost:8080/api/users/specific/602ce96fde97b73b98507035
+PATCH http://localHost:8080/api/users/specific/602f95f7fdf8ce0ad810ecd4
 content-type: application/json
 
 {
-    "userRole": "PROVIDER"
+    "userRole": "ADMIN"
 }
 
 ### delete specific user

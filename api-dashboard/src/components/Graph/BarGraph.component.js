@@ -42,7 +42,7 @@ function BarGraph({dataToPresent}) {
                 .style("fill", "#ffffff");
 
             const graphAxis = d3.select(axis.current);
-            var scale = d3.scaleLinear().domain([1, 12]).range([0, W - 100]);
+            var scale = d3.scaleLinear().domain([1, 12]).range([0, W - 70]);
             var x_axis = d3.axisBottom().scale(scale);
             graphAxis.append('g').attr("transform", `translate(50,${H - 25})`).call(x_axis);
 
