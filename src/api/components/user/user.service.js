@@ -34,11 +34,12 @@ module.exports.getSpecificItem = userId => UserModel.findById(userId).then(censo
  * @resolve user before the update
  */
 module.exports.updateSpecificItem = async (userId, change) => {
+    let changes = {...change};
     if('userPassword' in change){
         const encryptedPassword = await encryptText(change.userPassword);
-        change.userPassword === encryptedPassword;
+        changes.userPassword = encryptedPassword;
     }
-    return UserModel.findByIdAndUpdate(userId, {$set:change}, {new:true})
+    return UserModel.findByIdAndUpdate(userId, {$set:changes}, {new:true})
         .then(censoredUser);
 };
 

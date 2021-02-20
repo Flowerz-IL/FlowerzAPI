@@ -40,7 +40,7 @@ const flowerDataType = {
 
 const flowerInputsType = {
     bouquetName: { type:INPUT_TYPES.TEXT },
-    bouquetPrice: { type:INPUT_TYPES.NUMBER, min: 0, max:1000},
+    bouquetPrice: { type:INPUT_TYPES.NUMBER, min: 0, max:2000},
     bouquetDescription: { type:INPUT_TYPES.LONG_TEXT },
     bouquetOccasionStyle: { type:INPUT_TYPES.TEXT },
     bouquetImageUrl: { type:INPUT_TYPES.IMAGE},
@@ -50,7 +50,7 @@ const flowerInputsType = {
         mustBeFilled:['flowerId', 'flowerAmount'],
         inputs: {
             flowerId: { type: INPUT_TYPES.SELECT, data: 'flowers', toDisplay: ['flowerName', 'flowerColor', '_id']},
-            flowerAmount: {type: INPUT_TYPES.NUMBER, min: 0, max:100}
+            flowerAmount: {type: INPUT_TYPES.NUMBER, min: 0, max:200}
         }
     }],
 };
